@@ -14,7 +14,7 @@ from Temperature_Sensor import DS18B20
 app_temp._title="Temperature"
 
 app_temp.paths=["/sys/bus/w1/devices/28-00000c7e5ff0/w1_slave"]
-app_temp.pixel=64
+app_temp.pixel=8
 
  
 @app_temp.route("/",methods=["GET","POST"])
