@@ -2,10 +2,6 @@
 {% block title %}Temperature{% endblock %}
 {% block content %}
 <style>
-.imgContainer{
-  position: relative;
-}
-
  {%for row in range(8)%}
   .label{{row}}{
 	  position:absolute;
@@ -13,34 +9,22 @@
 	  top:{{50}}px;
   }
 {% endfor%}
-
 </style>
 
-
-
-
-
-
 <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors </button>
-<!-- <button id="stop_temperature" class="btn btn-dark btn-block" type="button" onclick="get_temp_values();">Stop Temperature Measurement</button>
--->
-<div class="imgContainer">
-  <img src="{{ url_for('app_temp.static', filename='black.jpg')}}" width="900" height="900" />
-    {% for row in range(8)%}
-        <label class="label{{row}}"  id="label{{row}}" color: black>{{row}}</label>
-    {% endfor%}
+<button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC </button>
+
+{% for row in range(8)%}
+    <label class="label{{row}}"  id="label{{row}}" color: black>{{row}}</label>
+{% endfor%}
 
 
-</div>
 
 {% endblock %}
 
+
 {% block script %}
 <script>
-
-
-
-
 function get_temp_values(){
 		console.log(`get temp values`);
 		$.ajax("get_temp_values",
@@ -94,9 +78,97 @@ function init_temp_func(){
 			} 
 		});
 }
+function get_adc_values(){
+	$.ajax("get_adc_value",
+		{
+		 contentType:"application/json",
+		data: JSON.stringify({
+			voltage_card: 0,
+			}),
+			type:"POST",
+			success:function(response){
+				var data=response.data
+				console.log(data["Exception"])
+				var arraylength=data["voltages"].length
+				try {
+				for (var chan = 0; chan < arraylength; chan++) {
+					document.getElementById(`ADCVal${chan}`).value=data["voltages"][chan];
+				}
 
+} catch (e) {
+  console.log(e.name + ': ' + e.message);
+setTimeout(get_adc_values, 10000);
 
-
+}
+							setTimeout(get_adc_values, 5000);
+			}
+		});
+};
+function set_dac_value(val,chan,slider_val){
+		console.log(`set dac value ${val}`);
+		$.ajax("set_dac_value",
+		{
+		 contentType:"application/json",
+		data: JSON.stringify({
+			voltage: val,
+			channel: chan
+			}),
+			type:"POST",
+			success:function(response){
+				var data=response.data
+				console.log(data["Exception"])
+				document.getElementById(`slider${chan}`).value=data["voltage"];
+				document.getElementById(`ADCVal${chan}`).value=data["adc_voltage"];
+    			document.getElementById(slider_val).innerHTML = data["voltage"]; // get
+			}
+		});
+};
+function init_dac_func(){
+		console.log("init_dac_func");
+		$.ajax("init_dac",
+		{
+		 contentType:"application/json",
+		data: JSON.stringify({
+			variable: "init_dac"
+			}),
+			type:"POST",
+			success:function(response){
+				var data=response.data
+				console.log(data)
+			}
+		});
+};
+function increase_func(){
+		console.log("dac increase");
+		$.ajax("increase",
+		{
+		 contentType:"application/json",
+		data: JSON.stringify({
+			variable: "get_json"
+			}),
+			type:"POST",
+			success:function(response){
+				var data=response.data
+				console.log(data)
+			}
+		});
+		console.log("increase");
+};
+function decrease_func(){
+		console.log("dac increase");
+		$.ajax("decrease",
+		{
+		 contentType:"application/json",
+		data: JSON.stringify({
+			variable: "get_json"
+			}),
+			type:"POST",
+			success:function(response){
+				var data=response.data
+				console.log(data)
+			}
+		});
+		console.log("increase");
+};
 </script>
-
 {% endblock %}
