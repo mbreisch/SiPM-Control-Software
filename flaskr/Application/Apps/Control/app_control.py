@@ -31,7 +31,7 @@ def index():
     Returns:
         rendered html: The Home Page for the Temperature APP
     """
-    return render_template("temperature.html",title="Temperature Interface", bg_img_path=url_for('app_control.static',filename="background_dk.jpeg", url_call="/get_json"))
+    return render_template("control.html",title="Control Interface", bg_img_path=url_for('app_control.static',filename="background_dk.jpeg", url_call="/get_json"))
 
 @app_control.route("/init_temperature",methods=["POST"])
 def init_temperature():
@@ -95,15 +95,6 @@ def GetSettingsFromTxt(channel):
             if int(key)==channel:
                 return float(value)
  
-@app_control.route("/",methods=["GET","POST"])
-@app_control.route("/home",methods=["GET","POST"])
-def index():
-    """Renders the Landing Page for the Voltage Control APP. Is called with POST/GET Request at / and /home
-
-    Returns:
-        Rendered html: The Html Site to be shown
-    """
-    return render_template("dac.html",title="Voltage Control", bg_img_path=url_for('app_control.static',filename="background_dk.jpeg", url_call="/get_json"))
 
 @app_control.route("/init_dac",methods=["POST"])
 def init_dac():
