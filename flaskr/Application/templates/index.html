@@ -1,0 +1,15 @@
+{%extends "base.html"%}
+
+{% block title %}Measurement Software{% endblock %}
+
+{% block content %}
+<form method="get">
+{% for app in apps %}
+        <a href="/{{app._str}}"> <div style="background-color: rgba(40,40,40,0.7); color:white; width:91vw;"> {{app._title}} </div></a>
+    {% endfor %}
+        </form>
+    
+
+{% endblock %}
+
+

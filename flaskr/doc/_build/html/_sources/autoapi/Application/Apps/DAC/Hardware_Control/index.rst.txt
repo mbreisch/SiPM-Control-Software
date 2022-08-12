@@ -1,0 +1,18 @@
+:mod:`Application.Apps.DAC.Hardware_Control`
+============================================
+
+.. py:module:: Application.Apps.DAC.Hardware_Control
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   ADC/index.rst
+   DAC_80508/index.rst
+   Multiplexer/index.rst
+   voltage_card/index.rst
+
+

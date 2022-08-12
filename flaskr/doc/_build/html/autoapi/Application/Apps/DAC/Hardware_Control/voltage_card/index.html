@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Application.Apps.DAC.Hardware_Control.voltage_card &mdash; SiPM Setup Control  Master 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../_static/jquery.js"></script>
+        <script src="../../../../../../_static/underscore.js"></script>
+        <script src="../../../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../../index.html" class="icon icon-home"> SiPM Setup Control  Master
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Application.Apps.DAC.Hardware_Control.voltage_card</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card">Voltage_Card</a><ul>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.update_voltages">update_voltages</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.set_voltage">set_voltage</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.set_voltage_pid">set_voltage_pid</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.get_all_voltages_file">get_all_voltages_file</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.set_voltage_file">set_voltage_file</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.get_all_voltages">get_all_voltages</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.get_single_voltage">get_single_voltage</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.set_voltage_">set_voltage_</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+    <a href="genindex.html">Index</a>
+        <a href="py-modindex.html">Module Index</a>
+
+  
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">SiPM Setup Control  Master</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">Application.Apps.DAC.Hardware_Control.voltage_card</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../../../_sources/autoapi/Application/Apps/DAC/Hardware_Control/voltage_card/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-Application.Apps.DAC.Hardware_Control.voltage_card">
+<span id="application-apps-dac-hardware-control-voltage-card"></span><h1><a class="reference internal" href="#module-Application.Apps.DAC.Hardware_Control.voltage_card" title="Application.Apps.DAC.Hardware_Control.voltage_card"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Application.Apps.DAC.Hardware_Control.voltage_card</span></code></a><a class="headerlink" href="#module-Application.Apps.DAC.Hardware_Control.voltage_card" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card" title="Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Voltage_Card</span></code></a></p></td>
+<td><p>Software Representation of one Voltage Card.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt id="Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Voltage_Card</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cs_dac</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cs_adc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muxer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/voltage_card.html#Voltage_Card"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card" title="Permalink to this definition">¶</a></dt>
+<dd><p>Software Representation of one Voltage Card.
+One Voltage Card provides 8 controllable Output Voltages in the Range of approx 0-38V
+Init all controllable Hardware Components of the Voltage Card.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Args:</dt><dd><p>cs_dac (int): CS Line of the Multiplexer Corresponding to the DAC
+cs_adc (int): CS Line of the Multiplexer Corresponding to the ADC
+spi (SpiDev spi): SPI Interface
+muxer (Muxer): Multiplexer for CS Selection</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.update_voltages">
+<code class="sig-name descname"><span class="pre">update_voltages</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/voltage_card.html#Voltage_Card.update_voltages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.update_voltages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.set_voltage">
+<code class="sig-name descname"><span class="pre">set_voltage</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voltage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/voltage_card.html#Voltage_Card.set_voltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.set_voltage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the Voltage of a given channel to a given voltage</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>channel</strong> (<em>int</em>) – Channel (0-7)</p></li>
+<li><p><strong>voltage</strong> (<em>float</em>) – desired Voltage in Volts</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The estimated set Voltage of the DAC; The measured Voltage of the ADC</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple of floats</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.set_voltage_pid">
+<code class="sig-name descname"><span class="pre">set_voltage_pid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voltage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/voltage_card.html#Voltage_Card.set_voltage_pid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.set_voltage_pid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the Voltage of a given channel to a given voltage</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>channel</strong> (<em>int</em>) – Channel (0-7)</p></li>
+<li><p><strong>voltage</strong> (<em>float</em>) – desired Voltage in Volts</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The estimated set Voltage of the DAC; The measured Voltage of the ADC</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple of floats</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.get_all_voltages_file">
+<code class="sig-name descname"><span class="pre">get_all_voltages_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/voltage_card.html#Voltage_Card.get_all_voltages_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.get_all_voltages_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.set_voltage_file">
+<code class="sig-name descname"><span class="pre">set_voltage_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voltage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/voltage_card.html#Voltage_Card.set_voltage_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.set_voltage_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.get_all_voltages">
+<code class="sig-name descname"><span class="pre">get_all_voltages</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/voltage_card.html#Voltage_Card.get_all_voltages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.get_all_voltages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all Voltages from ADC</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>All measured Voltages</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.get_single_voltage">
+<code class="sig-name descname"><span class="pre">get_single_voltage</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/voltage_card.html#Voltage_Card.get_single_voltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.get_single_voltage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.set_voltage_">
+<code class="sig-name descname"><span class="pre">set_voltage_</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voltage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/voltage_card.html#Voltage_Card.set_voltage_"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card.set_voltage_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the Voltage of a given channel to a given voltage</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>channel</strong> (<em>int</em>) – Channel (0-7)</p></li>
+<li><p><strong>voltage</strong> (<em>float</em>) – desired Voltage in Volts</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The estimated set Voltage of the DAC; The measured Voltage of the ADC</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple of floats</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Frieder Kohler.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

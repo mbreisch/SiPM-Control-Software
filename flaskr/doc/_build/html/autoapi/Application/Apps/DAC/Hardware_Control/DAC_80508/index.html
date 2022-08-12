@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Application.Apps.DAC.Hardware_Control.DAC_80508 &mdash; SiPM Setup Control  Master 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../_static/jquery.js"></script>
+        <script src="../../../../../../_static/underscore.js"></script>
+        <script src="../../../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../../index.html" class="icon icon-home"> SiPM Setup Control  Master
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Application.Apps.DAC.Hardware_Control.DAC_80508</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508">DAC_80508</a><ul>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.read">read</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.write">write</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.get_device_id">get_device_id</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.voltage_to_LSB">voltage_to_LSB</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.LSB_to_voltage">LSB_to_voltage</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.set_voltage">set_voltage</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.get_voltage_LSB">get_voltage_LSB</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.get_voltage">get_voltage</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.get_all_voltages">get_all_voltages</a></li>
+<li><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.set_all_gain">set_all_gain</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+    <a href="genindex.html">Index</a>
+        <a href="py-modindex.html">Module Index</a>
+
+  
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">SiPM Setup Control  Master</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">Application.Apps.DAC.Hardware_Control.DAC_80508</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../../../_sources/autoapi/Application/Apps/DAC/Hardware_Control/DAC_80508/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-Application.Apps.DAC.Hardware_Control.DAC_80508">
+<span id="application-apps-dac-hardware-control-dac-80508"></span><h1><a class="reference internal" href="#module-Application.Apps.DAC.Hardware_Control.DAC_80508" title="Application.Apps.DAC.Hardware_Control.DAC_80508"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Application.Apps.DAC.Hardware_Control.DAC_80508</span></code></a><a class="headerlink" href="#module-Application.Apps.DAC.Hardware_Control.DAC_80508" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508" title="Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DAC_80508</span></code></a></p></td>
+<td><p>Class for the used Octal DAC 80508 from Ti</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt id="Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">DAC_80508</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cs_pin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muxer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/DAC_80508.html#DAC_80508"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for the used Octal DAC 80508 from Ti
+Datasheet: <a class="reference external" href="https://www.ti.com/lit/ds/symlink/dac80508.pdf?ts=1619120994235&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FDAC80508">https://www.ti.com/lit/ds/symlink/dac80508.pdf?ts=1619120994235&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FDAC80508</a>
+Initialises the DAC. Sets Internal Voltage Reference Gain to 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cs_pin</strong> (<em>int</em>) – The Output Line of the Multiplexer which is connected to the DAC</p></li>
+<li><p><strong>spi</strong> (<em>SpiDev spi</em>) – The SPI Interface to be used for communication</p></li>
+<li><p><strong>muxer</strong> (<em>Multiplexer Object</em>) – The Multiplexer which controls the CS Routing</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.read">
+<code class="sig-name descname"><span class="pre">read</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/DAC_80508.html#DAC_80508.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Low Level one Register read function.
+Selects MUX Line
+Selects correct SPI Mode
+Gets the Data from the Register like described in the Datasheet</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>reg</strong> (<em>int</em>) – The Register which should be read</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value of the 16 bit Register as an Integer</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.write">
+<code class="sig-name descname"><span class="pre">write</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/DAC_80508.html#DAC_80508.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Low Level Register Write Function.
+Selects MUX Line
+Selects correct SPI Mode
+Writes the Value to the specified Register like described in the Datasheet
+:param reg: The Register to be written to
+:type reg: int
+:param value: The Value to be written to the Register
+:type value: int</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.get_device_id">
+<code class="sig-name descname"><span class="pre">get_device_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/DAC_80508.html#DAC_80508.get_device_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.get_device_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the Device ID of the DAC should always be 517</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.voltage_to_LSB">
+<code class="sig-name descname"><span class="pre">voltage_to_LSB</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voltage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/DAC_80508.html#DAC_80508.voltage_to_LSB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.voltage_to_LSB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the voltage to the nearest corresponding LSB Value.
+The LSB Value is estimated by the gain and full voltage range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>voltage</strong> (<em>float</em>) – The voltage that should be converted to LSB</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>LSB Value corresponding to Voltage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.LSB_to_voltage">
+<code class="sig-name descname"><span class="pre">LSB_to_voltage</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voltage_LSB</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/DAC_80508.html#DAC_80508.LSB_to_voltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.LSB_to_voltage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the voltage in LSB to a estimated float Voltage in Volts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>voltage_LSB</strong> (<em>int</em>) – Voltage in LSB to be converted in Volts</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Voltage in Volts</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.set_voltage">
+<code class="sig-name descname"><span class="pre">set_voltage</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voltage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/DAC_80508.html#DAC_80508.set_voltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.set_voltage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the DAC channel (0-7) to the desired voltage</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>channel</strong> (<em>int</em>) – Channel 0-7 which should be set</p></li>
+<li><p><strong>voltage</strong> (<em>float</em>) – Voltage the channel should be set to</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The estimated Voltage which is set</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.get_voltage_LSB">
+<code class="sig-name descname"><span class="pre">get_voltage_LSB</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/DAC_80508.html#DAC_80508.get_voltage_LSB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.get_voltage_LSB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the set voltage of a specified channel in LSB</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>channel</strong> (<em>int</em>) – Channel of which the voltage Register should be read</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value of Voltage Register of the specified channel</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.get_voltage">
+<code class="sig-name descname"><span class="pre">get_voltage</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/DAC_80508.html#DAC_80508.get_voltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.get_voltage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the estimated set voltage of a specified channel in Volts</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>channel</strong> (<em>int</em>) – Channel of which the voltage Register should be read and converted</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>in Volts Converted Value of Voltage Register of the specified channel</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.get_all_voltages">
+<code class="sig-name descname"><span class="pre">get_all_voltages</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/DAC_80508.html#DAC_80508.get_all_voltages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.get_all_voltages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the estimated set voltage of all channels in Volts</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>in Volts Converted Values of Voltage Registers of all channels</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.set_all_gain">
+<code class="sig-name descname"><span class="pre">set_all_gain</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_x2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/Application/Apps/DAC/Hardware_Control/DAC_80508.html#DAC_80508.set_all_gain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508.set_all_gain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the gain to two of all DAC Channels -&gt; Voltage Range between 0-5V using the internal Voltage Reference (2.5V)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>gain_x2</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to set the Gain to two or not. Defaults to True.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Frieder Kohler.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

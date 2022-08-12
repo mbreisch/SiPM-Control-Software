@@ -1,0 +1,15 @@
+:mod:`Terminal`
+===============
+
+.. py:module:: Terminal
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   terminal_app/index.rst
+
+

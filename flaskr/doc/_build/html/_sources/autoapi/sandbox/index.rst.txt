@@ -1,0 +1,39 @@
+:mod:`sandbox`
+==============
+
+.. py:module:: sandbox
+
+
+Module Contents
+---------------
+
+.. data:: spi
+   
+
+   
+
+.. data:: spi_port
+   :annotation: = 0
+
+   
+
+.. data:: speedHZ
+   :annotation: = 400000
+
+   
+
+.. data:: max_speed_hz
+   
+
+   
+
+.. data:: dut
+   :annotation: = ADC
+
+   
+
+.. data:: mode
+   :annotation: = 1
+
+   
+

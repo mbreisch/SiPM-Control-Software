@@ -1,0 +1,20 @@
+.imgContainer{
+    position: relative;
+  }
+  .label1, .label2, .label3, .label4{
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .label2{
+    right: 0;
+    top: 0;
+  }
+  .label3{
+    left: 0;
+    bottom: 0;
+  }
+  .label4{
+    right: 0;
+    bottom: 0;
+  }

@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Application.Apps.DAC.Hardware_Control.ADC &mdash; SiPM Setup Control  Master 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> SiPM Setup Control  Master
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+            
+          
+    <a href="genindex.html">Index</a>
+        <a href="py-modindex.html">Module Index</a>
+
+  
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">SiPM Setup Control  Master</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../../../Application.html">Application</a> &raquo;</li>
+        
+      <li>Application.Apps.DAC.Hardware_Control.ADC</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for Application.Apps.DAC.Hardware_Control.ADC</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1">#correct spi mode is spi.mode = 0b01</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<div class="viewcode-block" id="ADS_8166"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166">[docs]</a><span class="k">class</span> <span class="nc">ADS_8166</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for the used Octal ADC ADS 816x from Ti</span>
+<span class="sd">    Datasheet: https://www.ti.com/lit/ds/symlink/ads8166.pdf?ts=1619135690040&amp;ref_url=https%253A%252F%252Fwww.google.com%252F</span>
+<span class="sd">    Initialises the ADC</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        cs_pin (int): The Output Line of the Multiplexer which is connected to the ADC</span>
+<span class="sd">        spi (SpiDev spi): The SPI Interface to be used for communication</span>
+<span class="sd">        muxer (Multiplexer Object): The Multiplexer which controls the CS Routing</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">cs_pin</span><span class="p">,</span><span class="n">spi</span><span class="p">,</span><span class="n">muxer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialises the ADC</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            cs_pin (int): The Output Line of the Multiplexer which is connected to the ADC</span>
+<span class="sd">            spi (SpiDev spi): The SPI Interface to be used for communication</span>
+<span class="sd">            muxer (Multiplexer Object): The Multiplexer which controls the CS Routing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_access_to_regs</span><span class="o">=</span><span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fullrange_voltage</span><span class="o">=</span><span class="mf">4.096</span><span class="c1">#V works better with 5V but should be 4.096</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resistor1</span><span class="o">=</span><span class="mi">270</span><span class="c1">#kohm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resistor2</span><span class="o">=</span><span class="mi">30</span><span class="c1">#kohm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cs_pin</span><span class="o">=</span><span class="n">cs_pin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spi</span><span class="o">=</span><span class="n">spi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spi_mode</span><span class="o">=</span><span class="mb">0b00</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">muxer</span><span class="o">=</span><span class="n">muxer</span>
+        <span class="c1">#self.set_spi_mode()</span>
+
+<div class="viewcode-block" id="ADS_8166.xfer"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.xfer">[docs]</a>    <span class="k">def</span> <span class="nf">xfer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Wrapper for SPI xfer function </span>
+<span class="sd">        additionally handles CS Line and SPI Mode Selection</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (list of int): Data for SpiDev xfer function</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of int: returned Data of SpiDev xfer function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">muxer</span><span class="o">.</span><span class="n">set_cs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cs_pin</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">spi</span><span class="o">.</span><span class="n">mode</span><span class="o">!=</span><span class="bp">self</span><span class="o">.</span><span class="n">spi_mode</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spi</span><span class="o">.</span><span class="n">mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">spi_mode</span>
+        <span class="n">ret_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">spi</span><span class="o">.</span><span class="n">xfer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">muxer</span><span class="o">.</span><span class="n">cs_high</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ret_data</span></div>
+
+
+
+<div class="viewcode-block" id="ADS_8166.read"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Single Register Read function as specified for the ADC in the Datasheet</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            reg (int): Register to be read</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Value of specified Register</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">first_read_byte</span><span class="o">=</span><span class="p">(</span><span class="n">reg</span><span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">4</span><span class="p">)</span>   
+        <span class="n">second_read_byte</span><span class="o">=</span><span class="n">reg</span><span class="o">&amp;</span><span class="mi">255</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xfer</span><span class="p">([</span><span class="n">first_read_byte</span><span class="p">,</span><span class="n">second_read_byte</span><span class="p">,</span><span class="mh">0x00</span><span class="p">])</span>
+        <span class="n">retval</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xfer</span><span class="p">([</span><span class="n">first_read_byte</span><span class="p">,</span><span class="n">second_read_byte</span><span class="p">,</span><span class="mh">0x00</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">retval</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">!=</span><span class="mh">0x00</span> <span class="ow">or</span> <span class="n">retval</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">!=</span><span class="mh">0x00</span><span class="p">:</span>
+            <span class="c1">#raise Warning</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Error in Read returned </span><span class="si">{retval}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">retval</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="ADS_8166.write"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reg</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Single Register Write function as specified for the ADC in the Datasheet</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            reg (int): Register the value should be written to</span>
+<span class="sd">            value (int): Value to be written to the Register</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">first_write_byte</span><span class="o">=</span><span class="p">(</span><span class="n">reg</span><span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">3</span><span class="p">)</span>    
+        <span class="n">second_write_byte</span><span class="o">=</span><span class="n">reg</span><span class="o">&amp;</span><span class="mi">255</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xfer</span><span class="p">([</span><span class="n">first_write_byte</span><span class="p">,</span><span class="n">second_write_byte</span><span class="p">,</span><span class="n">value</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="ADS_8166.set_spi_mode"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.set_spi_mode">[docs]</a>    <span class="k">def</span> <span class="nf">set_spi_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">spi_mode</span><span class="o">=</span><span class="mb">0b01</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Change SPI Mode of the ADC.</span>
+<span class="sd">        At startup spi mode of the ADC is always 01</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            spi_mode (int, optional): Desired SPI Mode. Defaults to 0b01.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spi</span><span class="o">.</span><span class="n">mode</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_access_to_regs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_access</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mh">0x08</span><span class="p">,</span><span class="n">spi_mode</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spi</span><span class="o">.</span><span class="n">mode</span><span class="o">=</span><span class="n">spi_mode</span>
+        <span class="n">ret_val</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mh">0x08</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ret_val</span><span class="o">!=</span><span class="n">spi_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;SPI Mode could not be set readback was </span><span class="si">{ret_val}</span><span class="s2"> wanted mode was </span><span class="si">{spi_mode}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spi_mode</span><span class="o">=</span><span class="n">spi_mode</span></div>
+    
+<div class="viewcode-block" id="ADS_8166.write_access"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.write_access">[docs]</a>    <span class="k">def</span> <span class="nf">write_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable Write Access to the ADC Registers.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            enable (bool, optional): Whether Write Access should be enabled or not. Defaults to True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">enable</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_access_to_regs</span><span class="o">=</span><span class="kc">True</span>
+            <span class="n">access_code</span><span class="o">=</span><span class="mb">0b10101010</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span><span class="n">access_code</span><span class="p">)</span>
+            <span class="n">ret_val</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mh">0x00</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ret_val</span><span class="o">!=</span><span class="n">access_code</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_access_to_regs</span><span class="o">=</span><span class="kc">False</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Access could not be enabled got </span><span class="si">{ret_val}</span><span class="s2"> expected </span><span class="si">{access_code}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ADS_8166.enabled_channel_id"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.enabled_channel_id">[docs]</a>    <span class="k">def</span> <span class="nf">enabled_channel_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable broadcast of Channel ID before Data Frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_access_to_regs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_access</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mh">0x10</span><span class="p">,</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">4</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="ADS_8166.debug_mode"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.debug_mode">[docs]</a>    <span class="k">def</span> <span class="nf">debug_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the Debug Mode of the ADC on or off. </span>
+<span class="sd">        In Debug mode the ADC returns fixed Data Values as described in the Datasheet.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            enable (bool, optional): Whether to turn debug mode on or off. Defaults to True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_access_to_regs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_access</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mh">0x10</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ADS_8166.select_channel"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.select_channel">[docs]</a>    <span class="k">def</span> <span class="nf">select_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">channel</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Selects the channel of which the ADC should broadcast Data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            channel (int): Channel 1-8 of which the ADC should broadcast the Voltage</span>
+<span class="sd">            debug (bool, optional): Enables/Disables Print statement for debugging Purposes. Defaults to False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mh">0x1d</span><span class="p">,</span><span class="n">channel</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Selected Channel is </span><span class="si">{channel}</span><span class="s2"> Readback is {self.read(0x1d)}&quot;</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="ADS_8166.on_the_fly_mode"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.on_the_fly_mode">[docs]</a>    <span class="k">def</span> <span class="nf">on_the_fly_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enables the on the fly Readout mode of the ADC</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            enable (bool, optional): Enable/Disable. Defaults to True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_access_to_regs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_access</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">was_val</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mh">0x1c</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">enable</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mh">0x1c</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mh">0x1c</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">is_val</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mh">0x1c</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;The value of 0x1c was </span><span class="si">{was_val}</span><span class="s2"> new value is </span><span class="si">{is_val}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="ADS_8166.convert_single_value"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.convert_single_value">[docs]</a>    <span class="k">def</span> <span class="nf">convert_single_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Converts the LSB Value to a Voltage in Volts.</span>
+<span class="sd">        Based on the specified Voltage Divider Resistors and the Voltage Reference (internal V_ref=4.096V)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            value (int): Voltage Register Value in LSB which should be converted</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Converted Value in Volts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">value</span><span class="o">/</span><span class="mi">65535</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">fullrange_voltage</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resistor1</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">resistor2</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">resistor2</span></div>
+
+<div class="viewcode-block" id="ADS_8166.convert_values"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.convert_values">[docs]</a>    <span class="k">def</span> <span class="nf">convert_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">values</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;For one value same Function as convert_single_value.</span>
+<span class="sd">        For list of values in LSB converts all of them to Volts using convert_single_value.</span>
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            values (int or list of int): LSB Voltage Values</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float or list of float: The converted value(s)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span><span class="nb">list</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">convert_single_value</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_single_value</span><span class="p">(</span><span class="n">values</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ADS_8166.get_values_on_the_fly"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.get_values_on_the_fly">[docs]</a>    <span class="k">def</span> <span class="nf">get_values_on_the_fly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">channels</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get Values of the ADC when it is in on the fly Mode.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            channels (list of int): Channels to get the voltage data from</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of int: Voltage Values of channels in LSB</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">channels</span><span class="p">,</span><span class="nb">list</span><span class="p">):</span>
+            <span class="n">channels</span><span class="o">=</span><span class="p">[</span><span class="n">channels</span><span class="p">]</span>
+        <span class="n">channels</span><span class="o">+=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">vals</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">channels</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">channel</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">channels</span><span class="p">):</span>
+            <span class="n">val</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xfer</span><span class="p">([(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">7</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">channel</span><span class="o">&lt;&lt;</span><span class="mi">3</span><span class="p">),</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">vals</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="n">val</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">vals</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span></div>
+
+<div class="viewcode-block" id="ADS_8166.get_voltage"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.get_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">get_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">channel</span><span class="p">,</span><span class="n">std</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span><span class="n">samples</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets Voltage of specified channel in Default ADC Mode.</span>
+<span class="sd">        Takes samples Measurements of channel till the STD of samples consecutive Values is smaller than std.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            channel (int): Channel index 0-7</span>
+<span class="sd">            std (float, optional): Upper Limit of Standard Deviation for 100 Measurments. Defaults to 0.01.</span>
+<span class="sd">            samples (int,optional): Samples to be taken. Defaults to 100</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Mean Voltage of Channel over samples Measurements</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">select_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xfer</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xfer</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">vals</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">samples</span><span class="o">/</span><span class="mi">2</span><span class="p">)):</span>
+            <span class="n">val</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xfer</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">val</span><span class="o">=</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="n">val</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">vals</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">=</span><span class="mi">100</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.005</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.005</span><span class="p">)</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_single_value</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">vals</span><span class="p">))</span><span class="o">&gt;=</span><span class="n">std</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">samples</span><span class="p">):</span>
+                <span class="n">val</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xfer</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">val</span><span class="o">=</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="n">val</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">vals</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">=</span><span class="n">val</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+        <span class="c1">#print(f&quot;Standard deviation {self.convert_single_value(np.std(vals))}&quot;)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_single_value</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vals</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="ADS_8166.get_all_voltages"><a class="viewcode-back" href="../../../../../autoapi/Application/Apps/DAC/Hardware_Control/ADC/index.html#Application.Apps.DAC.Hardware_Control.ADC.ADS_8166.get_all_voltages">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_voltages</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets the Voltage from all eight channels</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.array: Voltages from all eight channels</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">channels</span><span class="o">=</span><span class="mi">2</span>
+        <span class="n">voltages</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">channels</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">channels</span><span class="p">):</span>
+            <span class="n">voltages</span><span class="p">[</span><span class="n">channel</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_voltage</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">voltages</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Frieder Kohler.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

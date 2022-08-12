@@ -1,0 +1,83 @@
+:mod:`Application.Apps.Temperature.app_temp`
+============================================
+
+.. py:module:: Application.Apps.Temperature.app_temp
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   Application.Apps.Temperature.app_temp.index
+   Application.Apps.Temperature.app_temp.init_temperature
+   Application.Apps.Temperature.app_temp.ajax_response
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   Application.Apps.Temperature.app_temp.app_temp
+   Application.Apps.Temperature.app_temp._title
+   Application.Apps.Temperature.app_temp.paths
+   Application.Apps.Temperature.app_temp.pixel
+
+
+.. data:: app_temp
+   
+
+   
+
+.. data:: _title
+   :annotation: = Temperature
+
+   
+
+.. data:: paths
+   :annotation: = ['/sys/bus/w1/devices/28-00000c7e5ff0/w1_slave']
+
+   
+
+.. data:: pixel
+   :annotation: = 64
+
+   
+
+.. function:: index()
+
+   Renders Home Page for Temperature APP.
+   Shows all Temperature Sensors on a 8x8 Grid.
+   Sensors not sorted.
+   Called GET/POST at / and /home
+
+   :returns: The Home Page for the Temperature APP
+   :rtype: rendered html
+
+
+.. function:: init_temperature()
+
+   Initialises the Temperature Sensors.
+   Looks for all available sensors.
+   Called POST at /init_temperature
+
+   :returns: data contains working sensors
+   :rtype: json
+
+
+.. function:: ajax_response()
+
+   Tries to get Data of the initialised Temperature Sensors.
+   Saves the values with their timestamp in a array in Order of their occurence in app_temp.sensors.
+   Called POST at /init_temperature
+
+   :returns: data contains list of time of temperature measurement and temperature
+   :rtype: json
+
+

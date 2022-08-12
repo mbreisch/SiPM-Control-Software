@@ -1,0 +1,92 @@
+:mod:`Application.Apps.DAC.Hardware_Control.voltage_card`
+=========================================================
+
+.. py:module:: Application.Apps.DAC.Hardware_Control.voltage_card
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   Application.Apps.DAC.Hardware_Control.voltage_card.Voltage_Card
+
+
+
+
+.. class:: Voltage_Card(cs_dac, cs_adc, spi, muxer)
+
+
+   Software Representation of one Voltage Card.
+   One Voltage Card provides 8 controllable Output Voltages in the Range of approx 0-38V
+   Init all controllable Hardware Components of the Voltage Card.
+
+       Args:
+           cs_dac (int): CS Line of the Multiplexer Corresponding to the DAC
+           cs_adc (int): CS Line of the Multiplexer Corresponding to the ADC
+           spi (SpiDev spi): SPI Interface
+           muxer (Muxer): Multiplexer for CS Selection
+
+   .. method:: update_voltages(self)
+
+
+   .. method:: set_voltage(self, channel, voltage)
+
+      Sets the Voltage of a given channel to a given voltage
+
+      :param channel: Channel (0-7)
+      :type channel: int
+      :param voltage: desired Voltage in Volts
+      :type voltage: float
+
+      :returns: The estimated set Voltage of the DAC; The measured Voltage of the ADC
+      :rtype: Tuple of floats
+
+
+   .. method:: set_voltage_pid(self, channel, voltage)
+
+      Sets the Voltage of a given channel to a given voltage
+
+      :param channel: Channel (0-7)
+      :type channel: int
+      :param voltage: desired Voltage in Volts
+      :type voltage: float
+
+      :returns: The estimated set Voltage of the DAC; The measured Voltage of the ADC
+      :rtype: Tuple of floats
+
+
+   .. method:: get_all_voltages_file(self)
+
+
+   .. method:: set_voltage_file(self, channel, voltage)
+
+
+   .. method:: get_all_voltages(self)
+
+      Gets all Voltages from ADC
+
+      :returns: All measured Voltages
+      :rtype: np.array
+
+
+   .. method:: get_single_voltage(self, channel)
+
+
+   .. method:: set_voltage_(self, channel, voltage)
+
+      Sets the Voltage of a given channel to a given voltage
+
+      :param channel: Channel (0-7)
+      :type channel: int
+      :param voltage: desired Voltage in Volts
+      :type voltage: float
+
+      :returns: The estimated set Voltage of the DAC; The measured Voltage of the ADC
+      :rtype: Tuple of floats
+
+
+

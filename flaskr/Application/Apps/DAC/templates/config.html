@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content="HTML Tidy for Windows (vers 15 August 2007), see www.w3.org">
+<title></title>
+</head>
+<body>
+{%extends "base.html"%} {% block title %}Table Command Interface Config{% endblock %} {% block content %}
+<form action="#" method="get">
+<label>Interface
+<select name=interface id="board_interface">
+{%for inter in interfaces.keys(): %}
+<option>{{inter}}</option>
+{% endfor %}
+</select>
+</label>
+<label>Clock Frequency
+<select name=frequency id="frequency">
+{%for freq in interfaces["SPI"]["frequency"]: %}
+<option>{{freq}}</option>
+{% endfor %}
+</select>
+</label>
+<label>Data Length in Bits
+<select name=bit_length id="bit_length">
+{%for bit in interfaces["SPI"]["bit_length"]: %}
+<option>{{bit}}</option>
+{% endfor %}
+</select>
+</label>
+<button id="submit" type="submit"><div style="background-color: rgba(40,40,40,0.7); color:white; width:91vw;"> Execute Configuration </div></button>
+</form>
+<script type="text/javascript">
+        
+        var board_interface = document.getElementById("board_interface");
+        var frequency = document.getElementById("frequency");
+        var bit_length = document.getElementById("bit_length");
+        var config= {{interfaces| safe}};
+        board_interface.addEventListener("click", function() {
+                removeOptions(frequency);
+                removeOptions(bit_length);
+                addOptions(frequency, config[board_interface.value]["frequency"]);
+                addOptions(bit_length, config[board_interface.value]["bit_length"]);
+        });
+
+</script>{% endblock %} {% block script %} <script type="text/javascript">
+        function removeOptions(selectElement) {
+            var i, L = selectElement.options.length - 1;
+            for(i = L; i >= 0; i--) {
+                  selectElement.remove(i);
+                }
+        }
+        
+        function addOptions(selectElement, elements){
+                for(var i=0;i < elements.length;i++){
+                var option = document.createElement("option");
+                option.text = elements[i];
+                selectElement.add(option);
+                }
+        }
+</script>{% endblock %}
+</body>
+</html>

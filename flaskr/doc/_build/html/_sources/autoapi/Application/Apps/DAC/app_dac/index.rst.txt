@@ -1,0 +1,87 @@
+:mod:`Application.Apps.DAC.app_dac`
+===================================
+
+.. py:module:: Application.Apps.DAC.app_dac
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   Application.Apps.DAC.app_dac.index
+   Application.Apps.DAC.app_dac.init_dac
+   Application.Apps.DAC.app_dac.set_voltage
+   Application.Apps.DAC.app_dac.get_voltage
+   Application.Apps.DAC.app_dac.get_single_voltage
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   Application.Apps.DAC.app_dac.app_dac
+   Application.Apps.DAC.app_dac._title
+
+
+.. data:: app_dac
+   
+
+   
+
+.. data:: _title
+   :annotation: = Voltage Control
+
+   
+
+.. function:: index()
+
+   Renders the Landing Page for the Voltage Control APP. Is called with POST/GET Request at / and /home
+
+   :returns: The Html Site to be shown
+   :rtype: Rendered html
+
+
+.. function:: init_dac()
+
+   Initialises a Voltage Card and Multiplexer. Is called with POST Request at /init_dac
+
+   :returns: Success Statement
+   :rtype: json
+
+
+.. function:: set_voltage()
+
+   Sets the Voltage.
+   Called by POST of /set_dac_value.
+   Request must contain desired voltage as ["voltage"] and channel as ["channel"]
+
+   :returns: data contains estimated Voltage of set_voltage of DAC and ADC measured Voltage. In case of Exception 0 for Voltage and Exception str
+   :rtype: json
+
+
+.. function:: get_voltage()
+
+   Gets the voltage from the specified voltage card.
+   At the moment from the single available voltage card.
+   Request must contain desired channel as ["channel"]
+
+   :returns: json with voltages as array under voltages
+   :rtype: json
+
+
+.. function:: get_single_voltage()
+
+   Gets the voltage from the specified voltage card.
+   At the moment from the single available voltage card.
+
+   :returns: json with voltages as array under voltages
+   :rtype: json
+
+

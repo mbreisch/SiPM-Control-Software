@@ -1,0 +1,27 @@
+:mod:`start_app`
+================
+
+.. py:module:: start_app
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   start_app.start_app
+
+
+
+.. function:: start_app(path='/home/pi/Desktop/sipm_ctl/flaskr')
+
+   Starts Flask Development Server close with ctrl+c
+
+   :param path: Path to Application
+   :type path: str
+
+

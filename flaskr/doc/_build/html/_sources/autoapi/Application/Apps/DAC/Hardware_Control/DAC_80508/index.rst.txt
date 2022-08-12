@@ -1,0 +1,139 @@
+:mod:`Application.Apps.DAC.Hardware_Control.DAC_80508`
+======================================================
+
+.. py:module:: Application.Apps.DAC.Hardware_Control.DAC_80508
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   Application.Apps.DAC.Hardware_Control.DAC_80508.DAC_80508
+
+
+
+
+.. class:: DAC_80508(cs_pin, spi, muxer)
+
+
+   Class for the used Octal DAC 80508 from Ti
+   Datasheet: https://www.ti.com/lit/ds/symlink/dac80508.pdf?ts=1619120994235&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FDAC80508
+   Initialises the DAC. Sets Internal Voltage Reference Gain to 2
+
+   :param cs_pin: The Output Line of the Multiplexer which is connected to the DAC
+   :type cs_pin: int
+   :param spi: The SPI Interface to be used for communication
+   :type spi: SpiDev spi
+   :param muxer: The Multiplexer which controls the CS Routing
+   :type muxer: Multiplexer Object
+
+   .. method:: read(self, reg)
+
+      Low Level one Register read function.
+      Selects MUX Line
+      Selects correct SPI Mode
+      Gets the Data from the Register like described in the Datasheet
+
+      :param reg: The Register which should be read
+      :type reg: int
+
+      :returns: Value of the 16 bit Register as an Integer
+      :rtype: int
+
+
+   .. method:: write(self, reg, value)
+
+      Low Level Register Write Function.
+      Selects MUX Line
+      Selects correct SPI Mode
+      Writes the Value to the specified Register like described in the Datasheet
+      :param reg: The Register to be written to
+      :type reg: int
+      :param value: The Value to be written to the Register
+      :type value: int
+
+
+   .. method:: get_device_id(self)
+
+      Gets the Device ID of the DAC should always be 517
+
+
+   .. method:: voltage_to_LSB(self, voltage)
+
+      Converts the voltage to the nearest corresponding LSB Value.
+      The LSB Value is estimated by the gain and full voltage range.
+
+      :param voltage: The voltage that should be converted to LSB
+      :type voltage: float
+
+      :returns: LSB Value corresponding to Voltage
+      :rtype: int
+
+
+   .. method:: LSB_to_voltage(self, voltage_LSB)
+
+      Converts the voltage in LSB to a estimated float Voltage in Volts.
+
+      :param voltage_LSB: Voltage in LSB to be converted in Volts
+      :type voltage_LSB: int
+
+      :returns: Voltage in Volts
+      :rtype: float
+
+
+   .. method:: set_voltage(self, channel, voltage)
+
+      Sets the DAC channel (0-7) to the desired voltage
+
+      :param channel: Channel 0-7 which should be set
+      :type channel: int
+      :param voltage: Voltage the channel should be set to
+      :type voltage: float
+
+      :returns: The estimated Voltage which is set
+      :rtype: float
+
+
+   .. method:: get_voltage_LSB(self, channel)
+
+      Gets the set voltage of a specified channel in LSB
+
+      :param channel: Channel of which the voltage Register should be read
+      :type channel: int
+
+      :returns: Value of Voltage Register of the specified channel
+      :rtype: int
+
+
+   .. method:: get_voltage(self, channel)
+
+      Gets the estimated set voltage of a specified channel in Volts
+
+      :param channel: Channel of which the voltage Register should be read and converted
+      :type channel: int
+
+      :returns: in Volts Converted Value of Voltage Register of the specified channel
+      :rtype: float
+
+
+   .. method:: get_all_voltages(self)
+
+      Gets the estimated set voltage of all channels in Volts
+
+      :returns: in Volts Converted Values of Voltage Registers of all channels
+      :rtype: list of float
+
+
+   .. method:: set_all_gain(self, gain_x2=True)
+
+      Sets the gain to two of all DAC Channels -> Voltage Range between 0-5V using the internal Voltage Reference (2.5V)
+
+      :param gain_x2: Whether to set the Gain to two or not. Defaults to True.
+      :type gain_x2: bool, optional
+
+
+

@@ -1,0 +1,84 @@
+:mod:`conf`
+===========
+
+.. py:module:: conf
+
+
+Module Contents
+---------------
+
+.. data:: prepath
+   :annotation: = 
+
+   
+
+.. data:: project
+   :annotation: = SiPM Setup Control  Master
+
+   
+
+.. data:: copyright
+   :annotation: = 2021, Frieder Kohler
+
+   
+
+.. data:: author
+   :annotation: = Frieder Kohler
+
+   
+
+.. data:: release
+   :annotation: = 0.1
+
+   
+
+.. data:: extensions
+   :annotation: = ['sphinx.ext.autosummary', 'sphinx.ext.autodoc', 'sphinx.ext.viewcode', 'sphinx.ext.coverage',...
+
+   
+
+.. data:: autosummary_generate
+   :annotation: = True
+
+   
+
+.. data:: autoapi_type
+   :annotation: = python
+
+   
+
+.. data:: autoapi_dirs
+   :annotation: = ['../../flaskr', 'rst_files']
+
+   
+
+.. data:: templates_path
+   :annotation: = ['_templates']
+
+   
+
+.. data:: exclude_patterns
+   :annotation: = ['_build', 'Thumbs.db', '.DS_Store']
+
+   
+
+.. data:: html_theme
+   :annotation: = sphinx_rtd_theme
+
+   
+
+.. data:: html_theme_options
+   
+
+   
+
+.. data:: html_static_path
+   :annotation: = ['_static']
+
+   
+
+.. data:: add_module_names
+   :annotation: = False
+
+   
+
