@@ -1,6 +1,7 @@
 {%extends "base.html"%}
 
 {% block title %}Control{% endblock %}
+
 {% block content %}
     <style>
     .imgContainer{position: relative;}
@@ -20,9 +21,7 @@
         <label class="label{{row}}"  id="label{{row}}" color: black>{{row}}</label>
     {% endfor%}
     </div>
-{% endblock %}
 
-{% block content %}
     <style>
         .slidecontainer {
         width: 100%;
@@ -66,7 +65,9 @@
         Channel {{chan}} DAC: <output id="sliderVal{{chan}}"></output>V ADC: <output id="ADCVal{{chan}}"></output>V <input type="range" class="slider" min="0" value="0" max="40" step="0.05" id="slider{{chan}}" oninput="set_dac_value(this.value,{{chan}},'sliderVal{{chan}}')">
     </p>
     {% endfor%}
+
 {% endblock %}
+
 
 
 
