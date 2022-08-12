@@ -9,14 +9,14 @@
         .label{{row}}{
             position:absolute;
             left:{{row*100+525}}px;
-            top:{{500}}px;
+            top:{{50}}px;
         }
     {% endfor%}
     </style>
 
     <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors </button>
     <div class="imgContainer">
-        <img src="{{ url_for('app_temp.static', filename='black.jpg')}}" width="900" height="10" />
+        <img src="{{ url_for('app_temp.static', filename='black.jpg')}}" width="1000" height="100" />
     {% for row in range(8)%}
         <label class="label{{row}}"  id="label{{row}}" color: black>{{row}}</label>
     {% endfor%}
