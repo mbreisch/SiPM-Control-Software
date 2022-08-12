@@ -1,72 +1,73 @@
 {%extends "base.html"%}
+
 {% block title %}Temperature{% endblock %}
 {% block content %}
-<style>
-.imgContainer{position: relative;}
-{%for row in range(8)%}
-    .label{{row}}{
-        position:absolute;
-        left:{{row*100+525}}px;
-        top:{{500}}px;
-    }
-{% endfor%}
-</style>
+    <style>
+    .imgContainer{position: relative;}
+    {%for row in range(8)%}
+        .label{{row}}{
+            position:absolute;
+            left:{{row*100+525}}px;
+            top:{{500}}px;
+        }
+    {% endfor%}
+    </style>
 
-<button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors </button>
-<div class="imgContainer">
-    <img src="{{ url_for('app_temp.static', filename='black.jpg')}}" width="900" height="10" />
-{% for row in range(8)%}
-    <label class="label{{row}}"  id="label{{row}}" color: black>{{row}}</label>
-{% endfor%}
-</div>
+    <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors </button>
+    <div class="imgContainer">
+        <img src="{{ url_for('app_temp.static', filename='black.jpg')}}" width="900" height="10" />
+    {% for row in range(8)%}
+        <label class="label{{row}}"  id="label{{row}}" color: black>{{row}}</label>
+    {% endfor%}
+    </div>
 {% endblock %}
 
 {% block title %}Voltage{% endblock %}
 {% block content %}
-<style>
-    .slidecontainer {
-      width: 100%;
-    }
-    
-    .slider {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 25px;
-      background: #404040;
-      outline: none;
-      opacity: 0.7;
-      -webkit-transition: .2s;
-      transition: opacity .2s;
-    }
-    
-    .slider:hover {
-      opacity: 1;
-    }
-    
-    .slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 25px;
-      height: 25px;
-      background: #ccc;
-      cursor: pointer;
-    }
-    
-    .slider::-moz-range-thumb {
-      width: 25px;
-      height: 25px;
-      background: #000;
-      cursor: pointer;
-    }
-    
-</style>
-<button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC </button>
-{% for chan in range(8)%}
-<p>
-    Channel {{chan}} DAC: <output id="sliderVal{{chan}}"></output>V ADC: <output id="ADCVal{{chan}}"></output>V <input type="range" class="slider" min="0" value="0" max="40" step="0.05" id="slider{{chan}}" oninput="set_dac_value(this.value,{{chan}},'sliderVal{{chan}}')">
-</p>
-{% endfor%}
-
+    <style>
+        .slidecontainer {
+        width: 100%;
+        }
+        
+        .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 25px;
+        background: #404040;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        }
+        
+        .slider:hover {
+        opacity: 1;
+        }
+        
+        .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: #ccc;
+        cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        background: #000;
+        cursor: pointer;
+        }
+        
+    </style>
+    <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC </button>
+    {% for chan in range(8)%}
+    <p>
+        Channel {{chan}} DAC: <output id="sliderVal{{chan}}"></output>V ADC: <output id="ADCVal{{chan}}"></output>V <input type="range" class="slider" min="0" value="0" max="40" step="0.05" id="slider{{chan}}" oninput="set_dac_value(this.value,{{chan}},'sliderVal{{chan}}')">
+    </p>
+    {% endfor%}
+{% endblock %}
 
 
 
