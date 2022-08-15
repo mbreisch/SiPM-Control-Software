@@ -102,33 +102,32 @@ function get_temp_values(){
 			}
 		});
 };
-async function init_temp_func(){
-        console.log("init_temp_func");
-		$.ajax("init_temperature",
-		{
-		    contentType:"application/json",
-		    data: JSON.stringify({
-			variable: "init_temperature"
-			}),
-			type:"POST",
-			success:function(response){
-				var data=response.data
-				console.log(data)
-                for (idx = 0; idx < data.length; idx++) 
-                { 
-                    var row = Math.floor( idx );
-                    if(data[idx]!=0){
-                        document.getElementById(`label${row}`).style.color = "green";
-                    }
-                    else{
-                        document.getElementById(`label${row}`).style.color = "red";
-                    }
+function init_temp_func(){
+    console.log("init_temp_func");
+    $.ajax("init_temperature",
+    {
+        contentType:"application/json",
+        data: JSON.stringify({
+        variable: "init_temperature"
+        }),
+        type:"POST",
+        success:function(response){
+            var data=response.data
+            console.log(data)
+            for (idx = 0; idx < data.length; idx++) 
+            { 
+                var row = Math.floor( idx );
+                if(data[idx]!=0){
+                    document.getElementById(`label${row}`).style.color = "green";
                 }
-                get_temp_values()
-                setTimeout(init_temp_func, 30000);		
-			} 
-		});
-
+                else{
+                    document.getElementById(`label${row}`).style.color = "red";
+                }
+            }
+            get_temp_values()
+            setTimeout(init_temp_func, 30000);		
+        } 
+    });
 }
 async function get_adc_values(){
 	$.ajax("get_adc_value",
