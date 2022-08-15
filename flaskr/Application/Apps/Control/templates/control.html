@@ -119,7 +119,7 @@ async function get_adc_values(chan){
 		});
 };
 async function set_dac_value(val,chan,slider_val){
-        document.write(val);
+        document.write(val.value);
 		console.log(`set dac value ${val}`);
 		$.ajax("set_dac_value",
 		{
