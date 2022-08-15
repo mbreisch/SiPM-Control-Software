@@ -30,7 +30,7 @@
             <p>Channel {{chan}}</p>
             <label for="slider{{chan}}">Set Voltage [V]:</label>
             <input type="text" id="involt{{chan}}" name="slider{{chan}}" min="0" max="35" value="0">
-            <input type="button" value="Set" onclick="set_dac_value('involt{{chan}}'.value,{{chan}},'sliderVal{{chan}}')">
+            <input type="button" value="Set" onclick="set_dac_value('involt{{chan}}',{{chan}},'sliderVal{{chan}}')">
             <br>
             <label for="getvolt">Current Voltage [V]:</label>
             <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
@@ -119,6 +119,7 @@ async function get_adc_values(chan){
 		});
 };
 async function set_dac_value(val,chan,slider_val){
+        val = val.value
 		console.log(`set dac value ${val}`);
 		$.ajax("set_dac_value",
 		{
