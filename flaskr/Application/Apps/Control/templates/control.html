@@ -14,7 +14,10 @@
     {% endfor%}
     </style>
 
-    <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors </button>
+    {% for _ in range(1, large_number) %}
+        {% if loop.index > stop_at %}{% break %}{% endif %}
+        <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors </button>
+    {% endfor %}
     <div class="imgContainer">
         <img src="{{ url_for('app_temp.static', filename='black.jpg')}}" width="1000" height="50" />
     {% for row in range(8)%}
@@ -75,7 +78,7 @@
 
 {% block script %}
 <script>
-function get_temp_values(){
+async function get_temp_values(){
 		console.log(`get temp values`);
 		$.ajax("get_temp_values",
 		{
@@ -98,12 +101,11 @@ function get_temp_values(){
 						document.getElementById(`label${row}`).innerHTML=`${row}`;
 					}
 			}
-			setTimeout(get_temp_values, 5000);
-				
+			setTimeout(get_temp_values, 5000);				
 			}
 		});
 };
-function init_temp_func(){
+async function init_temp_func(){
 		console.log("init_temp_func");
 		$.ajax("init_temperature",
 		{
@@ -125,10 +127,11 @@ function init_temp_func(){
 					}
 			}
 			get_temp_values()
+            setTimeout(init_temp_func, 30000);
 			} 
 		});
 }
-function get_adc_values(){
+async function get_adc_values(){
 	$.ajax("get_adc_value",
 		{
 		 contentType:"application/json",
@@ -154,7 +157,7 @@ setTimeout(get_adc_values, 10000);
 			}
 		});
 };
-function set_dac_value(val,chan,slider_val){
+async function set_dac_value(val,chan,slider_val){
 		console.log(`set dac value ${val}`);
 		$.ajax("set_dac_value",
 		{
@@ -173,7 +176,7 @@ function set_dac_value(val,chan,slider_val){
 			}
 		});
 };
-function init_dac_func(){
+async function init_dac_func(){
 		console.log("init_dac_func");
 		$.ajax("init_dac",
 		{
@@ -188,7 +191,7 @@ function init_dac_func(){
 			}
 		});
 };
-function increase_func(){
+async function increase_func(){
 		console.log("dac increase");
 		$.ajax("increase",
 		{
@@ -204,7 +207,7 @@ function increase_func(){
 		});
 		console.log("increase");
 };
-function decrease_func(){
+async function decrease_func(){
 		console.log("dac increase");
 		$.ajax("decrease",
 		{
