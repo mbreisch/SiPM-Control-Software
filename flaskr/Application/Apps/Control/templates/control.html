@@ -102,7 +102,7 @@ function get_temp_values(){
 			}
 		});
 };
-function init_temp_func(){
+async function init_temp_func(){
 		console.log("init_temp_func");
 		$.ajax("init_temperature",
 		{
@@ -127,6 +127,7 @@ function init_temp_func(){
                         }
                     }
                     get_temp_values()
+                    setTimeout(init_temp_func, 30000);		
                 }
 			} 
 		});
