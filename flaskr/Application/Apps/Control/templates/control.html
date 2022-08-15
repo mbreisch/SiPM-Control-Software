@@ -114,8 +114,10 @@ async function init_temp_func(){
 			success:function(response){
 				var data=response.data
 				console.log(data)
-                while(true){
-					for (idx = 0; idx < data.length; idx++) { 
+                while(true)
+                {
+					for (idx = 0; idx < data.length; idx++) 
+                    { 
                         var row = Math.floor( idx );
                         if(data[idx]!=0){
                             document.getElementById(`label${row}`).style.color = "green";
