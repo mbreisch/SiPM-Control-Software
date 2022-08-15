@@ -28,6 +28,7 @@
     {% for chan in range(8)%}
     <div>
         <form action="/action_page.php">
+            <span>
             <p>Channel {{chan}}</p>
             <label for="slider{{chan}}">Set Voltage [V]:</label>
             <input type="number" id="involt{{chan}}" name="slider{{chan}}" min="0" max="35" value="0">
@@ -37,6 +38,7 @@
             <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
             <input type="button" value="Get" onclick="get_adc_values({{chan}})">   
             <br><br>
+            </span>
         </form>
     </div>
     {% endfor%}
