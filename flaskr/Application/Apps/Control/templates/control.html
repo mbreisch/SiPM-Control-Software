@@ -125,14 +125,10 @@ async function init_temp_func(){
 					}
 			}
 			get_temp_values()
-            await Sleep(30000);
 			} 
 		});
     }
 }
-function Sleep(milliseconds) {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
-};
 async function get_adc_values(){
 	$.ajax("get_adc_value",
 		{
