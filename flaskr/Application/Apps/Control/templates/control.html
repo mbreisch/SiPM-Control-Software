@@ -35,6 +35,7 @@
             <label for="getvolt">Current Voltage [V]:</label>
             <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
             <input type="button" value="Get" onclick="get_adc_values()">   
+            <br><br>
         </form>
     {% endfor%}
 
@@ -121,6 +122,9 @@ async function get_adc_values(){
 };
 async function set_dac_value(val,chan,slider_val){
 		console.log(`set dac value ${val}`);
+        console.log(`p1 ${val}`);
+        console.log(`p2 ${chan}`);
+        console.log(`p3 ${slider_val}`);
 		$.ajax("set_dac_value",
 		{
 		    contentType:"application/json",
