@@ -26,10 +26,9 @@
 
     <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC </button>
     <table>
-        <tr>
-            {% for chan in range(0,4)%}
-            <div class="form-group">
-                <form action="/action_page.php">
+        {% for chan in range(0,4)%}
+            <tr>
+                <form>
                     <p>Channel {{chan}}</p>
                     <label for="slider{{chan}}">Set Voltage [V]:</label>
                     <input type="number" id="involt{{chan}}" name="slider{{chan}}" min="0" max="35" value="0">
@@ -39,12 +38,11 @@
                     <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
                     <input type="button" value="Get" onclick="get_adc_values({{chan}})">   
                 </form>
-            </div>
-            {% endfor%}
-        </tr>
-        <tr>
-            {% for chan in range(4,8)%}
-                <form action="/action_page.php">
+            </tr>
+        {% endfor%}
+        {% for chan in range(4,8)%}
+            <tr>
+                <form>                    
                     <p>Channel {{chan}}</p>
                     <label for="slider{{chan}}">Set Voltage [V]:</label>
                     <input type="number" id="involt{{chan}}" name="slider{{chan}}" min="0" max="35" value="0">
@@ -54,9 +52,8 @@
                     <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
                     <input type="button" value="Get" onclick="get_adc_values({{chan}})">   
                 </form>
-            </div>
-            {% endfor%}
-        </tr>
+            </tr>
+        {% endfor%}
     </table>
 
 
