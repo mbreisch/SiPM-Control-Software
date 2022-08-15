@@ -26,7 +26,7 @@
 
     <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC </button>
     {% for chan in range(0,4)%}
-    <div style='float:center'>
+    <div style='float:left'>
         <form action="/action_page.php">
             <p>Channel {{chan}}</p>
             <label for="slider{{chan}}">Set Voltage [V]:</label>
@@ -42,7 +42,7 @@
     <br><br>
     <br><br>
     {% for chan in range(4,8)%}
-    <div style='float:center'>
+    <div style='float:left'>
         <form action="/action_page.php">
             <p>Channel {{chan}}</p>
             <label for="slider{{chan}}">Set Voltage [V]:</label>
