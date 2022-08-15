@@ -8,7 +8,7 @@
     {%for row in range(8)%}
         .label{{row}}{
             position:absolute;
-            left:{{row*50+525}}px;
+            left:{{row*200+525}}px;
             top:{{5}}px;
         }
     {% endfor%}
@@ -38,11 +38,8 @@
             <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
             <input type="button" value="Get" onclick="get_adc_values({{chan}})">   
         </form>
-        <br><br>
     </div>
     {% endfor%}
-    <br><br>
-    <br><br>
     {% for chan in range(4,8)%}
     <div style='float:left'>
         <form action="/action_page.php">
