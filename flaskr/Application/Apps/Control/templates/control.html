@@ -120,7 +120,7 @@ async function init_temp_func(){
         } 
     });
 }
-async function get_adc_values(chan){
+function get_adc_values(chan){
 	$.ajax("get_adc_value",
 		{
 		    contentType:"application/json",
@@ -142,7 +142,7 @@ async function get_adc_values(chan){
 			}
 		});
 };
-async function set_dac_value(val,chan,slider_val){
+function set_dac_value(val,chan,slider_val){
         val = document.getElementById(`involt${chan}`).value;
 		console.log(`set dac value ${val}`);
 		$.ajax("set_dac_value",
@@ -162,7 +162,7 @@ async function set_dac_value(val,chan,slider_val){
 			}
 		});
 };
-async function init_dac_func(){
+function init_dac_func(){
 		console.log("init_dac_func");
 		$.ajax("init_dac",
 		{
