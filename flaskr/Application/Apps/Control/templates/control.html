@@ -29,11 +29,11 @@
         <form action="/action_page.php">
             <p>Channel {{chan}}</p>
             <label for="setvolt">Set Voltage [V]:</label>
-            <input type="number" id="sliderVal{{chan}}" name="setvolt"><br>
+            <input type="number" id="sliderVal{{chan}}" name="setvolt">
             <input type="button" value="Set" onclick="set_dac_value(this.value,{{chan}},'sliderVal{{chan}}')">
-
+            <br>
             <label for="getvolt">Current Voltage [V]:</label>
-            <output type="number" id="ADCVal{{chan}}" name="getvolt"><br>
+            <output type="number" id="ADCVal{{chan}}" name="getvolt">
             <input type="button" value="Get" onclick="get_adc_values()">   
         </form>
     {% endfor%}
