@@ -103,7 +103,7 @@ def init_dac():
     Returns:
         json: Success Statement
     """
-    requests.post("http://127.0.0.1:5000/app_temp/init_temperature")
+    #requests.post("http://127.0.0.1:5000/app_temp/init_temperature")
     app_control.temp_index=0
     muxer_lines=[12,13,19,16]
     app_control.muxer=Muxer(muxer_lines)

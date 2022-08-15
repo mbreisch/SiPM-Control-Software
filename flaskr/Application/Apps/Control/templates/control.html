@@ -68,11 +68,6 @@
 
 {% endblock %}
 
-
-
-
-
-
 {% block script %}
 <script>
 function get_temp_values(){
@@ -102,7 +97,7 @@ function get_temp_values(){
 			}
 		});
 };
-function init_temp_func(){
+async function init_temp_func(){
     console.log("init_temp_func");
     $.ajax("init_temperature",
     {
