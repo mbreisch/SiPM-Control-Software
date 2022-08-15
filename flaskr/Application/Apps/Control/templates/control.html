@@ -27,7 +27,7 @@
     <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC </button>
 
     {% for chan in range(0,4)%}
-    <div style='float:left'>
+    <div class="form-group">
         <form action="/action_page.php">
             <p>Channel {{chan}}</p>
             <label for="slider{{chan}}">Set Voltage [V]:</label>
@@ -41,7 +41,7 @@
     </div>
     {% endfor%}
     {% for chan in range(4,8)%}
-    <div style='float:left'>
+    <div class="form-group">
         <form action="/action_page.php">
             <p>Channel {{chan}}</p>
             <label for="slider{{chan}}">Set Voltage [V]:</label>
@@ -83,7 +83,7 @@ function get_temp_values(){
 						document.getElementById(`label${row}`).innerHTML=`${row}`;
 					}
 			}
-			setTimeout(get_temp_values, 5000);				
+			setTimeout(get_temp_values, 15000);				
 			}
 		});
 };
@@ -169,38 +169,6 @@ async function init_dac_func(){
 				console.log(data)
 			}
 		});
-};
-function increase_func(){
-		console.log("dac increase");
-		$.ajax("increase",
-		{
-		    contentType:"application/json",
-		    data: JSON.stringify({
-			    variable: "get_json"
-			}),
-			type:"POST",
-			success:function(response){
-				var data=response.data
-				console.log(data)
-			}
-		});
-		console.log("increase");
-};
-function decrease_func(){
-		console.log("dac increase");
-		$.ajax("decrease",
-		{
-		    contentType:"application/json",
-		    data: JSON.stringify({
-			    variable: "get_json"
-			}),
-			type:"POST",
-			success:function(response){
-				var data=response.data
-				console.log(data)
-			}
-		});
-		console.log("increase");
 };
 </script>
 {% endblock %}
