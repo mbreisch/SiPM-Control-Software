@@ -33,7 +33,7 @@
             <input type="button" value="Set" onclick="set_dac_value(this.value,{{chan}},'sliderVal{{chan}}')">
             <br>
             <label for="getvolt">Current Voltage [V]:</label>
-            <output type="number" id="ADCVal{{chan}}" name="getvolt">
+            <label for="getvolt">"ADCVal{{chan}}"</label>
             <input type="button" value="Get" onclick="get_adc_values()">   
         </form>
     {% endfor%}
