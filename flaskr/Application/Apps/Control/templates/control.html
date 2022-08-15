@@ -28,7 +28,7 @@
     {% for chan in range(8)%}
         <form action="/action_page.php">
             <p>Channel {{chan}}</p>
-            <label for="sliderVal{{chan}}">Set Voltage [V]:</label>
+            <label for=sliderVal{{chan}}>Set Voltage [V]:</label>
             <input type="number" id="sliderVal{{chan}}" name="sliderVal{{chan}}" min="0" max="35">
             <input type="button" value="Set" onclick="set_dac_value('sliderVal{{chan}}',{{chan}},'sliderVal{{chan}}')">
             <p>"sliderVal{{chan}}"</p>
