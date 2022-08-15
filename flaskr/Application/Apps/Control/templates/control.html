@@ -34,7 +34,7 @@
             <br>
             <label for="getvolt">Current Voltage [V]:</label>
             <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
-            <input type="button" value="Get" onclick="get_adc_values()">   
+            <input type="button" value="Get" onclick="get_adc_values({{chan}})">   
             <br><br>
         </form>
     {% endfor%}
@@ -96,7 +96,7 @@ async function init_temp_func(){
         } 
     });
 }
-async function get_adc_values(){
+async function get_adc_values(chan){
 	$.ajax("get_adc_value",
 		{
 		    contentType:"application/json",
@@ -109,9 +109,7 @@ async function get_adc_values(){
 				console.log(data["Exception"])
 				var arraylength=data["voltages"].length
 				try {
-				    for (var chan = 0; chan < arraylength; chan++) {
-					    document.getElementById(`ADCVal${chan}`).value=data["voltages"][chan];
-				    }
+					document.getElementById(`ADCVal${chan}`).value=data["voltages"][chan];
                 } catch (e) {
                     console.log(e.name + ': ' + e.message);
                     setTimeout(get_adc_values, 10000);
