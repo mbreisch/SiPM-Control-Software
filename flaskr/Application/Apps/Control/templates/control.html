@@ -144,7 +144,7 @@ async function get_adc_values(chan){
 		});
 };
 async function get_all_adc_values(){
-    for (var chan = 0; chan < arraylength; chan++) {
+    for (var chan = 0; chan < 8; chan++) {
         get_adc_values(chan);
     }
 };
