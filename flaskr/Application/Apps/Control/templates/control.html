@@ -120,6 +120,7 @@ async function get_adc_values(chan){
 };
 async function set_dac_value(val,chan,slider_val){
         val = val.value
+        java.lang.System.out.print(  val );
 		console.log(`set dac value ${val}`);
 		$.ajax("set_dac_value",
 		{
