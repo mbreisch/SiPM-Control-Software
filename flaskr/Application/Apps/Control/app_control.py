@@ -34,7 +34,7 @@ def index():
     return render_template("control.html",title="Control Interface", bg_img_path=url_for('app_control.static',filename="background_dk.jpeg", url_call="/get_json"))
 
 @app_control.route("/init_temperature",methods=["POST"])
-async def init_temperature():
+def init_temperature():
     """Initialises the Temperature Sensors. 
     Looks for all available sensors.
     Called POST at /init_temperature
@@ -59,7 +59,7 @@ async def init_temperature():
     
     
 @app_control.route("/get_temp_values",methods=["POST"])
-async def ajax_response():
+def ajax_response():
     """Tries to get Data of the initialised Temperature Sensors. 
     Saves the values with their timestamp in a array in Order of their occurence in app_control.sensors.
     Called POST at /init_temperature
@@ -86,16 +86,15 @@ async def ajax_response():
     except Exception as e:
         return jsonify(data={"times":[],"temps":[],"paths":[]},success=False)
     
- 
 
 @app_control.route("/init_dac",methods=["POST"])
-async def init_dac():
+def init_dac():
     """Initialises a Voltage Card and Multiplexer. Is called with POST Request at /init_dac
 
     Returns:
         json: Success Statement
     """
-
+    #requests.post("http://127.0.0.1:5000/app_temp/init_temperature")
     app_control.temp_index=0
     muxer_lines=[12,13,19,16]
     app_control.muxer=Muxer(muxer_lines)
@@ -107,7 +106,7 @@ async def init_dac():
     
     
 @app_control.route("/set_dac_value",methods=["POST"])
-async def set_voltage():
+def set_voltage():
     """Sets the Voltage.
     Called by POST of /set_dac_value. 
     Request must contain desired voltage as ["voltage"] and channel as ["channel"]
@@ -132,7 +131,7 @@ async def set_voltage():
         return jsonify(data={"voltage":0,"Exception":str(e)},success=False)
 
 @app_control.route("/get_single_adc_value",methods=["POST"])
-async def get_single_voltage():
+def get_single_voltage():
     """Gets the voltage from the specified voltage card. 
     At the moment from the single available voltage card.
     Request must contain desired channel as ["channel"]
@@ -148,7 +147,7 @@ async def get_single_voltage():
     return jsonify(data={"time":timestamp,"voltage_dac":voltage_dac,"channel":channel_idx,"voltage":voltage,"voltage_dac_set":voltage_dac_set})
 
 @app_control.route("/get_adc_value",methods=["POST"])
-async def get_voltage():
+def get_voltage():
     """Gets the voltage from the specified voltage card. 
     At the moment from the single available voltage card.
 
