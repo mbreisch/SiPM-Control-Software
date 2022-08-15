@@ -25,7 +25,7 @@
     <style></style>
 
     <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC </button>
-    <table align="center">
+    <table align="center" cellspacing="15">
         <tr>
             {% for chan in range(0,4)%}
                 <th>
@@ -42,6 +42,8 @@
                 </th>
             {% endfor%}
         </tr>
+        <tr></tr>
+        <tr></tr>
         <tr>
             {% for chan in range(4,8)%}
                 <th>
