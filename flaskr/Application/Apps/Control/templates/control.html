@@ -127,10 +127,13 @@ async function init_temp_func(){
 					}
 			}
 			get_temp_values()
-            setTimeout(init_temp_func, 30000);
+            Sleep(30000);
 			} 
 		});
 }
+function Sleep(milliseconds) {
+ return new Promise(resolve => setTimeout(resolve, milliseconds));
+};
 async function get_adc_values(){
 	$.ajax("get_adc_value",
 		{
