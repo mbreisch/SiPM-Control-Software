@@ -25,7 +25,6 @@
     <style></style>
 
     <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC </button>
-    <button id="get_all_adc_values" class="btn btn-dark btn-block" type="button" onclick="get_all_adc_values();">Get all ADC values </button>
     <table align="center" border="1" cellspacing="10" cellpadding="10">
         <tr>
             {% for chan in range(0,4)%}
@@ -142,11 +141,6 @@ async function get_adc_values(chan){
                 setTimeout(get_adc_values, 5000);
 			}
 		});
-};
-async function get_all_adc_values(){
-    for (var chan = 0; chan < 8; chan++) {
-        get_adc_values(chan);
-    }
 };
 async function set_dac_value(val,chan,slider_val){
         val = document.getElementById(`involt${chan}`).value;
