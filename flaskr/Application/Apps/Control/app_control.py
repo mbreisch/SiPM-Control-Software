@@ -34,7 +34,7 @@ def index():
     return render_template("control.html",title="Control Interface", bg_img_path=url_for('app_control.static',filename="background_dk.jpeg", url_call="/get_json"))
 
 @app_control.route("/init_temperature",methods=["POST"])
-async def init_temperature():
+def init_temperature():
     """Initialises the Temperature Sensors. 
     Looks for all available sensors.
     Called POST at /init_temperature
@@ -59,7 +59,7 @@ async def init_temperature():
     
     
 @app_control.route("/get_temp_values",methods=["POST"])
-async def ajax_response():
+def ajax_response():
     """Tries to get Data of the initialised Temperature Sensors. 
     Saves the values with their timestamp in a array in Order of their occurence in app_control.sensors.
     Called POST at /init_temperature

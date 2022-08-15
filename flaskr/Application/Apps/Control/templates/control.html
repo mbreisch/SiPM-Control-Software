@@ -134,9 +134,9 @@ function init_temp_func(){
 async function get_adc_values(){
 	$.ajax("get_adc_value",
 		{
-		 contentType:"application/json",
+		    contentType:"application/json",
 		    data: JSON.stringify({
-			voltage_card: 0,
+			    voltage_card: 0,
 			}),
 			type:"POST",
 			success:function(response){
@@ -144,16 +144,14 @@ async function get_adc_values(){
 				console.log(data["Exception"])
 				var arraylength=data["voltages"].length
 				try {
-				for (var chan = 0; chan < arraylength; chan++) {
-					document.getElementById(`ADCVal${chan}`).value=data["voltages"][chan];
-				}
-
-} catch (e) {
-  console.log(e.name + ': ' + e.message);
-setTimeout(get_adc_values, 10000);
-
-}
-							setTimeout(get_adc_values, 5000);
+				    for (var chan = 0; chan < arraylength; chan++) {
+					    document.getElementById(`ADCVal${chan}`).value=data["voltages"][chan];
+				    }
+                } catch (e) {
+                    console.log(e.name + ': ' + e.message);
+                    setTimeout(get_adc_values, 10000);
+                }
+                setTimeout(get_adc_values, 5000);
 			}
 		});
 };
@@ -161,10 +159,10 @@ async function set_dac_value(val,chan,slider_val){
 		console.log(`set dac value ${val}`);
 		$.ajax("set_dac_value",
 		{
-		 contentType:"application/json",
-		data: JSON.stringify({
-			voltage: val,
-			channel: chan
+		    contentType:"application/json",
+		    data: JSON.stringify({
+			    voltage: val,
+			    channel: chan
 			}),
 			type:"POST",
 			success:function(response){
@@ -180,9 +178,9 @@ async function init_dac_func(){
 		console.log("init_dac_func");
 		$.ajax("init_dac",
 		{
-		 contentType:"application/json",
-		data: JSON.stringify({
-			variable: "init_dac"
+		    contentType:"application/json",
+		    data: JSON.stringify({
+			    variable: "init_dac"
 			}),
 			type:"POST",
 			success:function(response){
@@ -195,9 +193,9 @@ async function increase_func(){
 		console.log("dac increase");
 		$.ajax("increase",
 		{
-		 contentType:"application/json",
-		data: JSON.stringify({
-			variable: "get_json"
+		    contentType:"application/json",
+		    data: JSON.stringify({
+			    variable: "get_json"
 			}),
 			type:"POST",
 			success:function(response){
@@ -211,9 +209,9 @@ async function decrease_func(){
 		console.log("dac increase");
 		$.ajax("decrease",
 		{
-		 contentType:"application/json",
-		data: JSON.stringify({
-			variable: "get_json"
+		    contentType:"application/json",
+		    data: JSON.stringify({
+			    variable: "get_json"
 			}),
 			type:"POST",
 			success:function(response){
