@@ -25,6 +25,7 @@
     <style></style>
 
     <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC </button>
+    <button id="get_adc_volts" class="btn btn-dark btn-block" type="button" onclick="get_adc_values();">Get ADC Values </button>
     <table align="center" border="1" cellspacing="10" cellpadding="10">
         <tr>
             {% for chan in range(0,4)%}
@@ -37,7 +38,6 @@
                         <br>
                         <label for="getvolt">Current Voltage [V]:</label>
                         <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
-                        <input type="button" value="Get" onclick="get_adc_values({{chan}})">   
                     </form>
                 </th>
             {% endfor%}
@@ -55,7 +55,6 @@
                         <br>
                         <label for="getvolt">Current Voltage [V]:</label>
                         <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
-                        <input type="button" value="Get" onclick="get_adc_values({{chan}})">   
                     </form>
                 </th>
             {% endfor%}
@@ -120,7 +119,7 @@ async function init_temp_func(){
         } 
     });
 }
-function get_adc_values(chan){
+async function get_adc_values(){
 	$.ajax("get_adc_value",
 		{
 		    contentType:"application/json",
@@ -133,7 +132,9 @@ function get_adc_values(chan){
 				console.log(data["Exception"])
 				var arraylength=data["voltages"].length
 				try {
-					document.getElementById(`ADCVal${chan}`).value=data["voltages"][chan];
+				    for (var chan = 0; chan < arraylength; chan++) {
+					    document.getElementById(`ADCVal${chan}`).value=data["voltages"][chan];
+				    }
                 } catch (e) {
                     console.log(e.name + ': ' + e.message);
                     setTimeout(get_adc_values, 10000);
