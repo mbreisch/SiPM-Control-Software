@@ -103,8 +103,6 @@ function get_temp_values(){
 		});
 };
 async function init_temp_func(){
-    while(true)
-    {
         console.log("init_temp_func");
 		$.ajax("init_temperature",
 		{
@@ -130,7 +128,7 @@ async function init_temp_func(){
                 setTimeout(init_temp_func, 30000);		
 			} 
 		});
-    }
+
 }
 async function get_adc_values(){
 	$.ajax("get_adc_value",
