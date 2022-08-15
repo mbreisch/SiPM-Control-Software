@@ -14,10 +14,7 @@
     {% endfor%}
     </style>
 
-    {% for _ in range(1, large_number) %}
-        {% if loop.index > stop_at %}{% break %}{% endif %}
-        <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors </button>
-    {% endfor %}
+    <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors </button>
     <div class="imgContainer">
         <img src="{{ url_for('app_temp.static', filename='black.jpg')}}" width="1000" height="50" />
     {% for row in range(8)%}
@@ -78,7 +75,7 @@
 
 {% block script %}
 <script>
-async function get_temp_values(){
+function get_temp_values(){
 		console.log(`get temp values`);
 		$.ajax("get_temp_values",
 		{
@@ -106,6 +103,7 @@ async function get_temp_values(){
 		});
 };
 async function init_temp_func(){
+    while(True){
 		console.log("init_temp_func");
 		$.ajax("init_temperature",
 		{
@@ -127,18 +125,19 @@ async function init_temp_func(){
 					}
 			}
 			get_temp_values()
-            Sleep(30000);
+            await Sleep(30000);
 			} 
 		});
+    }
 }
 function Sleep(milliseconds) {
- return new Promise(resolve => setTimeout(resolve, milliseconds));
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
 };
 async function get_adc_values(){
 	$.ajax("get_adc_value",
 		{
 		 contentType:"application/json",
-		data: JSON.stringify({
+		    data: JSON.stringify({
 			voltage_card: 0,
 			}),
 			type:"POST",
