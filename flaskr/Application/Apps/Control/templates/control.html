@@ -144,28 +144,9 @@ async function get_adc_values(chan){
 		});
 };
 async function get_all_adc_values(){
-	$.ajax("get_all_adc_values",
-		{
-		    contentType:"application/json",
-		    data: JSON.stringify({
-			    voltage_card: 0,
-			}),
-			type:"POST",
-			success:function(response){
-				var data=response.data
-				console.log(data["Exception"])
-				var arraylength=data["voltages"].length
-				try {
-                    for (var chan = 0; chan < arraylength; chan++) {
-					    document.getElementById(`ADCVal${chan}`).value=data["voltages"][chan];
-				    }
-                } catch (e) {
-                    console.log(e.name + ': ' + e.message);
-                    setTimeout(get_all_adc_values, 10000);
-                }
-                setTimeout(get_all_adc_values, 5000);
-			}
-		});
+    for (var chan = 0; chan < arraylength; chan++) {
+        get_adc_values(chan);
+    }
 };
 async function set_dac_value(val,chan,slider_val){
         val = document.getElementById(`involt${chan}`).value;
