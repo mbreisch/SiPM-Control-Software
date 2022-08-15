@@ -74,7 +74,7 @@ def ajax_response():
         for idx,sensor in enumerate(app_control.sensors):
             sensor.get_temperature()
             times[sensor.idx]=sensor.data[0]
-            temps[sensor.idx]=f"{sensor.data[1]:.1f}"
+            temps[sensor.idx]=f"{sensor.data[1]:.2f}"
             try:
                 paths[sensor.idx]=sensor.path.split("/")[5]
             except IndexError:

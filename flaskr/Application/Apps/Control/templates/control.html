@@ -86,7 +86,7 @@ function get_temp_values(){
 				for (idx = 0; idx < data["temps"].length; idx++) { 
 					var row = Math.floor( idx );
 					if(data["temps"][idx]!=0){
-						document.getElementById(`label${row}`).innerHTML=data["temps"][idx].toFixed(2);
+						document.getElementById(`label${row}`).innerHTML=data["temps"][idx];
 					}
 					else{
 						document.getElementById(`label${row}`).style.color = "red";
