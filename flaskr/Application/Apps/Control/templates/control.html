@@ -29,8 +29,8 @@
         <form action="/action_page.php">
             <p>Channel {{chan}}</p>
             <label for="slider{{chan}}">Set Voltage [V]:</label>
-            <input type="text" id="sliderVal{{chan}}" name="slider{{chan}}" min="0" max="35" value="25">
-            <input type="button" value="Set" onclick="set_dac_value('sliderVal{{chan}}'.value,{{chan}},'sliderVal{{chan}}')">
+            <input type="text" id="involt{{chan}}" name="slider{{chan}}" min="0" max="35" value="0">
+            <input type="button" value="Set" onclick="set_dac_value('involt{{chan}}'.value,{{chan}},'sliderVal{{chan}}')">
             <br>
             <label for="getvolt">Current Voltage [V]:</label>
             <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
@@ -131,7 +131,7 @@ async function set_dac_value(val,chan,slider_val){
 			success:function(response){
 				var data=response.data
 				console.log(data["Exception"])
-				document.getElementById(`sliderVal${chan}`).value=data["voltage"];
+				document.getElementById(`involt${chan}`).value=data["voltage"];
 				document.getElementById(`ADCVal${chan}`).value=data["adc_voltage"];
     			document.getElementById(slider_val).innerHTML = data["voltage"]; // get
 			}
