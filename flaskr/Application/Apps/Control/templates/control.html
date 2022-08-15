@@ -30,7 +30,7 @@
             <p>Channel {{chan}}</p>
             <label for="slider{{chan}}">Set Voltage [V]:</label>
             <input type="number" id="sliderVal{{chan}}" name="slider{{chan}}" min="0" max="35" value="25">
-            <input type="button" value="Set" onclick="set_dac_value("sliderVal{{chan}}".value,{{chan}},'sliderVal{{chan}}')">
+            <input type="button" value="Set" onclick="set_dac_value('sliderVal{{chan}}'.value,{{chan}},'sliderVal{{chan}}')">
             <br>
             <label for="getvolt">Current Voltage [V]:</label>
             <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
