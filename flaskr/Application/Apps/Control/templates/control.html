@@ -29,7 +29,7 @@
         <form action="/action_page.php">
             <p>Channel {{chan}}</p>
             <label for="slider{{chan}}">Set Voltage [V]:</label>
-            <input type="text" id="involt{{chan}}" name="slider{{chan}}" min="0" max="35" value="0">
+            <input type="number" id="involt{{chan}}" name="slider{{chan}}" min="0" max="35" value="0">
             <input type="button" value="Set" onclick="set_dac_value('involt{{chan}}',{{chan}},'sliderVal{{chan}}')">
             <br>
             <label for="getvolt">Current Voltage [V]:</label>
