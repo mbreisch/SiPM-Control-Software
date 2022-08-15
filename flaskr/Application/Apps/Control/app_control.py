@@ -127,10 +127,10 @@ def set_voltage():
     volt=float(request.json["voltage"])
     channel=request.json["channel"]
 
-    if volt <= 1.0:
-        volt = 0.0
-    else:
-        volt = GetSettingsFromTxt(channel)
+    if volt >=30:
+        volt = 30
+    if volt < 0:
+        volt = 0
 
     try:
         set_voltage,adc_volt=app_control.volt_card.set_voltage(channel,volt)
