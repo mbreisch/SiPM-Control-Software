@@ -172,7 +172,7 @@ def get_voltage():
     return jsonify(data={"voltages":voltages})
 
 @app_control.route("/set_all_0",methods=["POST"])
-def set_0(channel):
+def set_0():
     """Sets the Voltage to 0 on all channels.
     Called by POST of /set_dac_value. 
     Request must contain desired voltage as ["voltage"] and channel as ["channel"]
@@ -190,7 +190,8 @@ def set_0(channel):
         volt = 0
 
     try:
-        set_voltage,adc_volt=app_control.volt_card.set_voltage(channel,0)
+        for ch in range(0,8):
+            set_voltage,adc_volt=app_control.volt_card.set_voltage(ch,0)
         return jsonify(data={"voltage":f"{set_voltage:.4f}","adc_voltage":f"{adc_volt:.3f}"},success=False)
     except Exception as e:
         print(f"Exception {e} in ajax response")
