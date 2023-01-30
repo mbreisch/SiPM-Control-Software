@@ -201,7 +201,7 @@ function set_all_value(val,chan,slider_val){
             success:function(response){
                 var data=response.data
                 console.log(data["Exception"])
-                document.getElementById(`involt_all`).value=data["voltage"];
+                document.getElementById(`involt${chan}`).value=data["voltage"];
                 document.getElementById(`ADCVal${chan}`).value=data["adc_voltage"];
                 document.getElementById(slider_val).innerHTML = data["voltage"]; // get
             }
