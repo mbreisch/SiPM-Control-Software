@@ -34,7 +34,7 @@
                         <p>Channel {{chan}}</p>
                         <label for="slider{{chan}}">Set Voltage [V]:</label>
                         <input type="number" id="involt{{chan}}" name="slider{{chan}}" min="0" max="35" value="0">
-                        <input type="button" value="Set" onclick="set_dac_value('involt{{chan}}',{{chan}},'sliderVal{{chan}}')">
+                        <input type="button" value="Set" onclick="set_dac_value('involt{{chan}}',{{chan}},'sliderVal{{chan}}');">
                         <br>
                         <label for="getvolt">Current Voltage [V]:</label>
                         <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
@@ -51,7 +51,7 @@
                         <p>Channel {{chan}}</p>
                         <label for="slider{{chan}}">Set Voltage [V]:</label>
                         <input type="number" id="involt{{chan}}" name="slider{{chan}}" min="0" max="35" value="0">
-                        <input type="button" value="Set" onclick="set_dac_value('involt{{chan}}',{{chan}},'sliderVal{{chan}}')">
+                        <input type="button" value="Set" onclick="set_dac_value('involt{{chan}}',{{chan}},'sliderVal{{chan}}');">
                         <br>
                         <label for="getvolt">Current Voltage [V]:</label>
                         <output type="number" id="ADCVal{{chan}}" name="getvolt"></output>
@@ -65,7 +65,7 @@
             <p>Value for all Channels [V]</p>
             <label for="slider">Set Voltage [V]:</label>
             <input type="number" id="involt_all" name="slider" min="0" max="35" value="0">
-            <input type="button" value="Set" onclick="set_all_value('slider')">
+            <input type="button" value="Set" onclick="set_all_value('slider');">
         </form>
     </th>
 {% endblock %}
@@ -183,7 +183,6 @@ function init_dac_func(){
 				console.log(data)
 			}
 		});
-        setTimeout(init_dac_func, 3000);	
         get_adc_values();
 };
 
@@ -207,7 +206,7 @@ function set_all_value(slider_val){
                 document.getElementById(slider_val).innerHTML = data["voltage"]; // get
             }
         });
-        setTimeout(set_all_value, 10000);		
+        sleep(3000);	
     };
 };
 </script>
