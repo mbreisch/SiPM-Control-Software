@@ -2,7 +2,7 @@ import subprocess
 import os,time,sys,signal,platform
 import pathlib
 
-def start_app(path=pathlib.Path().resolve()+"/flaskr"):
+def start_app(path=str(pathlib.Path().resolve())+"/flaskr"):
     """Starts Flask Development Server close with ctrl+c
 
     Args:
