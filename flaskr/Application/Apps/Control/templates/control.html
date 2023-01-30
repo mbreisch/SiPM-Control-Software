@@ -189,8 +189,8 @@ function init_dac_func(){
         get_adc_values();
 };
 
-function set_all_value(val,chan,slider_val){
-    val = document.getElementById(`involt${0}`).value;
+function set_all_value(val,chan2,slider_val){
+    val = document.getElementById(`involt${chan2}`).value;
     console.log(`set all dac value ${val}`);
     for(let chan = 0; chan < 8; chan++){
         $.ajax("set_dac_value",
@@ -204,8 +204,8 @@ function set_all_value(val,chan,slider_val){
             success:function(response){
                 var data=response.data
                 console.log(data["Exception"])
-                document.getElementById(`involt${0}`).value=data["voltage"];
-                document.getElementById(`ADCVal${0}`).value=data["adc_voltage"];
+                document.getElementById(`involt${chan2}`).value=data["voltage"];
+                document.getElementById(`ADCVal${chan2}`).value=data["adc_voltage"];
                 document.getElementById(slider_val).innerHTML = data["voltage"]; // get
             }
         });
