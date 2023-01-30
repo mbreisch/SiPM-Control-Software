@@ -26,6 +26,8 @@
 
     <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC </button>
     <button id="get_adc_volts" class="btn btn-dark btn-block" type="button" onclick="get_adc_values();">Get ADC Values </button>
+    <button id="set_all_0" class="btn btn-dark btn-block" type="button" onclick="set_all_0();">Set all ADC Values to 0</button>
+    <button id="set_all_value" class="btn btn-dark btn-block" type="button" onclick="set_all_value();">Set all ADC Values to [V]</button>    
     <table align="center" border="1" cellspacing="10" cellpadding="10">
         <tr>
             {% for chan in range(0,4)%}
@@ -170,6 +172,36 @@ function init_dac_func(){
 		    contentType:"application/json",
 		    data: JSON.stringify({
 			    variable: "init_dac"
+			}),
+			type:"POST",
+			success:function(response){
+				var data=response.data
+				console.log(data)
+			}
+		});
+};
+function set_all_0(){
+		console.log("set_all_0");
+		$.ajax("set_0",
+		{
+		    contentType:"application/json",
+		    data: JSON.stringify({
+			    variable: "set_0"
+			}),
+			type:"POST",
+			success:function(response){
+				var data=response.data
+				console.log(data)
+			}
+		});
+};
+function set_all_value(){
+		console.log("set_all_value");
+		$.ajax("set_value",
+		{
+		    contentType:"application/json",
+		    data: JSON.stringify({
+			    variable: "set_value"
 			}),
 			type:"POST",
 			success:function(response){

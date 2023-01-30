@@ -170,3 +170,59 @@ def get_voltage():
         app_control.temp_index-=10
     app_control.temp_index+=1
     return jsonify(data={"voltages":voltages})
+
+@app_control.route("/set_all_0",methods=["POST"])
+def set_0(channel):
+    """Sets the Voltage to 0 on all channels.
+    Called by POST of /set_dac_value. 
+    Request must contain desired voltage as ["voltage"] and channel as ["channel"]
+
+    Returns:
+        json: data contains estimated Voltage of set_voltage of DAC and ADC measured Voltage. In case of Exception 0 for Voltage and Exception str
+    """
+    print(request.json)
+    volt=float(request.json["voltage"])
+    channel=request.json["channel"]
+
+    if volt >=30:
+        volt = 30
+    if volt < 0:
+        volt = 0
+
+    try:
+        set_voltage,adc_volt=app_control.volt_card.set_voltage(channel,0)
+        return jsonify(data={"voltage":f"{set_voltage:.4f}","adc_voltage":f"{adc_volt:.3f}"},success=False)
+    except Exception as e:
+        print(f"Exception {e} in ajax response")
+        return jsonify(data={"voltage":0,"Exception":str(e)},success=False)
+
+def set_0_control():
+    for ch in range(0,8):
+        set_0(ch)
+
+@app_control.route("/set_all_value",methods=["POST"])
+def set_value():
+    """Sets the Voltage to 0 on all channels.
+    Called by POST of /set_dac_value. 
+    Request must contain desired voltage as ["voltage"] and channel as ["channel"]
+
+    Returns:
+        json: data contains estimated Voltage of set_voltage of DAC and ADC measured Voltage. In case of Exception 0 for Voltage and Exception str
+    """
+    print(request.json)
+    volt=float(request.json["voltage"])
+    channel=request.json["channel"]
+
+    if volt >=30:
+        volt = 30
+    if volt < 0:
+        volt = 0
+
+    try:
+        for ch in range(0,8):
+            set_voltage,adc_volt=app_control.volt_card.set_voltage(ch,volt)
+        return jsonify(data={"voltage":f"{set_voltage:.4f}","adc_voltage":f"{adc_volt:.3f}"},success=False)
+    except Exception as e:
+        print(f"Exception {e} in ajax response")
+        return jsonify(data={"voltage":0,"Exception":str(e)},success=False)
+
