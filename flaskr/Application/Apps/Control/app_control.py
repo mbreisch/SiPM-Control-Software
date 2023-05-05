@@ -79,7 +79,7 @@ def ajax_response():
                 paths[sensor.idx]=sensor.path.split("/")[5]
             except IndexError:
                 paths[sensor.idx]="0"
-        with open("/home/pi/Desktop/sipm_ctl/temp.log","a") as templogfile:
+        with open("/home/pi/SiPM-Control-Software/temp.log","a") as templogfile:
             for idx in range(len(times)):
                 templogfile.write(f"\n{times[idx]};{temps[idx]};{paths[idx]}")
         return jsonify(data={"times":times,"temps":temps,"paths":paths},success=True)
@@ -161,7 +161,7 @@ def get_voltage():
     except Exception as e:
         return jsonify(data={"Exception":str(e)})
     voltages=[f"{volt:.3f}" for volt in voltages]
-    with open("/home/pi/Desktop/sipm_ctl/voltage.log","a") as voltlogfile:
+    with open("/home/pi/SiPM-Control-Software/voltage.log","a") as voltlogfile:
         timestamp=datetime.datetime.now().strftime("%d-%m-%Y--%H:%M:%S")
         for idx,voltage in enumerate(voltages):
             voltlogfile.write(f"\n{timestamp};{idx};{voltage}")
