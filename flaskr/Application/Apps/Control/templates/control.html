@@ -17,8 +17,8 @@
     <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors </button>
     <div class="imgContainer">
         <img src="{{ url_for('app_temp.static', filename='black.jpg')}}" width="90%" height="50" />
-    {% for row in range(1,9)%}
-        <label class="label{{row}}"  id="label{{row}}" color: black>{{row-1}}</label>
+    {% for row in range(8)%}
+        <label class="label{{row+1}}"  id="label{{row}}" color: black>{{row}}</label>
     {% endfor%}
     </div>
 
