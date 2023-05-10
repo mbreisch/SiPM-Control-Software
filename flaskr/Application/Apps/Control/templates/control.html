@@ -18,7 +18,7 @@
     <div class="imgContainer">
         <img src="{{ url_for('app_temp.static', filename='black.jpg')}}" width="90%" height="50" />
     {% for row in range(8)%}
-        <label class="label{{row}}"  id="label{{row}}" color: black>{{row+1}}</label>
+        <label class="label{{row}}"  id="label{{row}}" color: black>{{row}}</label>
     {% endfor%}
     </div>
 
