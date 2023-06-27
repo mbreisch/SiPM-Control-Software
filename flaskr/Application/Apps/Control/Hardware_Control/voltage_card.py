@@ -68,9 +68,9 @@ class Voltage_Card:
                         if set_volts[channel]==0:
                             adc_volts[channel]=adc_volt
                             continue
-                    if set_voltage>=38:
-                        set_voltage=40
-                        if set_volts[channel]>=38:
+                    if set_voltage>=31:
+                        set_voltage=31
+                        if set_volts[channel]>=31:
                             adc_volts[channel]=adc_volt
                             continue
                     self.dac.set_voltage(channel,set_voltage)
@@ -115,9 +115,9 @@ class Voltage_Card:
                 set_voltage=0
                 if voltage==0:
                     break
-            if set_voltage>=38:
-                set_voltage=40
-                if voltage>=38:
+            if set_voltage>=31:
+                set_voltage=31
+                if voltage>=31:
                     break
             #dac_volt_before=self.dac.get_voltage(channel)
             #print(adc_volt)
