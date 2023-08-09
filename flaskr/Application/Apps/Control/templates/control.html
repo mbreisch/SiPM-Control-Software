@@ -45,11 +45,11 @@
         <tr></tr>
         <tr></tr>
         <tr>
-            indexchannel = [5,4,7,6]
+            {% set indexchannel = [5, 4, 7, 6] %}
             {% for chan in  range(4,8)%}
                 <th>
                     <form>                    
-                        <p>Channel {{chan+1}} | VME {{indexchannel[chan-4]}}</p>
+                        <p>Channel {{chan+1}} | VME {{indexchannel[loop.index()}}</p>
                         <label for="slider{{chan}}">Set Voltage [V]:</label>
                         <input type="number" id="involt{{chan}}" name="slider{{chan}}" min="0" max="35" value="0">
                         <input type="button" value="Set" onclick="set_dac_value('involt{{chan}}',{{chan}},'sliderVal{{chan}}');">
