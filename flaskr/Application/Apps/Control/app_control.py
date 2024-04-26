@@ -4,6 +4,7 @@ import sys
 import os
 import numpy as np
 import time,datetime
+import matplotlib.pyplot as plt
 import requests
 from w1thermsensor import W1ThermSensor, Unit
 
@@ -73,7 +74,7 @@ def ajax_response():
         paths=[0]*app_control.pixel
         for idx,sensor in enumerate(app_control.sensors):
             sensor.get_temperature()
-            times[sensor.idx]=sensor.data[0]
+            times[sensor.idx]=round(time.time() * 1000)#sensor.data[0]
             temps[sensor.idx]=f"{sensor.data[1]:.2f}"
             try:
                 paths[sensor.idx]=sensor.path.split("/")[5]
@@ -82,6 +83,12 @@ def ajax_response():
         with open("/home/pi/SiPM-Control-Software/temp.log","a") as templogfile:
             for idx in range(len(times)):
                 templogfile.write(f"\n{times[idx]};{temps[idx]};{paths[idx]}")
+        with open("/home/pi/SiPM-Control-Software/temperature_for_plot.log","a") as templogfile2:
+            for idx in range(len(times)):
+                templogfile2.write(f"{times[idx]},{temps[idx]};")
+            templogfile2.write(f"\n")
+        with open("temperature_for_plot.log", 'r') as logfile:    
+            MakeMonitorPlot(logfile)
         return jsonify(data={"times":times,"temps":temps,"paths":paths},success=True)
     except Exception as e:
         return jsonify(data={"times":[],"temps":[],"paths":[]},success=False)
@@ -196,3 +203,49 @@ def get_voltage():
 #     except Exception as e:
 #         print(f"Exception {e} in ajax response")
 #         return jsonify(data={"voltage":0,"Exception":str(e)},success=False)
+
+
+def MakeMonitorPlot(logfile):
+    # Read each line from the provided file object
+    timestamps = [[],[],[],[],[],[],[],[]]
+    values = [[],[],[],[],[],[],[],[]]
+    for line in logfile:
+        # Strip any leading/trailing whitespace or newlines
+        line = line.strip()
+        
+        # Split the line into entries by the semicolon
+        entries = line.split(";") #["ts1,v1","ts2,v2",...]
+        
+        # Initialize lists to store individual line's timestamps and values
+
+        
+        # Process each entry
+        for enum,entry in enumerate(entries):
+            if entry:  # Check if entry is non-empty
+                # Split the entry into timestamp and value by the comma
+                ts_val = entry.split(",")
+                if len(ts_val) == 2:
+                    # Convert the timestamp to integer and the value to float
+                    timestamp = int(ts_val[0])
+                    value = float(ts_val[1])
+                    
+                    # Add to the current line's list
+                    timestamps[enum].append(timestamp)
+                    values[enum].append(value)
+                  
+    last_1000_timestamps = [sublist[-1000:] for sublist in timestamps]
+    last_1000_values = [sublist[-1000:] for sublist in values]
+    
+    #print(last_1000_timestamps)
+    
+    # Plot timestamp vs value for each entry
+    for channel in range(0,8):
+        plt.plot(last_1000_timestamps[channel], last_1000_values[channel], marker='o', linestyle='-', markersize=3, label=f"Channel {channel}")
+
+    # Add labels and title
+    plt.xlabel('Timestamp')
+    plt.ylabel('Temperature in °C')
+    plt.legend()
+    plt.title('Timestamp vs Temperature')
+    plt.savefig('/home/pi/SiPM-Control-Software/MonitoringTemperature.png')
+    plt.close()

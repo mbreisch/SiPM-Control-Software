@@ -16,11 +16,26 @@
 
     <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors </button>
     <div class="imgContainer">
-        <img src="{{ url_for('app_temp.static', filename='black.jpg')}}" width="90%" height="50" />
+        <img src="{{ url_for('app_control.static', filename='black.jpg')}}" width="90%" height="50" />
     {% for row in range(8)%}
         <label class="label{{row}}"  id="label{{row}}" color: black>{{row}}</label>
     {% endfor%}
     </div>
+
+    <!-- Refreshing PNG every second -->
+    <div id="refreshingImageContainer">
+        <img id="refreshingImage" src="{{ url_for('app_control.static', filename='/home/pi/SiPM-Control-Software/MonitoringTemperature.png') }}" width="100" height="100" />
+    </div>
+
+    <script>
+    function refreshImage() {
+        const img = document.getElementById("refreshingImage");
+        const timestamp = new Date().getTime();
+        img.src = "{{ url_for('app_control.static', filename='/home/pi/SiPM-Control-Software/MonitoringTemperature.png') }}?t=" + timestamp;
+    }
+
+    setInterval(refreshImage, 1000); // Refresh every second
+    </script>
 
     <style></style>
 
@@ -95,7 +110,7 @@ async function get_temp_values(){
 						document.getElementById(`label${row}`).innerHTML=`${row}`;
 					}
 			}
-			setTimeout(get_temp_values, 30000);				
+			setTimeout(get_temp_values, 5000);				
 			}
 		});
 };
