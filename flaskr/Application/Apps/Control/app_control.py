@@ -241,11 +241,11 @@ def MakeMonitorPlot(logfile):
     #print(last_1000_timestamps)
     
     # Plot timestamp vs value for each entry
-    fig = plt.figure(figsize=(800/100,600/100), dpi=100)
+    fig = plt.figure(figsize=(1000/100,600/100), dpi=100)
     for channel in range(0,8):
         datetimes = [datetime.fromtimestamp(ts / 1000) for ts in last_1000_timestamps[channel]]
         time_labels = [dt.strftime('%H:%M') for dt in datetimes]
-        plt.plot(time_labels, last_1000_values[channel], marker='o', linestyle='-', markersize=3, label=f"Channel {channel}")
+        plt.plot(time_labels, last_1000_values[channel], marker='o', linestyle='-', markersize=3, label=f"CH-{channel}")
 
     ax = plt.gca()  # Get the current axis
     ax.xaxis.set_major_locator(ticker.MaxNLocator(10))  # Max of 10 major ticks
@@ -254,7 +254,7 @@ def MakeMonitorPlot(logfile):
     # Add labels and title
     plt.xlabel('Timestamp')
     plt.ylabel('Temperature in °C')
-    plt.legend(loc='upper left', bbox_to_anchor=(1.05, 1))
+    plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
     plt.title('Timestamp vs Temperature')
     plt.savefig('/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/MonitoringTemperature.png')
     plt.close()
