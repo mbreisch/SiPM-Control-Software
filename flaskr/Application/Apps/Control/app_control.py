@@ -246,7 +246,7 @@ def MakeMonitorPlot(logfile):
     # Add labels and title
     plt.xlabel('Timestamp')
     plt.ylabel('Temperature in °C')
-    plt.legend()
+    plt.legend(loc='upper left', bbox_to_anchor=(1.05, 1))
     plt.title('Timestamp vs Temperature')
     plt.savefig('/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/MonitoringTemperature.png')
     plt.close()
