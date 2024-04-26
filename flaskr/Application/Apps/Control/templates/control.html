@@ -28,10 +28,11 @@
     </div>
 
     <script>
-    function refreshImage() {
+    function refreshImage() 
+    {
         const img = document.getElementById("refreshingImage");
         const timestamp = new Date().getTime();
-        img.src = "{{ url_for('app_control.static', filename='MonitoringTemperature.png') }}";
+        img.src = "{{ url_for('app_control.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
     }
 
     setInterval(refreshImage, 5000); // Refresh every second
