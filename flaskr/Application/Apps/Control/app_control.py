@@ -248,7 +248,7 @@ def MakeMonitorPlot(logfile):
         plt.plot(time_labels, last_1000_values[channel], marker='o', linestyle='-', markersize=3, label=f"CH-{channel}")
 
     ax = plt.gca()  # Get the current axis
-    ax.xaxis.set_major_locator(ticker.MaxNLocator(10))  # Max of 10 major ticks
+    ax.xaxis.set_major_locator(ticker.MaxNLocator(5))  # Max of 5 major ticks
     ax.xaxis.set_minor_locator(ticker.NullLocator())  # No minor ticks
 
     # Add labels and title
