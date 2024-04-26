@@ -239,6 +239,7 @@ def MakeMonitorPlot(logfile):
     #print(last_1000_timestamps)
     
     # Plot timestamp vs value for each entry
+    fig = plt.figure(figsize=(1600/100,900/100), dpi=100)
     for channel in range(0,8):
         plt.plot(last_1000_timestamps[channel], last_1000_values[channel], marker='o', linestyle='-', markersize=3, label=f"Channel {channel}")
 
