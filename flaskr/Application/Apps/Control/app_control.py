@@ -87,7 +87,7 @@ def ajax_response():
             for idx in range(len(times)):
                 templogfile2.write(f"{times[idx]},{temps[idx]};")
             templogfile2.write(f"\n")
-        with open("temperature_for_plot.log", 'r') as logfile:    
+        with open("/home/pi/SiPM-Control-Software/temperature_for_plot.log", 'r') as logfile:    
             MakeMonitorPlot(logfile)
         return jsonify(data={"times":times,"temps":temps,"paths":paths},success=True)
     except Exception as e:
