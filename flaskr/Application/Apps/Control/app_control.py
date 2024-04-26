@@ -5,6 +5,7 @@ import os
 import numpy as np
 import time,datetime
 from datetime import datetime
+import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 import requests
 from w1thermsensor import W1ThermSensor, Unit
@@ -245,6 +246,10 @@ def MakeMonitorPlot(logfile):
         datetimes = [datetime.fromtimestamp(ts / 1000) for ts in last_1000_timestamps[channel]]
         time_labels = [dt.strftime('%H:%M') for dt in datetimes]
         plt.plot(time_labels, last_1000_values[channel], marker='o', linestyle='-', markersize=3, label=f"Channel {channel}")
+
+    ax = plt.gca()  # Get the current axis
+    ax.xaxis.set_major_locator(ticker.MaxNLocator(10))  # Max of 10 major ticks
+    ax.xaxis.set_minor_locator(ticker.NullLocator())  # No minor ticks
 
     # Add labels and title
     plt.xlabel('Timestamp')
