@@ -4,6 +4,7 @@ import sys
 import os
 import numpy as np
 import time,datetime
+from datetime import datetime
 import matplotlib.pyplot as plt
 import requests
 from w1thermsensor import W1ThermSensor, Unit
@@ -239,9 +240,11 @@ def MakeMonitorPlot(logfile):
     #print(last_1000_timestamps)
     
     # Plot timestamp vs value for each entry
-    fig = plt.figure(figsize=(1600/100,900/100), dpi=100)
+    fig = plt.figure(figsize=(800/100,600/100), dpi=100)
     for channel in range(0,8):
-        plt.plot(last_1000_timestamps[channel], last_1000_values[channel], marker='o', linestyle='-', markersize=3, label=f"Channel {channel}")
+        datetimes = [datetime.fromtimestamp(ts / 1000) for ts in last_1000_timestamps[channel]]
+        time_labels = [dt.strftime('%H:%M') for dt in datetimes]
+        plt.plot(time_labels, last_1000_values[channel], marker='o', linestyle='-', markersize=3, label=f"Channel {channel}")
 
     # Add labels and title
     plt.xlabel('Timestamp')
