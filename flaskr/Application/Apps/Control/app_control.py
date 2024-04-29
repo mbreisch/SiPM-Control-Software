@@ -171,7 +171,7 @@ def get_voltage():
         return jsonify(data={"Exception":str(e)})
     voltages=[f"{volt:.3f}" for volt in voltages]
     with open("/home/pi/SiPM-Control-Software/voltage.log","a") as voltlogfile:
-        timestamp=datetime.datetime.now().strftime("%d-%m-%Y--%H:%M:%S")
+        timestamp=datetime.now().strftime("%d-%m-%Y--%H:%M:%S")
         for idx,voltage in enumerate(voltages):
             voltlogfile.write(f"\n{timestamp};{idx};{voltage}")
             
@@ -182,9 +182,7 @@ def get_voltage():
         voltagelogfile2.write(f"\n")
     with open("/home/pi/SiPM-Control-Software/voltage_for_plot.log", 'r') as logfile:    
         MakeMonitorPlot(logfile,'Bias Voltage in V','Bias Voltage','MonitoringVoltage') 
-            
-            
-            
+             
     if app_control.temp_index%11==0:
         #requests.post("http://127.0.0.1:5000/app_temp/get_temp_values")
         app_control.temp_index-=10
