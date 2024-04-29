@@ -71,8 +71,8 @@ def ajax_response():
         json: data contains list of time of temperature measurement and temperature 
     """
     try:
-        times=[0]*app_control.pixel
-        temps=[0]*app_control.pixel
+        times=[-1]*app_control.pixel
+        temps=[-1]*app_control.pixel
         paths=[0]*app_control.pixel
         for idx,sensor in enumerate(app_control.sensors):
             sensor.get_temperature()
@@ -234,6 +234,7 @@ def MakeMonitorPlot(logfile,ylabel,titlename,filename):
 
     # Add labels and title
     plt.xlabel('Timestamp')
+    plt.grid()
     plt.ylabel(ylabel)
     plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
     plt.title(f'Timestamp vs {titlename}')
