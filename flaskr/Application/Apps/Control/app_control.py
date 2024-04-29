@@ -232,9 +232,6 @@ def MakeMonitorPlot(logfile,ylabel,titlename,filename):
     ax.xaxis.set_minor_locator(ticker.NullLocator())  # No minor ticks
 
     # Add labels and title
-    datetimes = [datetime.fromtimestamp(ts / 1000) for ts in last_1000_timestamps[0]]
-    time_labels = [dt.strftime('%H:%M:%S.%f')[:-3] for dt in datetimes]
-    plt.xticks(last_1000_timestamps[0], time_labels)
     plt.xlabel('Timestamp')
     plt.ylabel(ylabel)
     plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
