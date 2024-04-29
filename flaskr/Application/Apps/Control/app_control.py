@@ -86,11 +86,10 @@ def ajax_response():
             for idx in range(len(times)):
                 templogfile.write(f"\n{times[idx]};{temps[idx]};{paths[idx]}")
         with open("/home/pi/SiPM-Control-Software/temperature_for_plot.log","a") as templogfile2:
-            if 0 in temps or 0 in times:
-                break
-            for idx in range(len(times)):
-                templogfile2.write(f"{times[idx]},{temps[idx]};")
-            templogfile2.write(f"\n")
+            if 0.0 not in temps and 0.0 not in times:
+                for idx in range(len(times)):
+                    templogfile2.write(f"{times[idx]},{temps[idx]};")
+                templogfile2.write(f"\n")
         with open("/home/pi/SiPM-Control-Software/temperature_for_plot.log", 'r') as logfile:    
             MakeMonitorPlot(logfile,'Temperature in °C','Temperature','MonitoringTemperature')
         return jsonify(data={"times":times,"temps":temps,"paths":paths},success=True)
