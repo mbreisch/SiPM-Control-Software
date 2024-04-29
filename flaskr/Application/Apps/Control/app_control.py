@@ -191,7 +191,7 @@ def get_voltage():
     app_control.temp_index+=1
     return jsonify(data={"voltages":voltages})
 
-def MakeMonitorPlot(logfile):
+def MakeMonitorPlot(logfile,ylabel,titlename,filename):
     # Read each line from the provided file object
     timestamps = [[],[],[],[],[],[],[],[]]
     values = [[],[],[],[],[],[],[],[]]
@@ -238,8 +238,8 @@ def MakeMonitorPlot(logfile):
     time_labels = [dt.strftime('%H:%M:%S.%f')[:-3] for dt in datetimes]
     plt.xticks(last_1000_timestamps[0], time_labels)
     plt.xlabel('Timestamp')
-    plt.ylabel('Temperature in °C')
+    plt.ylabel(ylabel)
     plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
-    plt.title('Timestamp vs Temperature')
-    plt.savefig(f'/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/{}.png')
+    plt.title(f'Timestamp vs {titlename}')
+    plt.savefig(f'/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/{filename}.png')
     plt.close()
