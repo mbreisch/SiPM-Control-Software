@@ -90,7 +90,7 @@ def ajax_response():
                 templogfile2.write(f"{times[idx]},{temps[idx]};")
             templogfile2.write(f"\n")
         with open("/home/pi/SiPM-Control-Software/temperature_for_plot.log", 'r') as logfile:    
-            MakeMonitorPlot(logfile)
+            MakeMonitorPlot(logfile,'Temperature in °C','Temperature','MonitoringTemperature')
         return jsonify(data={"times":times,"temps":temps,"paths":paths},success=True)
     except Exception as e:
         return jsonify(data={"times":[],"temps":[],"paths":[]},success=False)
@@ -174,38 +174,22 @@ def get_voltage():
         timestamp=datetime.datetime.now().strftime("%d-%m-%Y--%H:%M:%S")
         for idx,voltage in enumerate(voltages):
             voltlogfile.write(f"\n{timestamp};{idx};{voltage}")
+            
+    with open("/home/pi/SiPM-Control-Software/voltage_for_plot.log","a") as voltagelogfile2:
+        timestamp = round(time.time() * 1000)
+        for idx,voltage in enumerate(voltages):
+            voltagelogfile2.write(f"{timestamp},{voltages};")
+        voltagelogfile2.write(f"\n")
+    with open("/home/pi/SiPM-Control-Software/voltage_for_plot.log", 'r') as logfile:    
+        MakeMonitorPlot(logfile,'Bias Voltage in V','Bias Voltage','MonitoringVoltage') 
+            
+            
+            
     if app_control.temp_index%11==0:
         #requests.post("http://127.0.0.1:5000/app_temp/get_temp_values")
         app_control.temp_index-=10
     app_control.temp_index+=1
     return jsonify(data={"voltages":voltages})
-
-# @app_control.route("/set_all_0",methods=["POST"])
-# def set_0():
-#     """Sets the Voltage to 0 on all channels.
-#     Called by POST of /set_dac_value. 
-#     Request must contain desired voltage as ["voltage"] and channel as ["channel"]
-
-#     Returns:
-#         json: data contains estimated Voltage of set_voltage of DAC and ADC measured Voltage. In case of Exception 0 for Voltage and Exception str
-#     """
-#     print(request.json)
-#     volt=float(request.json["voltage"])
-#     channel=request.json["channel"]
-
-#     if volt >=30:
-#         volt = 30
-#     if volt < 0:
-#         volt = 0
-
-#     try:
-#         for ch in range(0,8):
-#             set_voltage,adc_volt=app_control.volt_card.set_voltage(ch,0)
-#         return jsonify(data={"voltage":f"{set_voltage:.4f}","adc_voltage":f"{adc_volt:.3f}"},success=False)
-#     except Exception as e:
-#         print(f"Exception {e} in ajax response")
-#         return jsonify(data={"voltage":0,"Exception":str(e)},success=False)
-
 
 def MakeMonitorPlot(logfile):
     # Read each line from the provided file object
@@ -257,5 +241,5 @@ def MakeMonitorPlot(logfile):
     plt.ylabel('Temperature in °C')
     plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
     plt.title('Timestamp vs Temperature')
-    plt.savefig('/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/MonitoringTemperature.png')
+    plt.savefig(f'/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/{}.png')
     plt.close()

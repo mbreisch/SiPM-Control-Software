@@ -84,6 +84,22 @@
             <input type="button" value="Set" onclick="set_all_value('slider');">
         </form>
     </th>
+
+    <!-- Refreshing PNG every second -->
+    <div id="refreshingImageContainer2">
+        <img id="refreshingImage2" src="{{ url_for('app_control.static', filename='MonitoringVoltage.png') }}" width="1000px" height="600px" />
+    </div>
+
+    <script>
+    function refreshImage2() 
+    {
+        const img = document.getElementById("refreshingImage2");
+        const timestamp = new Date().getTime();
+        img.src = "{{ url_for('app_control.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
+    }
+
+    setInterval(refreshImage2, 5000); // Refresh every second
+    </script>
 {% endblock %}
 
 {% block script %}
@@ -161,7 +177,7 @@ async function get_adc_values(){
                     console.log(e.name + ': ' + e.message);
                     setTimeout(get_adc_values, 10000);
                 }
-                setTimeout(get_adc_values, 5000);
+                setTimeout(get_adc_values, 10000);
 			}
 		});
 };
