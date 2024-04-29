@@ -245,7 +245,7 @@ def MakeMonitorPlot(logfile):
     for channel in range(0,8):
         datetimes = [datetime.fromtimestamp(ts / 1000) for ts in last_1000_timestamps[channel]]
         time_labels = [dt.strftime('%H:%M:%S.%f')[:-3] for dt in datetimes]
-        plt.plot(time_labels, last_1000_values[channel], marker='o', linestyle='-', markersize=3, label=f"CH-{channel}")
+        plt.plot(last_1000_timestamps[channel], last_1000_values[channel], marker='o', linestyle='-', markersize=3, label=f"CH-{channel}")
 
     ax = plt.gca()  # Get the current axis
     ax.xaxis.set_major_locator(ticker.MaxNLocator(5))  # Max of 5 major ticks
