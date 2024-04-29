@@ -243,8 +243,6 @@ def MakeMonitorPlot(logfile):
     # Plot timestamp vs value for each entry
     fig = plt.figure(figsize=(1000/100,600/100), dpi=100)
     for channel in range(0,8):
-        datetimes = [datetime.fromtimestamp(ts / 1000) for ts in last_1000_timestamps[channel]]
-        time_labels = [dt.strftime('%H:%M:%S.%f')[:-3] for dt in datetimes]
         plt.plot(last_1000_timestamps[channel], last_1000_values[channel], marker='o', linestyle='-', markersize=3, label=f"CH-{channel}")
 
     ax = plt.gca()  # Get the current axis
@@ -252,6 +250,9 @@ def MakeMonitorPlot(logfile):
     ax.xaxis.set_minor_locator(ticker.NullLocator())  # No minor ticks
 
     # Add labels and title
+    datetimes = [datetime.fromtimestamp(ts / 1000) for ts in last_1000_timestamps[0]]
+    time_labels = [dt.strftime('%H:%M:%S.%f')[:-3] for dt in datetimes]
+    plt.xticks(last_1000_timestamps[0], time_labels)
     plt.xlabel('Timestamp')
     plt.ylabel('Temperature in °C')
     plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
