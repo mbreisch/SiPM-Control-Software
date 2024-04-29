@@ -178,7 +178,7 @@ def get_voltage():
     with open("/home/pi/SiPM-Control-Software/voltage_for_plot.log","a") as voltagelogfile2:
         timestamp = round(time.time() * 1000)
         for idx,voltage in enumerate(voltages):
-            voltagelogfile2.write(f"{timestamp},{voltages};")
+            voltagelogfile2.write(f"{timestamp},{voltage};")
         voltagelogfile2.write(f"\n")
     with open("/home/pi/SiPM-Control-Software/voltage_for_plot.log", 'r') as logfile:    
         MakeMonitorPlot(logfile,'Bias Voltage in V','Bias Voltage','MonitoringVoltage') 
