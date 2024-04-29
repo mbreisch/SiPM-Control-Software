@@ -14,9 +14,13 @@
     {% endfor%}
     </style>
 
+    <div class="imgContainer">
+        <img src="{{ url_for('app_control.static', filename='black.jpg')}}" width="100%" height="100%" />
+    </div>
+
     <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors </button>
     <div class="imgContainer">
-        <img src="{{ url_for('app_control.static', filename='black.jpg')}}" width="90%" height="100" />
+        <img src="{{ url_for('app_control.static', filename='black.jpg')}}" width="90%" height="50" />
     {% for row in range(8)%}
         <label class="label{{row}}"  id="label{{row}}" color: black>{{row}}</label>
     {% endfor%}
