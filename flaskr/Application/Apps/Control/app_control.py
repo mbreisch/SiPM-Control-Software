@@ -55,6 +55,7 @@ def init_temperature():
         new_filename = f"{original_filename}_{timestamp}"
         destination_path = os.path.join(destination_directory, new_filename)
         shutil.copy(source_path, destination_path)
+        os.remove(source_path)
     
     app_control.sensors=[]
     sensors=[0]*app_control.pixel
