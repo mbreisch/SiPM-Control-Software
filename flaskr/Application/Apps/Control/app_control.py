@@ -52,7 +52,7 @@ def init_temperature():
     if os.path.exists(source_path):
         timestamp = round(time.time() * 1000)
         original_filename = os.path.basename(source_path)
-        new_filename = f"{original_filename}_{timestamp}"
+        new_filename = f"{original_filename[:-4]}_{timestamp}.log"
         destination_path = os.path.join(destination_directory, new_filename)
         shutil.copy(source_path, destination_path)
         os.remove(source_path)
