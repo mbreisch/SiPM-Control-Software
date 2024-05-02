@@ -26,6 +26,7 @@
     </style>
 
     <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors </button>
+    <button id="get_temperature" class="btn btn-dark btn-block" type="button" onclick="get_temp_values();">Get Temperature Values </button>
     <div class="imgContainer">
         <img src="{{ url_for('app_control.static', filename='black.jpg')}}" width="90%" height="50" />
     {% for row in range(8)%}

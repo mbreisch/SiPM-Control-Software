@@ -4,6 +4,7 @@ import sys
 import os
 import numpy as np
 import time,datetime
+import shutil
 from datetime import datetime
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
@@ -45,6 +46,16 @@ def init_temperature():
     Returns:
         json: data contains working sensors
     """
+    source_path = "/home/pi/SiPM-Control-Software/temperature_for_plot.log"
+    destination_directory = "/home/pi/SiPM-Control-Software/backup_logs/"
+    
+    if os.path.exists():
+        timestamp = round(time.time() * 1000)
+        original_filename = os.path.basename(source_path)
+        new_filename = f"{original_filename}_{timestamp}"
+        destination_path = os.path.join(destination_directory, new_filename)
+        shutil.copy(source_path, destination_path)
+    
     app_control.sensors=[]
     sensors=[0]*app_control.pixel
     sens=W1ThermSensor.get_available_sensors()
@@ -58,7 +69,6 @@ def init_temperature():
             print(f"Got Exception {e} in init Temperature")
     print(app_control.paths)
     return jsonify(data=sensors,success=True)
-    
     
     
 @app_control.route("/get_temp_values",methods=["POST"])
@@ -214,6 +224,9 @@ def MakeMonitorPlot(logfile,ylabel,titlename,filename):
                     timestamp = int(ts_val[0])
                     value = float(ts_val[1])
                     
+                    if timestamp==-1 or value==-1:
+                        continue
+                    
                     # Add to the current line's list
                     timestamps[enum].append(timestamp)
                     values[enum].append(value)
@@ -226,7 +239,7 @@ def MakeMonitorPlot(logfile,ylabel,titlename,filename):
     # Plot timestamp vs value for each entry
     fig = plt.figure(figsize=(1000/100,600/100), dpi=100)
     for channel in range(0,8):
-        plt.plot(last_1000_timestamps[channel], last_1000_values[channel], marker='o', linestyle='-', markersize=3, label=f"CH-{channel}")
+        plt.plot(last_1000_timestamps[channel], last_1000_values[channel], marker='', linestyle='-', markersize=3, label=f"CH-{channel}")
 
     ax = plt.gca()  # Get the current axis
     ax.xaxis.set_major_locator(ticker.MaxNLocator(5))  # Max of 5 major ticks
