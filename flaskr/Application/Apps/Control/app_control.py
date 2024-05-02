@@ -49,7 +49,7 @@ def init_temperature():
     source_path = "/home/pi/SiPM-Control-Software/temperature_for_plot.log"
     destination_directory = "/home/pi/SiPM-Control-Software/backup_logs/"
     
-    if os.path.exists():
+    if os.path.exists(source_path):
         timestamp = round(time.time() * 1000)
         original_filename = os.path.basename(source_path)
         new_filename = f"{original_filename}_{timestamp}"
