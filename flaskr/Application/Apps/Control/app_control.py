@@ -115,6 +115,18 @@ def init_dac():
     Returns:
         json: Success Statement
     """
+    
+    source_path = "/home/pi/SiPM-Control-Software/voltage_for_plot.log"
+    destination_directory = "/home/pi/SiPM-Control-Software/backup_logs/"
+    
+    if os.path.exists(source_path):
+        timestamp = round(time.time() * 1000)
+        original_filename = os.path.basename(source_path)
+        new_filename = f"{original_filename[:-4]}_{timestamp}.log"
+        destination_path = os.path.join(destination_directory, new_filename)
+        shutil.copy(source_path, destination_path)
+        os.remove(source_path)
+    
     #requests.post("http://127.0.0.1:5000/app_temp/init_temperature")
     app_control.temp_index=0
     muxer_lines=[12,13,19,16]
