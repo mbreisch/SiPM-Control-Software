@@ -47,7 +47,7 @@
         img.src = "{{ url_for('app_control.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
     }
 
-    setInterval(refreshImage, 5000); // Refresh every second
+    setInterval(refreshImage, 5000); // Refresh every 5 seconds
     </script>
 
     <style></style>
@@ -110,7 +110,7 @@
         img.src = "{{ url_for('app_control.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
     }
 
-    setInterval(refreshImage2, 5000); // Refresh every second
+    setInterval(refreshImage2, 30000); // Refresh every 30 seconds
     </script>
 {% endblock %}
 
@@ -189,7 +189,7 @@ async function get_adc_values(){
                     console.log(e.name + ': ' + e.message);
                     setTimeout(get_adc_values, 10000);
                 }
-                setTimeout(get_adc_values, 10000);
+                setTimeout(get_adc_values, 30000);
 			}
 		});
 };
@@ -212,7 +212,7 @@ function set_dac_value(val,chan,slider_val){
     			document.getElementById(slider_val).innerHTML = data["voltage"]; // get
 			}
 		});
-        sleep(3000);	
+        sleep(5000);	
         get_adc_values();
 };
 function init_dac_func(){
