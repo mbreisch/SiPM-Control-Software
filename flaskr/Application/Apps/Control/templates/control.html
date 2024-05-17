@@ -212,6 +212,8 @@ function set_dac_value(val,chan,slider_val){
     			document.getElementById(slider_val).innerHTML = data["voltage"]; // get
 			}
 		});
+        sleep(3000);	
+        get_adc_values();
 };
 function init_dac_func(){
 		console.log("init_dac_func");

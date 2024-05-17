@@ -87,7 +87,7 @@ def ajax_response():
         paths=[0]*app_control.pixel
         for idx,sensor in enumerate(app_control.sensors):
             sensor.get_temperature()
-            times[sensor.idx]=round(time.time() * 1000)#sensor.data[0]
+            times[sensor.idx]=int(sensor.data[0]*1000)
             temps[sensor.idx]=f"{sensor.data[1]:.2f}"
             try:
                 paths[sensor.idx]=sensor.path.split("/")[5]
@@ -102,7 +102,7 @@ def ajax_response():
                     templogfile2.write(f"{times[idx]},{temps[idx]};")
                 templogfile2.write(f"\n")
         with open("/home/pi/SiPM-Control-Software/temperature_for_plot.log", 'r') as logfile:    
-            MakeMonitorPlot(logfile,'Temperature in °C','Temperature','MonitoringTemperature')
+            MakeMonitorPlot(logfile,'Temperature in °C','Temperature','MonitoringTemperature', 0)
         return jsonify(data={"times":times,"temps":temps,"paths":paths},success=True)
     except Exception as e:
         return jsonify(data={"times":[],"temps":[],"paths":[]},success=False)
@@ -120,7 +120,7 @@ def init_dac():
     destination_directory = "/home/pi/SiPM-Control-Software/backup_logs/"
     
     if os.path.exists(source_path):
-        timestamp = round(time.time() * 1000)
+        timestamp = int(time.time() * 1000)
         original_filename = os.path.basename(source_path)
         new_filename = f"{original_filename[:-4]}_{timestamp}.log"
         destination_path = os.path.join(destination_directory, new_filename)
@@ -205,7 +205,7 @@ def get_voltage():
             voltagelogfile2.write(f"{timestamp},{voltage};")
         voltagelogfile2.write(f"\n")
     with open("/home/pi/SiPM-Control-Software/voltage_for_plot.log", 'r') as logfile:    
-        MakeMonitorPlot(logfile,'Bias Voltage in V','Bias Voltage','MonitoringVoltage') 
+        MakeMonitorPlot(logfile,'Bias Voltage in V','Bias Voltage','MonitoringVoltage', 1) 
              
     if app_control.temp_index%11==0:
         #requests.post("http://127.0.0.1:5000/app_temp/get_temp_values")
@@ -213,7 +213,7 @@ def get_voltage():
     app_control.temp_index+=1
     return jsonify(data={"voltages":voltages})
 
-def MakeMonitorPlot(logfile,ylabel,titlename,filename):
+def MakeMonitorPlot(logfile,ylabel,titlename,filename, id):
     # Read each line from the provided file object
     timestamps = [[],[],[],[],[],[],[],[]]
     values = [[],[],[],[],[],[],[],[]]
@@ -250,7 +250,7 @@ def MakeMonitorPlot(logfile,ylabel,titlename,filename):
     #print(last_1000_timestamps)
     
     # Plot timestamp vs value for each entry
-    fig = plt.figure(figsize=(1000/100,600/100), dpi=100)
+    fig = plt.figure(id ,figsize=(1000/100,600/100), dpi=100)
     for channel in range(0,8):
         plt.plot(last_1000_timestamps[channel], last_1000_values[channel], marker='', linestyle='-', markersize=3, label=f"CH-{channel}")
 
