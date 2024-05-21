@@ -119,7 +119,7 @@
 {% block script %}
 <script>
 async function get_temp_values(){
-		console.log(`get temp values`);
+        console.log("Refreshing Temperature Values at: " + new Date().toLocaleTimeString());
 		$.ajax("get_temp_values",
 		{
 		    contentType:"application/json",
@@ -171,6 +171,7 @@ async function init_temp_func(){
     });
 }
 async function get_adc_values(){
+    console.log("Refreshing Voltage Values at: " + new Date().toLocaleTimeString());
 	$.ajax("get_adc_value",
 		{
 		    contentType:"application/json",
