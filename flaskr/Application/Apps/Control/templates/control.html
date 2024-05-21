@@ -136,7 +136,7 @@ async function get_temp_values(){
 			success:function(response){
 				var data=response.data
 				console.log(data["temps"])
-				console.log("\x1b[31mException\x1b[0m \x1b[32mTemperature\x1b[0m Read = " + data["Exception"])
+				console.log("\x1b[32mTemperature\x1b[0m Read \x1b[31mException\x1b[0m = " + data["Exception"])
 				for (idx = 0; idx < data["temps"].length; idx++) { 
 					var row = Math.floor( idx );
 					if(data["temps"][idx]!=0){
@@ -154,7 +154,7 @@ async function get_temp_values(){
 		});
 };
 async function init_temp_func(){
-    console.log("init_temp_func");
+    console.log("Initialising Temperature Sensors");
     $.ajax("init_temperature",
     {
         contentType:"application/json",
@@ -192,7 +192,7 @@ async function get_adc_values(){
 			type:"POST",
 			success:function(response){
 				var data=response.data
-				console.log("\x1b[31mException\x1b[0m \x1b[33mVoltage\x1b[0m Read = " + data["Exception"])
+				console.log("\x1b[33mVoltage\x1b[0m Read \x1b[31mException\x1b[0m = " + data["Exception"])
 				var arraylength=data["voltages"].length
 				try {
 				    for (var chan = 0; chan < arraylength; chan++) {
@@ -228,7 +228,7 @@ function set_dac_value(val,chan,slider_val){
 		});
 };
 function init_dac_func(){
-		console.log("init_dac_func");
+		console.log("Initialising ADC/DACs");
 		$.ajax("init_dac",
 		{
 		    contentType:"application/json",
