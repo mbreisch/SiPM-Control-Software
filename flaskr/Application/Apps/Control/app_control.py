@@ -104,7 +104,7 @@ def ajax_response():
             MakeMonitorPlot(logfile,'Temperature in °C','Temperature','MonitoringTemperature', 0)
         return jsonify(data={"times":times,"temps":temps,"paths":paths,"Exception":None},success=True)
     except Exception as e:
-        return jsonify(data={"times":[],"temps":[],"paths":[],"Exception":e},success=False)
+        return jsonify(data={"times":[],"temps":[],"paths":[],"Exception":str(e)},success=False)
     
 
 @app_control.route("/init_dac",methods=["POST"])
