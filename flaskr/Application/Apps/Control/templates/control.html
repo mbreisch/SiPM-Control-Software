@@ -223,7 +223,7 @@ function set_dac_value(val,chan,slider_val){
 				console.log(data["Exception"])
 				document.getElementById(`involt${chan}`).value=data["voltage"];
 				document.getElementById(`ADCVal${chan}`).value=data["adc_voltage"];
-    			document.getElementById(slider_val).innerHTML = data["voltage"]; // get
+    			#document.getElementById(slider_val).innerHTML = data["voltage"]; // get
 			}
 		});
 };
