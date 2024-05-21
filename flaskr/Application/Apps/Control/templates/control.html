@@ -109,7 +109,7 @@
         const img = document.getElementById("refreshingImage2");
         const timestamp = new Date().getTime();
         img.src = "{{ url_for('app_control.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
-        console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[34Image\x1b[0m at: " + new Date().toLocaleTimeString());
+        console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
     }
 
     setInterval(refreshImage2, 30000); // Refresh every 30 seconds

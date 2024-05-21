@@ -210,7 +210,7 @@ def get_voltage():
         #requests.post("http://127.0.0.1:5000/app_temp/get_temp_values")
         app_control.temp_index-=10
     app_control.temp_index+=1
-    return jsonify(data={"voltages":voltages})
+    return jsonify(data={"voltages":voltages,"Exception":None})
 
 def MakeMonitorPlot(logfile,ylabel,titlename,filename, id):
     # Read each line from the provided file object
