@@ -102,9 +102,9 @@ def ajax_response():
                 templogfile2.write(f"\n")
         with open("/home/pi/SiPM-Control-Software/temperature_for_plot.log", 'r') as logfile:    
             MakeMonitorPlot(logfile,'Temperature in °C','Temperature','MonitoringTemperature', 0)
-        return jsonify(data={"times":times,"temps":temps,"paths":paths},success=True)
+        return jsonify(data={"times":times,"temps":temps,"paths":paths,"Exception":None},success=True)
     except Exception as e:
-        return jsonify(data={"times":[],"temps":[],"paths":[]},success=False)
+        return jsonify(data={"times":[],"temps":[],"paths":[],"Exception":e},success=False)
     
 
 @app_control.route("/init_dac",methods=["POST"])
