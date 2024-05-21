@@ -18,7 +18,6 @@ from Temperature_Sensor import DS18B20
 from DAC.Hardware_Control.voltage_card import Voltage_Card
 from DAC.Hardware_Control.Multiplexer import Muxer
 
-app_control._title="Control"
 app_control.paths=["/sys/bus/w1/devices/28-00000c7e5ff0/w1_slave"]
 app_control.pixel=8
 
