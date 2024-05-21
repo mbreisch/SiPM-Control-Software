@@ -45,7 +45,7 @@
         const img = document.getElementById("refreshingImage");
         const timestamp = new Date().getTime();
         img.src = "{{ url_for('app_control.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
-        console.log("Refreshing Temperature Image at: " + new Date().toLocaleTimeString());
+        console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
     }
 
     setInterval(refreshImage, 5000); // Refresh every 5 seconds
@@ -109,7 +109,7 @@
         const img = document.getElementById("refreshingImage2");
         const timestamp = new Date().getTime();
         img.src = "{{ url_for('app_control.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
-        console.log("Refreshing Voltage Image at: " + new Date().toLocaleTimeString());
+        console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[34Image\x1b[0m at: " + new Date().toLocaleTimeString());
     }
 
     setInterval(refreshImage2, 30000); // Refresh every 30 seconds
@@ -118,8 +118,14 @@
 
 {% block script %}
 <script>
+let isGettingTempValues = false;
+let isGettingAdcValues = false;
+
 async function get_temp_values(){
-        console.log("Refreshing Temperature Values at: " + new Date().toLocaleTimeString());
+        if (isGettingTempValues) return; // If already running, do nothing
+        isGettingTempValues = true; // Set the flag
+
+        console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[35mValues\x1b[0m at: " + new Date().toLocaleTimeString());
 		$.ajax("get_temp_values",
 		{
 		    contentType:"application/json",
@@ -130,7 +136,7 @@ async function get_temp_values(){
 			success:function(response){
 				var data=response.data
 				console.log(data["temps"])
-				console.log(data["Exception"])
+				console.log("\x1b[31mException\x1b[0m \x1b[32mTemperature\x1b[0m Read = " + data["Exception"])
 				for (idx = 0; idx < data["temps"].length; idx++) { 
 					var row = Math.floor( idx );
 					if(data["temps"][idx]!=0){
@@ -141,7 +147,10 @@ async function get_temp_values(){
 						document.getElementById(`label${row}`).innerHTML=`${row}`;
 					}
 			}		
-			}
+			},
+            complete: function() {
+            isGettingTempValues = false; // Clear the flag when complete
+            }
 		});
 };
 async function init_temp_func(){
@@ -166,12 +175,14 @@ async function init_temp_func(){
                     document.getElementById(`label${row}`).style.color = "red";
                 }
             }
-            get_temp_values();	
         } 
     });
 }
 async function get_adc_values(){
-    console.log("Refreshing Voltage Values at: " + new Date().toLocaleTimeString());
+    if (isGettingAdcValues) return; // If already running, do nothing
+    isGettingAdcValues = true; // Set the flag
+
+    console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[35mValues\x1b[0m at: " + new Date().toLocaleTimeString());
 	$.ajax("get_adc_value",
 		{
 		    contentType:"application/json",
@@ -181,7 +192,7 @@ async function get_adc_values(){
 			type:"POST",
 			success:function(response){
 				var data=response.data
-				console.log(data["Exception"])
+				console.log("\x1b[31mException\x1b[0m \x1b[33mVoltage\x1b[0m Read = " + data["Exception"])
 				var arraylength=data["voltages"].length
 				try {
 				    for (var chan = 0; chan < arraylength; chan++) {
@@ -190,7 +201,10 @@ async function get_adc_values(){
                 } catch (e) {
                     console.log(e.name + ': ' + e.message);
                 }
-			}
+			},
+            complete: function() {
+            isGettingAdcValues = false; // Clear the flag when complete
+            }
 		});
 };
 function set_dac_value(val,chan,slider_val){
