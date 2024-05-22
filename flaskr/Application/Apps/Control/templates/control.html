@@ -209,7 +209,7 @@ async function get_adc_values(){
 };
 function set_dac_value(val,chan,slider_val){
         val = document.getElementById(`involt${chan}`).value;
-		console.log(`set dac value ${val}`);
+		console.log(`Set Bias Voltage of ${chan} to ${val}`);
 		$.ajax("set_dac_value",
 		{
 		    contentType:"application/json",
@@ -220,7 +220,7 @@ function set_dac_value(val,chan,slider_val){
 			type:"POST",
 			success:function(response){
 				var data=response.data
-				console.log(data["Exception"])
+				console.log("\x1b[33mVoltage\x1b[0m Write \x1b[31mException\x1b[0m = " + data["Exception"])
 				document.getElementById(`involt${chan}`).value=data["voltage"];
 				document.getElementById(`ADCVal${chan}`).value=data["adc_voltage"];
     			//document.getElementById(slider_val).innerHTML = data["voltage"]; // get

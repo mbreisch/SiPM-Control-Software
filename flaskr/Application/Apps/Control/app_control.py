@@ -157,7 +157,7 @@ def set_voltage():
 
     try:
         set_voltage,adc_volt=app_control.volt_card.set_voltage(channel,volt)
-        return jsonify(data={"voltage":f"{set_voltage:.4f}","adc_voltage":f"{adc_volt:.3f}"},success=False)
+        return jsonify(data={"voltage":f"{set_voltage:.4f}","adc_voltage":f"{adc_volt:.3f}","Exception":None},success=False)
     except Exception as e:
         print(f"Exception {e} in ajax response")
         return jsonify(data={"voltage":0,"Exception":str(e)},success=False)
