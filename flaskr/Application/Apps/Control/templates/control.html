@@ -51,7 +51,7 @@ function refreshImage() {
     console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
 }
 
-setInterval(refreshImage, 5001); // Refresh every 5 seconds
+setInterval(refreshImage, 10000); // Refresh every 5 seconds
 </script>
 
 <style></style>
@@ -118,7 +118,7 @@ function refreshImage2() {
     console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
 }
 
-setInterval(refreshImage2, 30001); // Refresh every 30 seconds
+setInterval(refreshImage2, 30000); // Refresh every 30 seconds
 </script>
 {% endblock %}
 
