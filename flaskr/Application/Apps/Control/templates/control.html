@@ -193,7 +193,7 @@ async function get_adc_values() {
                 var arraylength = data["voltages"].length;
                 try {
                     for (let chan = 0; chan < arraylength; chan++) {
-                        ocument.getElementById(`ADCVal${chan}`).value = data["voltages"][chan];
+                        document.getElementById(`ADCVal${chan}`).value = data["voltages"][chan];
                     }
                 } catch (e) {
                     console.log(e.name + ': ' + e.message);
