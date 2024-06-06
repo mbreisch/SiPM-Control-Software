@@ -25,19 +25,6 @@ app_control.pixel=8
 app_control._title="Overall Control"
 
 @app_control.route("/",methods=["GET","POST"])
-
-@app_control.route("/check_plot_status", methods=["GET"])
-def check_plot_status():
-    plot_type = request.args.get("plot_type")  # 'voltage' or 'temperature'
-    plot_filename = request.args.get("filename")  # Filename of the plot to check
-    
-    plot_path = f"/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/{plot_filename}.png"
-    if os.path.exists(plot_path):
-        return jsonify({"status": "ready", "filename": plot_filename})
-    else:
-        return jsonify({"status": "not ready"})
-
-
 @app_control.route("/home",methods=["GET","POST"])
 def index():
     """Renders Home Page for Temperature APP. 
@@ -225,6 +212,17 @@ def get_voltage():
         app_control.temp_index-=10
     app_control.temp_index+=1
     return jsonify(data={"voltages":voltages,"Exception":None})
+
+@app_control.route("/check_plot_status", methods=["GET"])
+def check_plot_status():
+    plot_type = request.args.get("plot_type")  # 'voltage' or 'temperature'
+    plot_filename = request.args.get("filename")  # Filename of the plot to check
+    
+    plot_path = f"/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/{plot_filename}.png"
+    if os.path.exists(plot_path):
+        return jsonify({"status": "ready", "filename": plot_filename})
+    else:
+        return jsonify({"status": "not ready"})
 
 def MakeMonitorPlotForTemperature(logfile):
     # Read each line from the provided file object
