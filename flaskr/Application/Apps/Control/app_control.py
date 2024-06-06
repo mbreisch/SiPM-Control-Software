@@ -219,6 +219,7 @@ def check_plot_status():
     plot_filename = request.args.get("filename")  # Filename of the plot to check
     
     plot_path = f"/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/{plot_filename}.png"
+    print(f"Cheching {plot_path}")
     if os.path.exists(plot_path):
         return jsonify({"status": "ready", "filename": plot_filename})
     else:

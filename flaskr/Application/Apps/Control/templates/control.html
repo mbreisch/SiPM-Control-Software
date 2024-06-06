@@ -66,11 +66,11 @@
                 const timestamp = new Date().getTime();
                 img.src = "{{ url_for('app_control.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
                 img.onerror = function() {
-                    console.error("Failed to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
+                    console.error("Err Failed to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
                 };
                 console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
             } else {
-                console.log("Failed to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
+                console.log("Not ready to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
                 setTimeout(refreshImage, 1000); // Retry after 5 seconds
             }
         });
