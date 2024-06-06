@@ -101,7 +101,7 @@ def ajax_response():
                     templogfile2.write(f"{times[idx]},{temps[idx]};")
                 templogfile2.write(f"\n")
         with open("/home/pi/SiPM-Control-Software/temperature_for_plot.log", 'r') as logfile:    
-            MakeMonitorPlot(logfile,'Temperature in °C','Temperature','MonitoringTemperature', 0)
+            MakeMonitorPlotForTemperature(logfile)
         return jsonify(data={"times":times,"temps":temps,"paths":paths,"Exception":None},success=True)
     except Exception as e:
         return jsonify(data={"times":[],"temps":[],"paths":[],"Exception":str(e)},success=False)
@@ -204,7 +204,7 @@ def get_voltage():
             voltagelogfile2.write(f"{timestamp},{voltage};")
         voltagelogfile2.write(f"\n")
     with open("/home/pi/SiPM-Control-Software/voltage_for_plot.log", 'r') as logfile:    
-        MakeMonitorPlot(logfile,'Bias Voltage in V','Bias Voltage','MonitoringVoltage', 1) 
+        MakeMonitorPlotForBias(logfile) 
              
     if app_control.temp_index%11==0:
         #requests.post("http://127.0.0.1:5000/app_temp/get_temp_values")
@@ -212,7 +212,7 @@ def get_voltage():
     app_control.temp_index+=1
     return jsonify(data={"voltages":voltages,"Exception":None})
 
-def MakeMonitorPlot(logfile,ylabel,titlename,filename, id):
+def MakeMonitorPlotForTemperature(logfile):
     # Read each line from the provided file object
     timestamps = [[],[],[],[],[],[],[],[]]
     values = [[],[],[],[],[],[],[],[]]
@@ -249,7 +249,7 @@ def MakeMonitorPlot(logfile,ylabel,titlename,filename, id):
     #print(last_1000_timestamps)
     
     # Plot timestamp vs value for each entry
-    fig = plt.figure(id ,figsize=(1000/100,600/100), dpi=100)
+    fig = plt.figure(0 ,figsize=(1000/100,600/100), dpi=100)
     for channel in range(0,8):
         plt.plot(last_1000_timestamps[channel], last_1000_values[channel], marker='', linestyle='-', markersize=3, label=f"CH-{channel}")
 
@@ -260,8 +260,62 @@ def MakeMonitorPlot(logfile,ylabel,titlename,filename, id):
     # Add labels and title
     plt.xlabel('Timestamp')
     plt.grid()
-    plt.ylabel(ylabel)
+    plt.ylabel('Temperature in °C')
     plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
-    plt.title(f'Timestamp vs {titlename}')
-    plt.savefig(f'/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/{filename}.png')
+    plt.title(f'Timestamp vs Temperature')
+    plt.savefig(f'/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/MonitoringTemperature.png')
+    plt.close()
+    
+def MakeMonitorPlotForBias(logfile):
+    # Read each line from the provided file object
+    timestamps = [[],[],[],[],[],[],[],[]]
+    values = [[],[],[],[],[],[],[],[]]
+    for line in logfile:
+        # Strip any leading/trailing whitespace or newlines
+        line = line.strip()
+        
+        # Split the line into entries by the semicolon
+        entries = line.split(";") #["ts1,v1","ts2,v2",...]
+        
+        # Initialize lists to store individual line's timestamps and values
+
+        
+        # Process each entry
+        for enum,entry in enumerate(entries):
+            if entry:  # Check if entry is non-empty
+                # Split the entry into timestamp and value by the comma
+                ts_val = entry.split(",")
+                if len(ts_val) == 2:
+                    # Convert the timestamp to integer and the value to float
+                    timestamp = int(ts_val[0])
+                    value = float(ts_val[1])
+                    
+                    if timestamp==-1 or value==-1:
+                        continue
+                    
+                    # Add to the current line's list
+                    timestamps[enum].append(timestamp)
+                    values[enum].append(value)
+                  
+    last_1000_timestamps = [sublist[-1000:] for sublist in timestamps]
+    last_1000_values = [sublist[-1000:] for sublist in values]
+    
+    #print(last_1000_timestamps)
+    
+    # Plot timestamp vs value for each entry
+    fig = plt.figure(1 ,figsize=(1000/100,600/100), dpi=100)
+    for channel in range(0,8):
+        plt.plot(last_1000_timestamps[channel], last_1000_values[channel], marker='', linestyle='-', markersize=3, label=f"CH-{channel}")
+
+    ax = plt.gca()  # Get the current axis
+    ax.xaxis.set_major_locator(ticker.MaxNLocator(5))  # Max of 5 major ticks
+    ax.xaxis.set_minor_locator(ticker.NullLocator())  # No minor ticks
+
+    # Add labels and title
+    plt.xlabel('Timestamp')
+    plt.grid()
+    plt.ylabel('Bias Voltage in V')
+    plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
+    plt.title(f'Timestamp vs Bias Voltage')
+    plt.savefig(f'/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/MonitoringVoltage.png')
     plt.close()
