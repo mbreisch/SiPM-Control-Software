@@ -40,43 +40,18 @@
 </div>
 
 <script>
-    function checkPlotStatus(plotFilename, callback) {
-        $.ajax({
-            url: "/check_plot_status",
-            type: "GET",
-            data: { filename: plotFilename },
-            success: function(response) {
-                if (response.status === "ready") {
-                    callback(true);
-                } else {
-                    callback(false);
-                }
-            },
-            error: function() {
-                console.error("Error checking plot status");
-                callback(false);
-            }
-        });
+    function refreshTemperature() {
+        const img = document.getElementById("TemperatureRefresh");
+        const timestamp = new Date().getTime();
+        img.src = "{{ url_for('app_control.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
+        img.onerror = function() 
+        {
+            console.error("Failed to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
+        };
+        console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
     }
 
-    function refreshImage() {
-        checkPlotStatus('MonitoringTemperature', function(isReady) {
-            if (isReady) {
-                const img = document.getElementById("TemperatureRefresh");
-                const timestamp = new Date().getTime();
-                img.src = "{{ url_for('app_control.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
-                img.onerror = function() {
-                    console.error("Err Failed to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
-                };
-                console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
-            } else {
-                console.log("Not ready to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
-                setTimeout(refreshImage, 1000); // Retry after 5 seconds
-            }
-        });
-    }
-
-    setInterval(refreshImage, 10000); // Refresh every 5 seconds
+    setInterval(refreshTemperature, 10000); // Refresh every 30 seconds
 </script>
 
 <style></style>
@@ -127,23 +102,23 @@
 </th>
 
 <!-- Refreshing PNG every second -->
-<div id="refreshingImageContainer2">
-    <img id="refreshingImage2" src="{{ url_for('app_control.static', filename='MonitoringVoltage.png') }}" width="1000px" height="600px" />
+<div id="VoltageImageContainer2">
+    <img id="VoltageImage" src="{{ url_for('app_control.static', filename='MonitoringVoltage.png') }}" width="1000px" height="600px" />
 </div>
 
 <script>
-function refreshImage2() {
-    const img = document.getElementById("refreshingImage2");
-    const timestamp = new Date().getTime();
-    img.src = "{{ url_for('app_control.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
-    img.onerror = function() 
-    {
-        console.error("Failed to load \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
-    };
-    console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
-}
+    function refreshVoltage() {
+        const img = document.getElementById("VoltageImage");
+        const timestamp = new Date().getTime();
+        img.src = "{{ url_for('app_control.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
+        img.onerror = function() 
+        {
+            console.error("Failed to load \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
+        };
+        console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
+    }
 
-setInterval(refreshImage2, 30000); // Refresh every 30 seconds
+    setInterval(refreshVoltage, 30000); // Refresh every 30 seconds
 </script>
 {% endblock %}
 
