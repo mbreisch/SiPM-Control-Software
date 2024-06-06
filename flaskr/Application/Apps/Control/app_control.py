@@ -2,6 +2,7 @@ from flask import Blueprint,render_template, url_for,request,jsonify,redirect,se
 import subprocess
 import sys
 import os
+from flask import jsonify
 import numpy as np
 import time,datetime
 import shutil
@@ -22,6 +23,17 @@ app_control.paths=["/sys/bus/w1/devices/28-00000c7e5ff0/w1_slave"]
 app_control.pixel=8
 
 app_control._title="Overall Control"
+
+@app_control.route("/check_plot_status", methods=["GET"])
+def check_plot_status():
+    plot_type = request.args.get("plot_type")  # 'voltage' or 'temperature'
+    plot_filename = request.args.get("filename")  # Filename of the plot to check
+    
+    plot_path = f"/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/{plot_filename}.png"
+    if os.path.exists(plot_path):
+        return jsonify({"status": "ready", "filename": plot_filename})
+    else:
+        return jsonify({"status": "not ready"})
 
 @app_control.route("/",methods=["GET","POST"])
 @app_control.route("/home",methods=["GET","POST"])
