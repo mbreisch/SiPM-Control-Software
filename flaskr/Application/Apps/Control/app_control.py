@@ -24,6 +24,8 @@ app_control.pixel=8
 
 app_control._title="Overall Control"
 
+@app_control.route("/",methods=["GET","POST"])
+
 @app_control.route("/check_plot_status", methods=["GET"])
 def check_plot_status():
     plot_type = request.args.get("plot_type")  # 'voltage' or 'temperature'
@@ -35,7 +37,7 @@ def check_plot_status():
     else:
         return jsonify({"status": "not ready"})
 
-@app_control.route("/",methods=["GET","POST"])
+
 @app_control.route("/home",methods=["GET","POST"])
 def index():
     """Renders Home Page for Temperature APP. 
