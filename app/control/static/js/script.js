@@ -1,3 +1,4 @@
+/*
 let tempIntervalId = null;
 let adcIntervalId = null;
 
@@ -35,7 +36,7 @@ function startTempInterval() {
 
 async function init_temp_func() {
     console.log("Initialising Temperature Sensors");
-    /*$.ajax("init_temperature", {
+    $.ajax("init_temperature", {
         contentType: "application/json",
         data: JSON.stringify({ variable: "init_temperature" }),
         type: "POST",
@@ -51,7 +52,7 @@ async function init_temp_func() {
                 }
             }
         }
-    });*/
+    });
 }
 
 async function get_adc_values() {
@@ -164,7 +165,7 @@ function refreshTemperature() {
     };
     console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
 }
-
+*/
 function hello_world(){
     console.log("Hello World")
 }
