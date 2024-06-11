@@ -1,5 +1,5 @@
-from .hw_scripts.DAC_80508 import DAC_80508 
-from .hw_scripts.ADC import ADS_8166
+from .DAC_80508 import DAC_80508 
+from .ADC import ADS_8166
 import time
 from simple_pid import PID
 import numpy as np
