@@ -14,7 +14,7 @@ from w1thermsensor import W1ThermSensor, Unit
 
 from . import control_bp
 
-sys.path.append("./app/control/hw_scripts")
+#sys.path.append("./app/control/hw_scripts")
 sys.path.append(control_bp.static_folder)
 
 @control_bp.route('/',methods=["GET","POST"])
@@ -67,7 +67,7 @@ def init_temperature():
     
     
 @control_bp.route("/get_temp_values",methods=["POST"])
-def ajax_response():
+def get_temp_values():
     """Tries to get Data of the initialised Temperature Sensors. 
     Saves the values with their timestamp in a array in Order of their occurence in control_bp.sensors.
     Called POST at /init_temperature
