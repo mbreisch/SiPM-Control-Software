@@ -13,6 +13,11 @@
             }
         </style>
         <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+        {% set script_url = url_for('static', filename='js/script.js') %}
+        <script>
+            console.log("Generated URL: {{ script_url }}");
+        </script>
+    
     </head>
 
     <style>
