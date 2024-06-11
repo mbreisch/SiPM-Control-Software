@@ -45,6 +45,11 @@
     <img id="TemperatureRefresh" src="{{ url_for('control.static', filename='MonitoringTemperature.png') }}" alt="MonitoringTemperature" width="1000px" height="600px" />
 </div>
 
+{% set script_url = url_for('control.static', filename='MonitoringTemperature.png') %}
+<script>
+    console.log("Generated URL: {{ script_url }}");
+</script>
+
 <style></style>
 
 <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC</button>
