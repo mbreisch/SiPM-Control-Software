@@ -3,6 +3,7 @@ from flask_login import login_required
 import subprocess
 import sys
 import os
+import spidev
 import numpy as np
 import time,datetime
 import shutil
@@ -121,6 +122,13 @@ def init_dac():
         destination_path = os.path.join(destination_directory, new_filename)
         shutil.copy(source_path, destination_path)
         os.remove(source_path)
+        
+    spi = spidev.SpiDev()
+    spi_port=0
+    speedHZ=400000
+    spi.open(spi_port, 1)
+    spi.max_speed_hz = speedHZ
+    control_bp.spi=spi
     
     #requests.post("http://127.0.0.1:5000/app_temp/init_temperature")
     control_bp.temp_index=0
