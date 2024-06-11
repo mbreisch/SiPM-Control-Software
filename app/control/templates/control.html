@@ -28,7 +28,7 @@
 <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors</button>
 <button id="get_temperature" class="btn btn-dark btn-block" type="button" onclick="startTempInterval();">Get Temperature Values</button>
 <div class="imgContainer">
-    <img src="{{ url_for('app_control.static', filename='black.jpg') }}" width="90%" height="50" />
+    <img src="{{ url_for('control_bp.static', filename='black.jpg') }}" width="90%" height="50" />
     {% for row in range(8) %}
     <label class="label{{ row }}" id="label{{ row }}" style="color: black">{{ row }}</label>
     {% endfor %}
@@ -36,14 +36,14 @@
 
 <!-- Refreshing PNG every second -->
 <div id="TemperatureImageContainer">
-    <img id="TemperatureRefresh" src="{{ url_for('app_control.static', filename='MonitoringTemperature.png') }}" width="1000px" height="600px" />
+    <img id="TemperatureRefresh" src="{{ url_for('control_bp.static', filename='MonitoringTemperature.png') }}" width="1000px" height="600px" />
 </div>
 
 <script>
     function refreshTemperature() {
         const img = document.getElementById("TemperatureRefresh");
         const timestamp = new Date().getTime();
-        img.src = "{{ url_for('app_control.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
+        img.src = "{{ url_for('control_bp.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
         img.onerror = function() 
         {
             console.error("Failed to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
@@ -103,14 +103,14 @@
 
 <!-- Refreshing PNG every second -->
 <div id="VoltageImageContainer2">
-    <img id="VoltageImage" src="{{ url_for('app_control.static', filename='MonitoringVoltage.png') }}" width="1000px" height="600px" />
+    <img id="VoltageImage" src="{{ url_for('control_bp.static', filename='MonitoringVoltage.png') }}" width="1000px" height="600px" />
 </div>
 
 <script>
     function refreshVoltage() {
         const img = document.getElementById("VoltageImage");
         const timestamp = new Date().getTime();
-        img.src = "{{ url_for('app_control.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
+        img.src = "{{ url_for('control_bp.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
         img.onerror = function() 
         {
             console.error("Failed to load \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");

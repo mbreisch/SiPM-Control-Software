@@ -270,7 +270,7 @@ def MakeMonitorPlotForTemperature(logfile):
     plt.ylabel('Temperature in °C')
     plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
     plt.title(f'Timestamp vs Temperature')
-    plt.savefig(f'/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/MonitoringTemperature.png')
+    plt.savefig(f'{control_bp.static_folder}/MonitoringTemperature.png')
     plt.close()
     
 def MakeMonitorPlotForBias(logfile):
@@ -324,5 +324,5 @@ def MakeMonitorPlotForBias(logfile):
     plt.ylabel('Bias Voltage in V')
     plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
     plt.title(f'Timestamp vs Bias Voltage')
-    plt.savefig(f'/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/MonitoringVoltage.png')
+    plt.savefig(f'{control_bp.static_folder}/MonitoringVoltage.png')
     plt.close()
