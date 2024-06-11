@@ -47,7 +47,7 @@ def create_app():
 
     with app.app_context():
         from .auth import auth_bp
-        from .control import control_bp
+        #from .control import control_bp
         
         print("Registering blueprints")
         time.sleep(5)
