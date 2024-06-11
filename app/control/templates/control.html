@@ -12,7 +12,7 @@
                 color: white; /* Ensure text is visible against the black background */
             }
         </style>
-        <script src="{{ url_for('filename='/home/pi/SSoft_exp/app/control/static/js/script.js') }}"></script>
+        <script src="{{ url_for(filename='/home/pi/SSoft_exp/app/control/static/js/script.js') }}"></script>
         {% set script_url = url_for('static', filename='js/script.js') %}
         <script>
             console.log("Generated URL: {{ script_url }}");
