@@ -1,1 +1,0 @@
-# sipm_ctl
