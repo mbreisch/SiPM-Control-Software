@@ -164,3 +164,7 @@ function refreshTemperature() {
     };
     console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
 }
+
+function hello_world(){
+    console.log("Hello World")
+}
