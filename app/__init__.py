@@ -44,7 +44,7 @@ def create_app():
         app.register_blueprint(auth_bp)
         print("Auth blueprint registered")
         
-        app.register_blueprint(control_bp)
+        app.register_blueprint(control_bp, url_prefix='/control')
         print("Control blueprint registered with URL prefix '/control'")
         
         db.create_all()  # Create database tables for our data models
