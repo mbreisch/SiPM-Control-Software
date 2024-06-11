@@ -36,7 +36,7 @@
 
 <!-- Refreshing PNG every second -->
 <div id="TemperatureImageContainer">
-    <img id="TemperatureRefresh" src="{{ url_for('control.static', filename='MonitoringTemperature.png') }}" width="1000px" height="600px" />
+    <img id="TemperatureRefresh" src="{{ url_for('control.static', filename='MonitoringTemperature.png') }}" alt="MonitoringTemperature" width="1000px" height="600px" />
 </div>
 
 <style></style>
@@ -88,7 +88,7 @@
 
 <!-- Refreshing PNG every second -->
 <div id="VoltageImageContainer2">
-    <img id="VoltageImage" src="{{ url_for('control.static', filename='MonitoringVoltage.png') }}" width="1000px" height="600px" />
+    <img id="VoltageImage" src="{{ url_for('control.static', filename='MonitoringVoltage.png') }}" alt="MonitoringVoltage" width="1000px" height="600px" />
 </div>
 
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
