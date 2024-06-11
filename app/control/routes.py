@@ -23,9 +23,9 @@ sys.path.append(control_bp.static_folder)
 def control_home():
     return render_template("control.html",title="Control Interface")
 
-from Temperature_Sensor import DS18B20
-from voltage_card import Voltage_Card
-from Multiplexer import Muxer
+from .Temperature_Sensor import DS18B20
+from .voltage_card import Voltage_Card
+from .Multiplexer import Muxer
 
 control_bp.paths=["/sys/bus/w1/devices/28-00000c7e5ff0/w1_slave"]
 control_bp.pixel=8
