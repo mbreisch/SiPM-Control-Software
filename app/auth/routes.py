@@ -9,7 +9,7 @@ from ..forms import LoginForm
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('page1.page1_home'))
+        return redirect(url_for('control.contol_home'))
     
     form = LoginForm()
     if form.validate_on_submit():
