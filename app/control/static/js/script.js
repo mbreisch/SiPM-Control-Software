@@ -143,27 +143,6 @@ function sleep(milliseconds) {
     } while (currentDate - date < milliseconds);
 }
 
-function refreshVoltage() {
-    const img = document.getElementById("VoltageImage");
-    const timestamp = new Date().getTime();
-    img.src = "{{ url_for('control.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
-    img.onerror = function() 
-    {
-        console.error("Failed to load \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
-    };
-    console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
-}
-
-function refreshTemperature() {
-    const img = document.getElementById("TemperatureRefresh");
-    const timestamp = new Date().getTime();
-    img.src = "{{ url_for('control.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
-    img.onerror = function() 
-    {
-        console.error("Failed to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
-    };
-    console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
-}
 
 function hello_world(){
     console.log("Hello World")

@@ -45,9 +45,19 @@
     <img id="TemperatureRefresh" src="{{ url_for('control.static', filename='MonitoringTemperature.png') }}" alt="MonitoringTemperature" width="1000px" height="600px" />
 </div>
 
-{% set script_url = url_for('control.static', filename='MonitoringTemperature.png') %}
+
 <script>
-    console.log("Generated URL: {{ script_url }}");
+    function refreshTemperature() {
+        const img = document.getElementById("TemperatureRefresh");
+        const timestamp = new Date().getTime();
+        img.src = "{{ url_for('control.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
+        img.onerror = function() 
+        {
+            console.error("Failed to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
+        };
+        console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
+    }
+    setInterval(refreshTemperature,10000);
 </script>
 
 <style></style>
@@ -101,6 +111,20 @@
 <div id="VoltageImageContainer2">
     <img id="VoltageImage" src="{{ url_for('control.static', filename='MonitoringVoltage.png') }}" alt="MonitoringVoltage" width="1000px" height="600px" />
 </div>
+<script>
+    function refreshVoltage() {
+        const img = document.getElementById("VoltageRefresh");
+        const timestamp = new Date().getTime();
+        img.src = "{{ url_for('control.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
+        img.onerror = function() 
+        {
+            console.error("Failed to load \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
+        };
+        console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
+    }
+    setInterval(refreshVoltage,20000);
+</script>
+
     </body>
 
 {% endblock %}
