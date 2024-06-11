@@ -1,6 +1,6 @@
 from flask import Blueprint, send_from_directory
 
-control_static_bp = Blueprint('control_static', __name__, static_folder='static', template_folder='templates'))
+control_static_bp = Blueprint('control_static', __name__, static_folder='static', template_folder='templates')
 
 @control_static_bp.route('/static/js/<path:filename>')
 def serve_js(filename):
