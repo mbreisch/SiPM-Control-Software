@@ -18,6 +18,7 @@ from . import control_bp
 sys.path.append(control_bp.static_folder)
 
 @control_bp.route('/',methods=["GET","POST"])
+@control_bp.route("/home",methods=["GET","POST"])
 @login_required
 def control_home():
     return render_template("control.html",title="Control Interface")
