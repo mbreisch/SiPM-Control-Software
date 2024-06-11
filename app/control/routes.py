@@ -41,8 +41,8 @@ def init_temperature():
     Returns:
         json: data contains working sensors
     """
-    source_path = "/home/pi/SiPM-Control-Software/temperature_for_plot.log"
-    destination_directory = "/home/pi/SiPM-Control-Software/backup_logs/"
+    source_path = "./temperature_for_plot.log"
+    destination_directory = "./backup_logs/"
     
     if os.path.exists(source_path):
         timestamp = round(time.time() * 1000)
@@ -88,15 +88,15 @@ def ajax_response():
                 paths[sensor.idx]=sensor.path.split("/")[5]
             except IndexError:
                 paths[sensor.idx]="0"
-        with open("/home/pi/SiPM-Control-Software/temp.log","a") as templogfile:
+        with open("./temp.log","a") as templogfile:
             for idx in range(len(times)):
                 templogfile.write(f"\n{times[idx]};{temps[idx]};{paths[idx]}")
-        with open("/home/pi/SiPM-Control-Software/temperature_for_plot.log","a") as templogfile2:
+        with open("./temperature_for_plot.log","a") as templogfile2:
             if 0.0 not in temps and 0.0 not in times:
                 for idx in range(len(times)):
                     templogfile2.write(f"{times[idx]},{temps[idx]};")
                 templogfile2.write(f"\n")
-        with open("/home/pi/SiPM-Control-Software/temperature_for_plot.log", 'r') as logfile:    
+        with open("./temperature_for_plot.log", 'r') as logfile:    
             MakeMonitorPlotForTemperature(logfile)
         return jsonify(data={"times":times,"temps":temps,"paths":paths,"Exception":None},success=True)
     except Exception as e:
@@ -111,8 +111,8 @@ def init_dac():
         json: Success Statement
     """
     
-    source_path = "/home/pi/SiPM-Control-Software/voltage_for_plot.log"
-    destination_directory = "/home/pi/SiPM-Control-Software/backup_logs/"
+    source_path = "./voltage_for_plot.log"
+    destination_directory = "./backup_logs/"
     
     if os.path.exists(source_path):
         timestamp = int(time.time() * 1000)
@@ -189,17 +189,17 @@ def get_voltage():
     except Exception as e:
         return jsonify(data={"Exception":str(e)})
     voltages=[f"{volt:.3f}" for volt in voltages]
-    with open("/home/pi/SiPM-Control-Software/voltage.log","a") as voltlogfile:
+    with open("./voltage.log","a") as voltlogfile:
         timestamp=datetime.now().strftime("%d-%m-%Y--%H:%M:%S")
         for idx,voltage in enumerate(voltages):
             voltlogfile.write(f"\n{timestamp};{idx};{voltage}")
             
-    with open("/home/pi/SiPM-Control-Software/voltage_for_plot.log","a") as voltagelogfile2:
+    with open("./voltage_for_plot.log","a") as voltagelogfile2:
         timestamp = round(time.time() * 1000)
         for idx,voltage in enumerate(voltages):
             voltagelogfile2.write(f"{timestamp},{voltage};")
         voltagelogfile2.write(f"\n")
-    with open("/home/pi/SiPM-Control-Software/voltage_for_plot.log", 'r') as logfile:    
+    with open("./voltage_for_plot.log", 'r') as logfile:    
         MakeMonitorPlotForBias(logfile) 
              
     if control_bp.temp_index%11==0:
@@ -208,16 +208,6 @@ def get_voltage():
     control_bp.temp_index+=1
     return jsonify(data={"voltages":voltages,"Exception":None})
 
-@control_bp.route("/check_plot_status", methods=["GET"])
-def check_plot_status():
-    plot_type = request.args.get("plot_type")  # 'voltage' or 'temperature'
-    plot_filename = request.args.get("filename")  # Filename of the plot to check
-    
-    plot_path = f"/home/pi/SiPM-Control-Software/flaskr/Application/Apps/Control/static/{plot_filename}.png"
-    if os.path.exists(plot_path):
-        return jsonify({"status": "ready", "filename": plot_filename})
-    else:
-        return jsonify({"status": "not ready"})
 
 def MakeMonitorPlotForTemperature(logfile):
     # Read each line from the provided file object
