@@ -1,130 +1,109 @@
 {% extends "layout.html" %}
 
-{% block title %}Control{% endblock %}
+{% block title %}Control HTML{% endblock %}
 
 {% block content %}
     <head>
-        <title>My Django Site</title>
+        <title>Control Overview</title>
         <style>
             /* Set the background color for the entire page */
             body {
                 background-color: black;
                 color: white; /* Ensure text is visible against the black background */
             }
+            .valuesTable {
+                width: 100%;
+                background-color: black;
+                color: white;
+                text-align: center;
+            }
+
+            .valueCell {
+                padding: 10px;
+                font-weight: bold;
+            }
         </style>
         <script src="{{ url_for('control.static', filename='js/jquery.min.js') }}"></script>
         <script src="{{ url_for('control.static', filename='js/script.js') }}"></script>
     </head>
+
     <body>
-    <script>
-        hello_world();
-    </script>
+        <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors</button>
+        <button id="get_temperature" class="btn btn-dark btn-block" type="button" onclick="startTempInterval();">Get Temperature Values</button>
+        <table class="valuesTable" align="center" border="1" cellspacing="10" cellpadding="10">
+            <tr>
+                {% for row in range(8) %}
+                    <td class="valueCell" id="label{{ row }}">{{ row }}</td>
+                {% endfor %}
+            </tr>
+        </table>
 
-    <style>
-        .imgContainer{position: relative;}
-        {% for row in range(8) %}
-        .label{{ row }} {
-            position: absolute;
-            left: {{ row * 100 + 200 }}px;
-            top: {{ 5 }}px;
-        }
-        {% endfor %}
-    </style>
+        <div id="TemperatureImageContainer">
+            <img id="TemperatureRefresh" src="{{ url_for('control.static', filename='MonitoringTemperature.png') }}" alt="MonitoringTemperature" width="1000px" height="600px" />
+        </div>
 
-<button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors</button>
-<button id="get_temperature" class="btn btn-dark btn-block" type="button" onclick="startTempInterval();">Get Temperature Values</button>
-<div class="imgContainer">
-    <img src="{{ url_for('control.static', filename='black.jpg') }}" width="90%" height="50" />
-    {% for row in range(8) %}
-    <label class="label{{ row }}" id="label{{ row }}" style="color: black">{{ row }}</label>
-    {% endfor %}
-</div>
+        <script>
+            function refreshTemperature() {
+                const img = document.getElementById("TemperatureRefresh");
+                const timestamp = new Date().getTime();
+                img.src = "{{ url_for('control.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
+                img.onerror = function() 
+                {
+                    console.error("Failed to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
+                };
+                console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
+            }
+            setInterval(refreshTemperature,10000);
+        </script>
 
-<!-- Refreshing PNG every second -->
-<div id="TemperatureImageContainer">
-    <img id="TemperatureRefresh" src="{{ url_for('control.static', filename='MonitoringTemperature.png') }}" alt="MonitoringTemperature" width="1000px" height="600px" />
-</div>
+        <style></style>
 
-
-<script>
-    function refreshTemperature() {
-        const img = document.getElementById("TemperatureRefresh");
-        const timestamp = new Date().getTime();
-        img.src = "{{ url_for('control.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
-        img.onerror = function() 
-        {
-            console.error("Failed to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
-        };
-        console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
-    }
-    setInterval(refreshTemperature,10000);
-</script>
-
-<style></style>
-
-<button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC</button>
-<button id="get_adc_volts" class="btn btn-dark btn-block" type="button" onclick="startAdcInterval();">Get ADC Values</button>
-<table align="center" border="1" cellspacing="10" cellpadding="10">
-    <tr>
-        {% for chan in range(0, 4) %}
+        <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC</button>
+        <button id="get_adc_volts" class="btn btn-dark btn-block" type="button" onclick="startAdcInterval();">Get ADC Values</button>
+        <table align="center" border="1" cellspacing="10" cellpadding="10">
+            {% for chan in range(0, 8, 4) %}
+            <tr>
+                {% for col in range(chan, chan + 4) %}
+                <th>
+                    <form>
+                        <p>Channel {{ col + 1 }} | VME {{ col }}</p>
+                        <label for="slider{{ col }}">Set Voltage [V]:</label>
+                        <input type="number" id="involt{{ col }}" name="slider{{ col }}" min="0" max="35" value="0">
+                        <input type="button" value="Set" onclick="set_dac_value('involt{{ col }}', {{ col }}, 'sliderVal{{ col }}');">
+                        <br>
+                        <label for="getvolt">Current Voltage [V]:</label>
+                        <output type="number" id="ADCVal{{ col }}" name="getvolt"></output>
+                    </form>
+                </th>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
         <th>
             <form>
-                <p>Channel {{ chan + 1 }} | VME {{ chan }}</p>
-                <label for="slider{{ chan }}">Set Voltage [V]:</label>
-                <input type="number" id="involt{{ chan }}" name="slider{{ chan }}" min="0" max="35" value="0">
-                <input type="button" value="Set" onclick="set_dac_value('involt{{ chan }}', {{ chan }}, 'sliderVal{{ chan }}');">
-                <br>
-                <label for="getvolt">Current Voltage [V]:</label>
-                <output type="number" id="ADCVal{{ chan }}" name="getvolt"></output>
+                <p>Value for all Channels [V]</p>
+                <label for="slider">Set Voltage [V]:</label>
+                <input type="number" id="involt_all" name="slider" min="0" max="35" value="0">
+                <input type="button" value="Set" onclick="set_all_value('slider');">
             </form>
         </th>
-        {% endfor %}
-    </tr>
-    <tr></tr>
-    <tr></tr>
-    <tr>
-        {% for chan in range(4, 8) %}
-        <th>
-            <form>
-                <p>Channel {{ chan + 1 }} | VME {{ chan }}</p>
-                <label for="slider{{ chan }}">Set Voltage [V]:</label>
-                <input type="number" id="involt{{ chan }}" name="slider{{ chan }}" min="0" max="35" value="0">
-                <input type="button" value="Set" onclick="set_dac_value('involt{{ chan }}', {{ chan }}, 'sliderVal{{ chan }}');">
-                <br>
-                <label for="getvolt">Current Voltage [V]:</label>
-                <output type="number" id="ADCVal{{ chan }}" name="getvolt"></output>
-            </form>
-        </th>
-        {% endfor %}
-    </tr>
-</table>
-<th>
-    <form>
-        <p>Value for all Channels [V]</p>
-        <label for="slider">Set Voltage [V]:</label>
-        <input type="number" id="involt_all" name="slider" min="0" max="35" value="0">
-        <input type="button" value="Set" onclick="set_all_value('slider');">
-    </form>
-</th>
 
-<!-- Refreshing PNG every second -->
-<div id="VoltageImageContainer2">
-    <img id="VoltageRefresh" src="{{ url_for('control.static', filename='MonitoringVoltage.png') }}" alt="MonitoringVoltage" width="1000px" height="600px" />
-</div>
-<script>
-    function refreshVoltage() {
-        const img = document.getElementById("VoltageRefresh");
-        const timestamp = new Date().getTime();
-        img.src = "{{ url_for('control.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
-        img.onerror = function() 
-        {
-            console.error("Failed to load \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
-        };
-        console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
-    }
-    setInterval(refreshVoltage,20000);
-</script>
+        <div id="VoltageImageContainer2">
+            <img id="VoltageRefresh" src="{{ url_for('control.static', filename='MonitoringVoltage.png') }}" alt="MonitoringVoltage" width="1000px" height="600px" />
+        </div>
 
+        <script>
+            function refreshVoltage() {
+                const img = document.getElementById("VoltageRefresh");
+                const timestamp = new Date().getTime();
+                img.src = "{{ url_for('control.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
+                img.onerror = function() 
+                {
+                    console.error("Failed to load \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
+                };
+                console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
+            }
+            setInterval(refreshVoltage,20000);
+        </script>
     </body>
-
 {% endblock %}
