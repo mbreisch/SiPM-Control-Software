@@ -93,14 +93,14 @@
 
         <script>
             function refreshVoltage() {
-                const img = document.getElementById("VoltageRefresh");
-                const timestamp = new Date().getTime();
-                img.src = "{{ url_for('control.static', filename='MonitoringVoltage.png') }}?t=" + timestamp;
-                img.onerror = function() 
-                {
+                const img = "{{ url_for('control.static', filename='MonitoringVoltage.png') }}";
+                reloadImg(img)
+                .then(() => {
+                    console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
+                })
+                .catch(error => {
                     console.error("Failed to load \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
-                };
-                console.log("Refreshing \x1b[33mVoltage\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
+                }); 
             }
             setInterval(refreshVoltage,20000);
         </script>
