@@ -6,33 +6,6 @@
     <head>
         <title>Control Overview</title>
         <link rel="stylesheet" href="{{ url_for('control.static', filename='css/styles.css') }}">
-        <style>
-            /* Set the background color for the entire page */
-            body {
-                background-color: black;
-                color: white; /* Ensure text is visible against the black background */
-            }
-            .valuesTable {
-                width: 100%;
-                background-color: black;
-                color: white;
-                text-align: center;
-            }
-
-            .valueCell {
-                padding: 10px;
-                font-weight: bold;
-            }
-
-            #TemperatureImageContainer {
-                text-align: center;
-            }
-
-            #TemperatureRefresh {
-                display: block;
-                margin: 0 auto;
-            }
-        </style>
         <script src="{{ url_for('control.static', filename='js/jquery.min.js') }}"></script>
         <script src="{{ url_for('control.static', filename='js/script.js') }}"></script>
     </head>
@@ -76,21 +49,21 @@
         </div>
         <table align="center" border="1" cellspacing="10" cellpadding="10">
             {% for chan in range(0, 8, 4) %}
-            <tr>
-                {% for col in range(chan, chan + 4) %}
-                <th>
-                    <form>
-                        <p>Channel {{ col + 1 }} | VME {{ col }}</p>
-                        <label for="slider{{ col }}">Set Voltage [V]:</label>
-                        <input type="number" id="involt{{ col }}" name="slider{{ col }}" min="0" max="35" value="0">
-                        <input type="button" value="Set" onclick="set_dac_value('involt{{ col }}', {{ col }}, 'sliderVal{{ col }}');">
-                        <br>
-                        <label for="getvolt">Current Voltage [V]:</label>
-                        <output type="number" id="ADCVal{{ col }}" name="getvolt"></output>
-                    </form>
-                </th>
-                {% endfor %}
-            </tr>
+                <tr>
+                    {% for col in range(chan, chan + 4) %}
+                        <th>
+                            <form>
+                                <p>Channel {{ col + 1 }} | VME {{ col }}</p>
+                                <label for="slider{{ col }}">Set Voltage [V]:</label>
+                                <input type="number" id="involt{{ col }}" name="slider{{ col }}" min="0" max="35" value="0">
+                                <input type="button" value="Set" onclick="set_dac_value('involt{{ col }}', {{ col }}, 'sliderVal{{ col }}');">
+                                <br>
+                                <label for="getvolt">Current Voltage [V]:</label>
+                                <output type="number" id="ADCVal{{ col }}" name="getvolt"></output>
+                            </form>
+                        </th>
+                    {% endfor %}
+                </tr>
             {% endfor %}
         </table>
         <th>
