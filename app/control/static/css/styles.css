@@ -20,6 +20,18 @@ body {
     height: auto;
 }
 
+.valuesTable {
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.valueCell {
+    padding: 10px;
+    font-weight: bold;
+}
+
 .buttonContainer {
     display: flex;
     justify-content: center;

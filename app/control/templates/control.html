@@ -6,6 +6,33 @@
     <head>
         <title>Control Overview</title>
         <link rel="stylesheet" href="{{ url_for('control.static', filename='css/styles.css') }}">
+        <style>
+            /* Set the background color for the entire page */
+            body {
+                background-color: black;
+                color: white; /* Ensure text is visible against the black background */
+            }
+            .valuesTable {
+                width: 100%;
+                background-color: black;
+                color: white;
+                text-align: center;
+            }
+
+            .valueCell {
+                padding: 10px;
+                font-weight: bold;
+            }
+
+            #TemperatureImageContainer {
+                text-align: center;
+            }
+
+            #TemperatureRefresh {
+                display: block;
+                margin: 0 auto;
+            }
+        </style>
         <script src="{{ url_for('control.static', filename='js/jquery.min.js') }}"></script>
         <script src="{{ url_for('control.static', filename='js/script.js') }}"></script>
     </head>
