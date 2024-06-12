@@ -1,3 +1,5 @@
+/* styles.css */
+
 body {
     background-color: black;
     color: white;
@@ -6,76 +8,15 @@ body {
     padding: 0;
 }
 
-#TemperatureImageContainer {
+.button-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.TempButtonContainer {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.BiasButtonContainer {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-#TemperatureRefresh {
-    max-width: 1000px;
-    max-height: 600px;
-    width: 90%;
-    height: auto;
-}
-
-
-#VoltageImageContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-#VoltageRefresh {
-    max-width: 1000px;
-    max-height: 600px;
-    width: 90%;
-    height: auto;
-}
-
-#SetAllChannelsContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.valuesTable {
-    width: 100%;
-    background-color: black;
-    color: white;
-    text-align: center;
-}
-
-.valueCell {
-    padding: 10px;
-    font-weight: bold;
-}
-
-.buttonContainer {
-    display: flex;
-    align-items: center;
     gap: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 .btn {
-    align-items: center;
     padding: 10px 20px;
     font-size: 16px;
     color: white;
@@ -87,4 +28,46 @@ body {
 
 .btn:hover {
     background-color: #495057;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.table-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+table {
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid white;
+}
+
+th {
+    background-color: #343a40;
+}
+
+input[type="number"] {
+    width: 60px;
+}
+
+output {
+    display: inline-block;
+    width: 60px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
