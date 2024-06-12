@@ -33,6 +33,12 @@ function startTempInterval() {
     }
 }
 
+async function reloadImg(url) {
+    await fetch(url, { cache: 'reload', mode: 'no-cors' });
+    document.body.querySelectorAll(`img[src='${url}']`)
+      .forEach(img => img.src = url);
+  }
+
 async function init_temp_func() {
     console.log("Initialising Temperature Sensors");
     $.ajax("init_temperature", {

@@ -8,9 +8,6 @@
         <link rel="stylesheet" href="{{ url_for('control.static', filename='css/styles.css') }}">
         <script src="{{ url_for('control.static', filename='js/jquery.min.js') }}"></script>
         <script src="{{ url_for('control.static', filename='js/script.js') }}"></script>
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-        <meta http-equiv="Pragma" content="no-cache">
-        <meta http-equiv="Expires" content="0">
     </head>
 
     <body>
@@ -36,13 +33,14 @@
         <script>
             function refreshTemperature() {
                 const img = document.getElementById("TemperatureRefresh");
-                const timestamp = new Date().getTime();
+                reloadImg(imgURL)
                 img.src = "{{ url_for('control.static', filename='MonitoringTemperature.png') }}?t=" + timestamp;
-                img.onerror = function() 
-                {
-                    console.error("Failed to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...");
-                };
-                console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
+                .then(() => {
+                    console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
+                })
+                .catch(error => {
+                    console.error("Failed to load \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m. Retrying...", error);
+                });
             }
             setInterval(refreshTemperature,10000);
         </script>
