@@ -15,8 +15,17 @@ async function get_temp_values() {
                 var row = Math.floor(idx);
                 if (data["temps"][idx] != 0) {
                     document.getElementById(`label${row}`).innerHTML = data["temps"][idx];
+                    if(data["temps"][idx]>=30){
+                        document.getElementById(`label${row}`).style.color = "rgb(215, 102, 12)";
+                    }else if(data["temps"][idx]>=25 && data["temps"][idx]<30){
+                        document.getElementById(`label${row}`).style.color = "rgb(0, 255, 0)";
+                    }else if(data["temps"][idx]<25){
+                        document.getElementById(`label${row}`).style.color = "rgb(13, 152, 213)";
+                    }else{
+                        document.getElementById(`label${row}`).style.color = "rgb(0, 255, 0)";
+                    }
                 } else {
-                    document.getElementById(`label${row}`).style.color = "red";
+                    document.getElementById(`label${row}`).style.color = "rgb(0, 255, 0)";
                     document.getElementById(`label${row}`).innerHTML = `${row}`;
                 }
             }
@@ -53,7 +62,7 @@ async function init_temp_func() {
                 if (data[idx] != 0) {
                     document.getElementById(`label${row}`).style.color = "rgb(0, 255, 0)";
                 } else {
-                    document.getElementById(`label${row}`).style.color = "red";
+                    document.getElementById(`label${row}`).style.color = "rgb(255, 0, 0)";
                 }
             }
         }
