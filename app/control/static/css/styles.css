@@ -19,6 +19,11 @@ body {
     gap: 10px;
 }
 
+.BiasButtonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
 
 #TemperatureRefresh {
     max-width: 1000px;
