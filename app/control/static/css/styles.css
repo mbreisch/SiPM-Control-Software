@@ -60,7 +60,7 @@ table {
     text-align: center;
 }
 
-table td {
+table td, table th {
     background-color: rgb(77, 77, 77);
     color: rgb(230, 230, 230);
     padding: 10px;
