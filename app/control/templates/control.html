@@ -59,6 +59,7 @@
                         <th>
                             <form>
                                 <p>Channel {{ col + 1 }} | VME {{ col }}</p>
+                                <br>
                                 <label for="slider{{ col }}">Set Voltage [V]:</label>
                                 <input type="number" id="involt{{ col }}" name="slider{{ col }}" min="0" max="35" value="0">
                                 <input type="button" value="Set" onclick="set_dac_value('involt{{ col }}', {{ col }}, 'sliderVal{{ col }}');">
