@@ -65,6 +65,7 @@ table td, table th {
     color: rgb(230, 230, 230);
     padding: 10px;
     font-weight: bold;
+    vertical-align: middle;
 }
 
 .buttonContainer {
