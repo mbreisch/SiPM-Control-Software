@@ -13,6 +13,14 @@ body {
     width: 100%;
 }
 
+#TempButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
 #TemperatureRefresh {
     max-width: 1000px;
     max-height: 600px;

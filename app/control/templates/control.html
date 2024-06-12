@@ -15,6 +15,8 @@
             <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors</button>
             <button id="get_temperature" class="btn btn-dark btn-block" type="button" onclick="startTempInterval();">Get Temperature Values</button>
         </div>
+        <br>
+        <br>
         <table class="valuesTable" align="center" border="1" cellspacing="10" cellpadding="10">
             <tr>
                 {% for row in range(8) %}
@@ -22,7 +24,8 @@
                 {% endfor %}
             </tr>
         </table>
-
+        <br>
+        <br>
         <div id="TemperatureImageContainer">
             <img id="TemperatureRefresh" src="{{ url_for('control.static', filename='MonitoringTemperature.png') }}" alt="MonitoringTemperature" width="1000px" height="600px" />
         </div>
@@ -40,13 +43,15 @@
             }
             setInterval(refreshTemperature,10000);
         </script>
-
+        <br>
         <style></style>
-
+        <br>
         <div class="BiasButtonContainer">
             <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC</button>
             <button id="get_adc_volts" class="btn btn-dark btn-block" type="button" onclick="startAdcInterval();">Get ADC Values</button>
         </div>
+        <br>
+        <br>
         <table align="center" border="1" cellspacing="10" cellpadding="10">
             {% for chan in range(0, 8, 4) %}
                 <tr>
@@ -66,6 +71,8 @@
                 </tr>
             {% endfor %}
         </table>
+        <br>
+        <br>
         <div id="SetAllChannelsContainer">
             <th>
                 <form>
@@ -77,6 +84,9 @@
             </th>
         </div>
 
+        <br>
+        <br>
+        
         <div id="VoltageImageContainer">
             <img id="VoltageRefresh" src="{{ url_for('control.static', filename='MonitoringVoltage.png') }}" alt="MonitoringVoltage" width="1000px" height="600px" />
         </div>
