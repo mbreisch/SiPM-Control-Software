@@ -21,6 +21,10 @@ nav ul li {
     margin-right: 15px;
 }
 
+nav ul li.logout {
+    margin-right: 0; /* Remove right margin for the logout button */
+}
+
 nav ul li a {
     color: rgb(231, 231, 231);
     text-decoration: none;
