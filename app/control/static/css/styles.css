@@ -53,13 +53,14 @@ body {
     width: 100%;
 }
 
-.valuesTable {
+table {
     width: 90%;
+    justify-content: center;
     background-color: rgb(53, 53, 53);
     text-align: center;
 }
 
-.valueCell {
+table td {
     background-color: rgb(77, 77, 77);
     color: rgb(230, 230, 230);
     padding: 10px;
