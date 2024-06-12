@@ -54,15 +54,15 @@ body {
 }
 
 .valuesTable {
-    width: 100%;
-    background-color: black;
-    color: white;
+    width: 90%;
+    background-color: rgb(53, 53, 53);
     text-align: center;
 }
 
 .valueCell {
-    background-color: aqua;
-    padding: 10px;
+    background-color: rgb(77, 77, 77);
+    color: rgb(230, 230, 230);
+    padding: 5px;
     font-weight: bold;
 }
 
