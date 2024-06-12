@@ -32,7 +32,7 @@
 
         <script>
             function refreshTemperature() {
-                const img = document.getElementById("TemperatureRefresh");
+                const img = "{{ url_for('control.static', filename='MonitoringTemperature.png') }}";
                 reloadImg(img)
                 .then(() => {
                     console.log("Refreshing \x1b[32mTemperature\x1b[0m \x1b[34mImage\x1b[0m at: " + new Date().toLocaleTimeString());
