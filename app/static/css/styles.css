@@ -2,12 +2,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #777777;
 }
 
 nav {
-    background-color: #007BFF;
-    padding: 10px;
+    background-color: #525252;
+    padding: 15px;
 }
 
 nav ul {
@@ -22,7 +22,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: rgb(231, 231, 231);
     text-decoration: none;
 }
 
@@ -31,10 +31,10 @@ nav ul li a:hover {
 }
 
 .login-container {
-    background-color: white;
+    background-color: #525252;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    box-shadow: 0 0 100px rgba(96, 96, 96);
     width: 300px;
     text-align: center;
     margin: 100px auto;
@@ -51,7 +51,7 @@ nav ul li a:hover {
 
 .input-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: -10px;
 }
 
 .input-group input {
