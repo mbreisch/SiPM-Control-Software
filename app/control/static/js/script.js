@@ -51,7 +51,7 @@ async function init_temp_func() {
             for (let idx = 0; idx < data.length; idx++) {
                 var row = Math.floor(idx);
                 if (data[idx] != 0) {
-                    document.getElementById(`label${row}`).style.color = "green";
+                    document.getElementById(`label${row}`).style.color = "rgb(0, 255, 0)";
                 } else {
                     document.getElementById(`label${row}`).style.color = "red";
                 }

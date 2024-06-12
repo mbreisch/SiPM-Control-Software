@@ -54,19 +54,25 @@ body {
 }
 
 table {
-    width: 90%;
+    width: 60%;
     margin: 0 auto;
     background-color: rgb(53, 53, 53);
 }
 
-table td, table th {
+table td {
     background-color: rgb(77, 77, 77);
     color: rgb(230, 230, 230);
     padding: 10px;
     text-align: center;
     font-weight: bold;
-    padding-top: 10px; 
-    padding-bottom: 20px; 
+}
+
+table th {
+    background-color: rgb(77, 77, 77);
+    color: rgb(230, 230, 230);
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 15px;
 }
 
 .buttonContainer {
