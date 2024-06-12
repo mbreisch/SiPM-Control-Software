@@ -55,8 +55,7 @@ body {
 
 table {
     width: 90%;
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto;
     background-color: rgb(53, 53, 53);
     text-align: center;
 }
