@@ -8,6 +8,8 @@ body {
 nav {
     background-color: #525252;
     padding: 15px;
+    display: flex;    
+    justify-content: space-between;
 }
 
 nav ul {
@@ -15,6 +17,7 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
+    align-items: center; /* Center items vertically */
 }
 
 nav ul li {
