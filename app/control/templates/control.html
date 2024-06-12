@@ -21,19 +21,15 @@
             .valueCell {
                 padding: 10px;
                 font-weight: bold;
-                display: flex;
-                align-items: center;
-                justify-content: center;
             }
 
-            .valueImage {
-                width: 50px;
-                height: 50px;
-                margin-right: 10px;
+            #TemperatureImageContainer {
+                text-align: center;
             }
 
-            .valueLabel {
-                color: white;
+            #TemperatureRefresh {
+                display: block;
+                margin: 0 auto;
             }
         </style>
         <script src="{{ url_for('control.static', filename='js/jquery.min.js') }}"></script>
