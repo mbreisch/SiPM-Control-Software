@@ -66,16 +66,18 @@
                 </tr>
             {% endfor %}
         </table>
-        <th>
-            <form>
-                <p>Value for all Channels [V]</p>
-                <label for="slider">Set Voltage [V]:</label>
-                <input type="number" id="involt_all" name="slider" min="0" max="35" value="0">
-                <input type="button" value="Set" onclick="set_all_value('slider');">
-            </form>
-        </th>
+        <div id="SetAllChannelsContainer">
+            <th>
+                <form>
+                    <p>Value for all Channels [V]</p>
+                    <label for="slider">Set Voltage [V]:</label>
+                    <input type="number" id="involt_all" name="slider" min="0" max="35" value="0">
+                    <input type="button" value="Set" onclick="set_all_value('slider');">
+                </form>
+            </th>
+        </div>
 
-        <div id="VoltageImageContainer2">
+        <div id="VoltageImageContainer">
             <img id="VoltageRefresh" src="{{ url_for('control.static', filename='MonitoringVoltage.png') }}" alt="MonitoringVoltage" width="1000px" height="600px" />
         </div>
 
