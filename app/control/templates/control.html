@@ -17,7 +17,7 @@
         </div>
         <br>
         <br>
-        <table class="valuesTable" align="center" border="1" cellspacing="10" cellpadding="10">
+        <table class="valuesTable">
             <tr>
                 {% for row in range(8) %}
                     <td class="valueCell" id="label{{ row }}">{{ row }}</td>
@@ -52,7 +52,7 @@
         </div>
         <br>
         <br>
-        <table align="center" border="1" cellspacing="10" cellpadding="10">
+        <table>
             {% for chan in range(0, 8, 4) %}
                 <tr>
                     {% for col in range(chan, chan + 4) %}
