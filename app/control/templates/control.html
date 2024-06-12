@@ -5,40 +5,16 @@
 {% block content %}
     <head>
         <title>Control Overview</title>
-        <style>
-            /* Set the background color for the entire page */
-            body {
-                background-color: black;
-                color: white; /* Ensure text is visible against the black background */
-            }
-            .valuesTable {
-                width: 100%;
-                background-color: black;
-                color: white;
-                text-align: center;
-            }
-
-            .valueCell {
-                padding: 10px;
-                font-weight: bold;
-            }
-
-            #TemperatureImageContainer {
-                text-align: center;
-            }
-
-            #TemperatureRefresh {
-                display: block;
-                margin: 0 auto;
-            }
-        </style>
+        <link rel="stylesheet" href="{{ url_for('control.static', filename='css/styles.css') }}">
         <script src="{{ url_for('control.static', filename='js/jquery.min.js') }}"></script>
         <script src="{{ url_for('control.static', filename='js/script.js') }}"></script>
     </head>
 
     <body>
-        <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors</button>
-        <button id="get_temperature" class="btn btn-dark btn-block" type="button" onclick="startTempInterval();">Get Temperature Values</button>
+        <div class="TempButtonContainer">
+            <button id="init_temperature" class="btn btn-dark btn-block" type="button" onclick="init_temp_func();">Init Temperature Sensors</button>
+            <button id="get_temperature" class="btn btn-dark btn-block" type="button" onclick="startTempInterval();">Get Temperature Values</button>
+        </div>
         <table class="valuesTable" align="center" border="1" cellspacing="10" cellpadding="10">
             <tr>
                 {% for row in range(8) %}
@@ -67,8 +43,10 @@
 
         <style></style>
 
-        <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC</button>
-        <button id="get_adc_volts" class="btn btn-dark btn-block" type="button" onclick="startAdcInterval();">Get ADC Values</button>
+        <div class="BiasButtonContainer">
+            <button id="init_dac" class="btn btn-dark btn-block" type="button" onclick="init_dac_func();">Init DAC</button>
+            <button id="get_adc_volts" class="btn btn-dark btn-block" type="button" onclick="startAdcInterval();">Get ADC Values</button>
+        </div>
         <table align="center" border="1" cellspacing="10" cellpadding="10">
             {% for chan in range(0, 8, 4) %}
             <tr>
