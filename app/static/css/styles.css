@@ -8,8 +8,6 @@ body {
 nav {
     background-color: #525252;
     padding: 15px;
-    display: flex;    
-    justify-content: space-between;
 }
 
 nav ul {
@@ -17,15 +15,11 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    align-items: center; /* Center items vertically */
+    align-items: center;
 }
 
 nav ul li {
     margin-right: 15px;
-}
-
-nav ul li.logout {
-    margin-right: 0; /* Remove right margin for the logout button */
 }
 
 nav ul li a {
@@ -35,6 +29,11 @@ nav ul li a {
 
 nav ul li a:hover {
     text-decoration: underline;
+}
+
+nav ul .spacer {
+    flex-grow: 1; /* This will push the following items to the right */
+    margin-right: 0; /* Remove right margin for the spacer */
 }
 
 .login-container {

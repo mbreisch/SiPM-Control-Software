@@ -11,7 +11,8 @@
         <ul>
             <li><a href="{{ url_for('control.control_home') }}">Control</a></li>
             <!-- Add more navigation links as needed -->
-            <li class="logout"><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            <li class="spacer"></li> <!-- Add this spacer list item -->
+            <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
         </ul>
     </nav>
     <div class="content">
