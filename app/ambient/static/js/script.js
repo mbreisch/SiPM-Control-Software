@@ -23,7 +23,7 @@ async function update_cooler(){
         success: function(response) {
             console.log("Success. Refreshing Image");
             const imageUrl = document.getElementById('Cooler').src;
-            refreshImage('Outside', imageUrl);
+            refreshImage('Cooler', imageUrl);
         }
     });
 }
@@ -36,7 +36,7 @@ async function update_darkbox(){
         success: function(response) {
             console.log("Success. Refreshing Image");
             const imageUrl = document.getElementById('Darkbox').src;
-            refreshImage('Outside', imageUrl);
+            refreshImage('Darkbox', imageUrl);
         }
     });
 }
