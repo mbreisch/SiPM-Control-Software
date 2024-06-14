@@ -80,7 +80,6 @@ def MakeMonitorPlot(name,logfile):
     ax1.legend(lines1 + lines2 , labels1 + labels2, loc='best', fontsize=16)
 
     ax1.grid()
-    plt.ylabel('Bias Voltage in V')
     plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
     plt.title(f'Ambient {name}')
     plt.savefig(f'{ambient_bp.static_folder}/Ambiemt_{name}.png')
