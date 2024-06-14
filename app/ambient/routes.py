@@ -24,24 +24,24 @@ def ambient_home():
 ambient_bp._title="Ambiemt Monitoring"
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
-async def update_cooler():
+def update_cooler():
     with open(f'{ambient_bp.static_folder}/cooler.txt', 'r') as logfile:
         MakeMonitorPlot("cooler", logfile)
     return jsonify(success=True)
 
 @ambient_bp.route("/update_darkbox", methods=["POST"])
-async def update_darkbox():
+def update_darkbox():
     with open(f'{ambient_bp.static_folder}/darkbox.txt', 'r') as logfile:
         MakeMonitorPlot("darkbox", logfile)
     return jsonify(success=True)
 
 @ambient_bp.route("/update_outside", methods=["POST"])
-async def update_outside():
+def update_outside():
     with open(f'{ambient_bp.static_folder}/outside.txt', 'r') as logfile:
         MakeMonitorPlot("outside", logfile)
     return jsonify(success=True)
     
-async def MakeMonitorPlot(name,logfile):
+def MakeMonitorPlot(name,logfile):
     # Read each line from the provided file object
     timestamps = []
     temperatures = []
