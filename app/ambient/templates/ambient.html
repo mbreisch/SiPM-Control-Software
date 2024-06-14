@@ -12,9 +12,9 @@
 
     <body>
         <script>
-            setInterval(update_cooler,10000);
-            setInterval(update_darkbox,10000);
-            setInterval(update_outside,10000);
+            setInterval(update_cooler,5000);
+            setInterval(update_darkbox,5000);
+            setInterval(update_outside,5000);
         </script>
 
         <div class="imageContainer">
@@ -43,9 +43,9 @@
 
             function startImageRefresh() {
                 setInterval(() => {
-                    refreshImage('Cooler', "{{ url_for('control.static', filename='AmbientImage1.png') }}");
-                    refreshImage('Darkbox', "{{ url_for('control.static', filename='AmbientImage2.png') }}");
-                    refreshImage('Outside', "{{ url_for('control.static', filename='AmbientImage3.png') }}");
+                    refreshImage('Cooler', "{{ url_for('control.static', filename='Ambient_cooler.png') }}");
+                    refreshImage('Darkbox', "{{ url_for('control.static', filename='Ambient_darkbox.png') }}");
+                    refreshImage('Outside', "{{ url_for('control.static', filename='Ambient_outside.png') }}");
                 }, 10000);
             }
 
