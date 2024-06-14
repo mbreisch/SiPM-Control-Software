@@ -81,5 +81,5 @@ def MakeMonitorPlot(name,logfile):
 
     ax1.grid()
     plt.title(f'Ambient {name}')
-    plt.savefig(f'{ambient_bp.static_folder}/Ambiemt_{name}.png')
+    plt.savefig(f'{ambient_bp.static_folder}/Ambient_{name}.png')
     plt.close()
