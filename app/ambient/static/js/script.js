@@ -15,7 +15,7 @@ async function update_cooler(){
     });
 }
 
-async function update_cooler(){
+async function update_darkbox(){
     console.log("Updating Darkbox Ambients");
     $.ajax("update_darkbox", {
         contentType: "application/json",
