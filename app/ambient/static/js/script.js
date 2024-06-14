@@ -22,7 +22,8 @@ async function update_cooler(){
         type: "POST",
         success: function(response) {
             console.log("Success. Refreshing Image");
-            refreshImage('Cooler', "{{ url_for('ambient.static', filename='Ambient_cooler.png') }}");
+            const imageUrl = document.getElementById('Cooler').dataset.imageUrl;
+            refreshImage('Outside', imageUrl);
         }
     });
 }
@@ -34,7 +35,8 @@ async function update_darkbox(){
         type: "POST",
         success: function(response) {
             console.log("Success. Refreshing Image");
-            refreshImage('Darkbox', "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}");
+            const imageUrl = document.getElementById('Darkbox').dataset.imageUrl;
+            refreshImage('Outside', imageUrl);
         }
     });
 }
@@ -46,7 +48,8 @@ async function update_outside(){
         type: "POST",
         success: function(response) {
             console.log("Success. Refreshing Image");
-            refreshImage('Outside', "{{ url_for('ambient.static', filename='Ambient_outside.png') }}");
+            const imageUrl = document.getElementById('Outside').dataset.imageUrl;
+            refreshImage('Outside', imageUrl);
         }
     });
 }
