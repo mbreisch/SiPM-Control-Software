@@ -63,7 +63,7 @@ def MakeMonitorPlot(name,logfile):
     last_100_humidities = humidities[-100:]
     
     # Plot timestamp vs value for each entry
-    fig, ax1 = plt.subplots(name ,figsize=(1000/100,600/100), dpi=100)
+    fig, ax1 = plt.subplots(0 ,figsize=(1000/100,600/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
     ax1.set_ylabel('Temperature in °C', color='k', fontsize=16)
