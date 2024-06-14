@@ -18,7 +18,7 @@ sys.path.append(ambient_bp.static_folder)
 @ambient_bp.route('/',methods=["GET","POST"])
 @ambient_bp.route("/home",methods=["GET","POST"])
 @login_required
-def control_home():
+def ambient_home():
     return render_template("ambient.html",title="Ambient Monitor")
 
 ambient_bp._title="Ambiemt Monitoring"
