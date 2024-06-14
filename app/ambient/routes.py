@@ -53,9 +53,9 @@ def MakeMonitorPlot(name,logfile):
         # Split the line into entries by the semicolon
         timestamp,name,temp_hum = line.split(":") #["ts1,v1","ts2,v2",...]
         temperature, humidity = temp_hum.strip("\n").split(";")
-        timestamps.append(timestamp)
-        temperatures.append(temperature)
-        humidities.append(humidity)
+        timestamps.append(float(timestamp))
+        temperatures.append(float(temperature))
+        humidities.append(float(humidity))
         
                   
     last_100_timestamps = timestamps[-100:]
@@ -63,7 +63,7 @@ def MakeMonitorPlot(name,logfile):
     last_100_humidities = humidities[-100:]
     
     # Plot timestamp vs value for each entry
-    fig, ax1 = plt.subplots(0 ,figsize=(1000/100,600/100), dpi=100)
+    fig, ax1 = plt.subplots(figsize=(1000/100,600/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
     ax1.set_ylabel('Temperature in °C', color='k', fontsize=16)
@@ -80,7 +80,6 @@ def MakeMonitorPlot(name,logfile):
     ax1.legend(lines1 + lines2 , labels1 + labels2, loc='best', fontsize=16)
 
     ax1.grid()
-    plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
     plt.title(f'Ambient {name}')
     plt.savefig(f'{ambient_bp.static_folder}/Ambiemt_{name}.png')
     plt.close()
