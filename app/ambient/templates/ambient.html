@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}Ambient HTML{% endblock %}
+
+{% block content %}
+    <head>
+        <title>Ambient Overview</title>
+        <link rel="stylesheet" href="{{ url_for('control.static', filename='css/styles.css') }}">
+        <script src="{{ url_for('control.static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('control.static', filename='js/script.js') }}"></script>
+    </head>
+
+    <body>
+        <script>
+            setInterval(update_cooler,10000);
+            setInterval(update_darkbox,10000);
+            setInterval(update_outside,10000);
+        </script>
+
+        <div class="imageContainer">
+            <div class="imageWrapper">
+                <img id="Cooler" src="{{ url_for('control.static', filename='Ambient_cooler.png') }}" alt="Ambient Image 1" width="300px" height="200px" />
+            </div>
+            <div class="imageWrapper">
+                <img id="Darkbox" src="{{ url_for('control.static', filename='Ambient_darkbox.png') }}" alt="Ambient Image 2" width="300px" height="200px" />
+            </div>
+            <div class="imageWrapper">
+                <img id="Outside" src="{{ url_for('control.static', filename='Ambient_outside.png') }}" alt="Ambient Image 3" width="300px" height="200px" />
+            </div>
+        </div>
+
+        <script>
+            function refreshImages(imageId, imagePath) {
+                const img = imagePath;
+                reloadImg(img)
+                .then(() => {
+                    console.log(`Refreshing image ${imageId} at: ` + new Date().toLocaleTimeString());
+                })
+                .catch(error => {
+                    console.error(`Failed to load image ${imageId}. Retrying...`, error);
+                });
+            }
+
+            function startImageRefresh() {
+                setInterval(() => {
+                    refreshImage('Cooler', "{{ url_for('control.static', filename='AmbientImage1.png') }}");
+                    refreshImage('Darkbox', "{{ url_for('control.static', filename='AmbientImage2.png') }}");
+                    refreshImage('Outside', "{{ url_for('control.static', filename='AmbientImage3.png') }}");
+                }, 10000);
+            }
+
+            startImageRefresh();
+        </script>
+    </body>
+{% endblock %}

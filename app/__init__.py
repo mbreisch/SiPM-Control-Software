@@ -39,6 +39,7 @@ def create_app():
     with app.app_context():
         from .auth import auth_bp
         from .control import control_bp
+        from .ambient import ambient_bp
         
         print("Registering blueprints")
         app.register_blueprint(auth_bp)
@@ -46,6 +47,9 @@ def create_app():
         
         app.register_blueprint(control_bp, url_prefix='/control')
         print("Control blueprint registered with URL prefix '/control'")
+        
+        app.register_blueprint(ambient_bp, url_prefix='/ambient')
+        print("Ambient blueprint registered with URL prefix '/ambient'")
         
         db.create_all()  # Create database tables for our data models
         print("Database tables created")
