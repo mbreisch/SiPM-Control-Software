@@ -6,7 +6,7 @@ body {
     background-image: url('/control/static/images/background_hex.jpg');
 }
 
-#imageWrapper1, #imageWrapper2, #imageWrapper3 {
+#IDimageDarkbox, #IDimageOutside, #IDimageCooler {
     display: flex;
     justify-content: center;
     align-items: center;
