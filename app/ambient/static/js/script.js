@@ -1,21 +1,24 @@
 async function reloadImg(url) {
-    await fetch(url, { cache: 'reload', mode: 'no-cors' });
-    document.body.querySelectorAll(`img[src='${url}']`)
-      .forEach(img => img.src = url);
+    try {
+        const response = await fetch(url, { cache: 'reload', mode: 'no-cors' });
+        if (response.ok) {
+            document.body.querySelectorAll(`img[src='${url}']`)
+                .forEach(img => img.src = url);
+            console.log(`Refreshing image at ${url}`);
+        } else {
+            console.error(`Failed to load image at ${url}. Retrying...`);
+        }
+    } catch (error) {
+        console.error(`Failed to load image at ${url}. Retrying...`, error);
+    }
 }
 
 function refreshImage(imageId, imagePath) {
     const img = imagePath;
-    reloadImg(img)
-    .then(() => {
-        console.log(`Refreshing image ${imageId} at: ` + new Date().toLocaleTimeString());
-    })
-    .catch(error => {
-        console.error(`Failed to load image ${imageId}. Retrying...`, error);
-    });
+    reloadImg(img);
 }
 
-async function update_cooler(){
+async function update_cooler() {
     console.log("Updating Cooler Ambients");
     $.ajax("update_cooler", {
         contentType: "application/json",
