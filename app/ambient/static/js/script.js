@@ -1,10 +1,14 @@
 async function reloadImg(name, url) {
-    console.log(`Reloading ${name} at ${url}`)
+    console.log(`Reloading ${name} at ${url}`);
     try {
-        const response = await fetch(url);
+        const timestamp = Date.now(); // Unique timestamp for each image fetch
+        const uniqueUrl = `${url}?timestamp=${timestamp}`;
+        
+        const response = await fetch(uniqueUrl);
         if (response.ok) {
+            // Update all images with the same src URL
             document.body.querySelectorAll(`img[src='${url}']`)
-                .forEach(img => img.src = url);
+                .forEach(img => img.src = uniqueUrl);
         } else {
             console.error(`Failed to load image at ${url}. Retrying...`);
         }
