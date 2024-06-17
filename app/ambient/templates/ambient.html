@@ -12,15 +12,15 @@
 
     <body>
         <div class="imageWrapper1" id="imageWrapper1">
-            <img id="Cooler" src="{{ url_for('ambient.static', filename='Ambient_cooler.png', v=timestamp()) }}" alt="Ambient_cooler" width="1000px" height="600px" />
+            <img id="Cooler" src="{{ url_for('ambient.static', filename='Ambient_cooler.png') }}?v={{timestamp}}" alt="Ambient_cooler" width="1000px" height="600px" />
         </div>
         <br>
         <div class="imageWrapper2" id="imageWrapper2">
-            <img id="Darkbox" src="{{ url_for('ambient.static', filename='Ambient_darkbox.png', v=timestamp()) }}" alt="Ambient_darkbox" width="1000px" height="600px" />
+            <img id="Darkbox" src="{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}?v={{timestamp}}" alt="Ambient_darkbox" width="1000px" height="600px" />
         </div>
         <br>
         <div class="imageWrapper3" id="imageWrapper3">
-            <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png', v=timestamp()) }}" alt="Ambient_outside" width="1000px" height="600px" />
+            <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png') }}?v={{timestamp}}" alt="Ambient_outside" width="1000px" height="600px" />
         </div>
 
         <script>
