@@ -41,7 +41,7 @@
         </div>
         <script>
             function refreshOutside() {
-                const img = "{{ url_for('ambient.static', filename='Ambient_outside.png') }}";
+                const img = "{{ url_for('ambient.static', filename='Ambient_outside.png') }}?t="+new Date().getTime();
                 reloadImg(img)
                 .then(() => {
                     console.log("Refreshing Outside Image at: " + new Date().toLocaleTimeString());
