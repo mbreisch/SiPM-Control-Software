@@ -25,18 +25,27 @@ ambient_bp._title="Ambiemt Monitoring"
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
+    if not os.path.exists(f'{ambient_bp.static_folder}/cooler.txt'):
+        with open(f'{ambient_bp.static_folder}/cooler.txt', 'w') as file:
+            pass 
     with open(f'{ambient_bp.static_folder}/cooler.txt', 'r') as logfile:
         MakeMonitorPlotCooler("cooler", logfile)
     return jsonify(success=True)
 
 @ambient_bp.route("/update_darkbox", methods=["POST"])
 def update_darkbox():
+    if not os.path.exists(f'{ambient_bp.static_folder}/darkbox.txt'):
+        with open(f'{ambient_bp.static_folder}/darkbox.txt', 'w') as file:
+            pass 
     with open(f'{ambient_bp.static_folder}/darkbox.txt', 'r') as logfile:
         MakeMonitorPlotDarkbox("darkbox", logfile)
     return jsonify(success=True)
 
 @ambient_bp.route("/update_outside", methods=["POST"])
 def update_outside():
+    if not os.path.exists(f'{ambient_bp.static_folder}/outside.txt'):
+        with open(f'{ambient_bp.static_folder}/outside.txt', 'w') as file:
+            pass 
     with open(f'{ambient_bp.static_folder}/outside.txt', 'r') as logfile:
         MakeMonitorPlotOutside("outside", logfile)
     return jsonify(success=True)
