@@ -124,6 +124,7 @@ def MakeMonitorPlotCooler(name,logfile):
     ax1.grid()
     plt.title(f'Ambient {name}')
     plt.savefig(f'{ambient_bp.static_folder}/Ambient_{name}.png')
+    time.sleep(2)   
     plt.close()
     
 def MakeMonitorPlotDarkbox(name,logfile):
@@ -167,6 +168,7 @@ def MakeMonitorPlotDarkbox(name,logfile):
     ax1.grid()
     plt.title(f'Ambient {name}')
     plt.savefig(f'{ambient_bp.static_folder}/Ambient_{name}.png')
+    time.sleep(2)  
     plt.close()
     
 def MakeMonitorPlotOutside(name,logfile):
@@ -210,4 +212,5 @@ def MakeMonitorPlotOutside(name,logfile):
     ax1.grid()
     plt.title(f'Ambient {name}')
     plt.savefig(f'{ambient_bp.static_folder}/Ambient_{name}.png')
+    time.sleep(2)  
     plt.close()
