@@ -25,7 +25,11 @@ async function update_cooler() {
         type: "POST",
         success: async function(response) {
             console.log("Success. Refreshing Image");
-            const imageUrl = document.getElementById('Cooler').src;
+            const imageElement = document.getElementById('Cooler');
+            const imageUrl = imageElement.src;
+            await new Promise((resolve) => {
+                imageElement.addEventListener('load', resolve);
+            });
             await refreshImage(imageUrl);
         }
     });
@@ -38,7 +42,11 @@ async function update_darkbox(){
         type: "POST",
         success: async function(response) {
             console.log("Success. Refreshing Image");
-            const imageUrl = document.getElementById('Darkbox').src;
+            const imageElement = document.getElementById('Darkbox');
+            const imageUrl = imageElement.src;
+            await new Promise((resolve) => {
+                imageElement.addEventListener('load', resolve);
+            });
             await refreshImage(imageUrl);
         }
     });
@@ -51,7 +59,11 @@ async function update_outside(){
         type: "POST",
         success: async function(response) {
             console.log("Success. Refreshing Image");
-            const imageUrl = document.getElementById('Outside').src;
+            const imageElement = document.getElementById('Outside');
+            const imageUrl = imageElement.src;
+            await new Promise((resolve) => {
+                imageElement.addEventListener('load', resolve);
+            });
             await refreshImage(imageUrl);
         }
     });
