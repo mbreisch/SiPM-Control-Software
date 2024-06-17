@@ -71,7 +71,7 @@
     </div>
     <script>
         function refreshDarkbox() {
-            const img = "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}?";
+            const img = "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}";
             reloadImg(img)
             .then(() => {
                 console.log("Refreshing Darkbox Image at: " + new Date().toLocaleTimeString());
