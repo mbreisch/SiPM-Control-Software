@@ -31,7 +31,7 @@
     </div>
     <script>
         function refreshCooler() {
-            const img = "{{ url_for('ambient.static', filename='Ambient_cooler.png') }}?t="+new Date().getTime();
+            const img = "{{ url_for('ambient.static', filename='Ambient_cooler.png') }}";
             reloadImg(img)
             .then(() => {
                 console.log("Refreshing Cooler Image at: " + new Date().toLocaleTimeString());
@@ -71,7 +71,7 @@
     </div>
     <script>
         function refreshDarkbox() {
-            const img = "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}?t="+new Date().getTime();
+            const img = "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}?";
             reloadImg(img)
             .then(() => {
                 console.log("Refreshing Darkbox Image at: " + new Date().toLocaleTimeString());
