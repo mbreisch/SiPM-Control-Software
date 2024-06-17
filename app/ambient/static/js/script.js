@@ -1,6 +1,7 @@
-async function reloadImg(url) {
+async function reloadImg(name, url) {
+    console.log(`Reloading ${name} at ${url}`)
     try {
-        const response = await fetch(url, { cache: 'reload' });
+        const response = await fetch(url, { cache: 'reload', mode: 'no-cors' });
         if (response.ok) {
             document.body.querySelectorAll(`img[src='${url}']`)
                 .forEach(img => img.src = url);
@@ -13,58 +14,41 @@ async function reloadImg(url) {
     }
 }
 
-async function refreshImage(imagePath) {
-    const img = new URL(imagePath, window.location.href).href;
-    await reloadImg(img);
-}
-
-async function update_cooler() {
+function update_cooler() {
     console.log("Updating Cooler Ambients");
     $.ajax("update_cooler", {
         contentType: "application/json",
         type: "POST",
-        success: async function(response) {
+        success: function(response) {
             console.log("Success. Refreshing Image");
-            const imageElement = document.getElementById('Cooler');
-            const imageUrl = imageElement.src;
-            await new Promise((resolve) => {
-                imageElement.addEventListener('load', resolve);
-            });
-            await refreshImage(imageUrl);
+            const imageUrl = document.getElementById('Cooler').src;
+            reloadImg('Cooler', imageUrl);
         }
     });
 }
 
-async function update_darkbox(){
+function update_darkbox(){
     console.log("Updating Darkbox Ambients");
     $.ajax("update_darkbox", {
         contentType: "application/json",
         type: "POST",
-        success: async function(response) {
+        success: function(response) {
             console.log("Success. Refreshing Image");
-            const imageElement = document.getElementById('Darkbox');
-            const imageUrl = imageElement.src;
-            await new Promise((resolve) => {
-                imageElement.addEventListener('load', resolve);
-            });
-            await refreshImage(imageUrl);
+            const imageUrl = document.getElementById('Darkbox').src;
+            reloadImg('Darkbox', imageUrl);
         }
     });
 }
 
-async function update_outside(){
+function update_outside(){
     console.log("Updating Outside Ambients");
     $.ajax("update_outside", {
         contentType: "application/json",
         type: "POST",
-        success: async function(response) {
+        success: function(response) {
             console.log("Success. Refreshing Image");
-            const imageElement = document.getElementById('Outside');
-            const imageUrl = imageElement.src;
-            await new Promise((resolve) => {
-                imageElement.addEventListener('load', resolve);
-            });
-            await refreshImage(imageUrl);
+            const imageUrl = document.getElementById('Outside').src;
+            reloadImg('Outside', imageUrl);
         }
     });
 }
