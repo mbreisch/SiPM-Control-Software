@@ -50,6 +50,17 @@ def update_darkbox():
             pass 
     with open(f'{ambient_bp.static_folder}/darkbox.txt', 'r') as logfile:
         MakeMonitorPlotDarkbox("darkbox", logfile)
+        
+    while True:
+        try:
+            # Attempt to open and read the file to ensure it is fully written
+            with open(f'{ambient_bp.static_folder}/Ambient_darkbox.png', 'rb') as f:
+                f.read()
+            break  # If successful, break out of the loop 
+        except Exception as e:
+            print(f"Error reading file: {e}")
+            time.sleep(0.1)    
+        
     return jsonify(success=True)
 
 @ambient_bp.route("/update_outside", methods=["POST"])
@@ -59,6 +70,17 @@ def update_outside():
             pass 
     with open(f'{ambient_bp.static_folder}/outside.txt', 'r') as logfile:
         MakeMonitorPlotOutside("outside", logfile)
+        
+    while True:
+        try:
+            # Attempt to open and read the file to ensure it is fully written
+            with open(f'{ambient_bp.static_folder}/Ambient_outside.png', 'rb') as f:
+                f.read()
+            break  # If successful, break out of the loop 
+        except Exception as e:
+            print(f"Error reading file: {e}")
+            time.sleep(0.1)      
+        
     return jsonify(success=True)
     
 def MakeMonitorPlotCooler(name,logfile):
@@ -84,10 +106,10 @@ def MakeMonitorPlotCooler(name,logfile):
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(1000/100,600/100), dpi=100)
-    ax1.plot(last_100_timestamps, last_100_temperatures, color='k', marker='', linestyle='-', markersize=3, label=f"Temperature")
+    ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
-    ax1.set_ylabel('Temperature in °C', color='k', fontsize=16)
-    ax1.tick_params(axis='y', labelcolor='k', labelsize=14)
+    ax1.set_ylabel('Temperature in °C', color='r', fontsize=16)
+    ax1.tick_params(axis='y', labelcolor='r', labelsize=14)
         
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
@@ -127,10 +149,10 @@ def MakeMonitorPlotDarkbox(name,logfile):
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(1000/100,600/100), dpi=100)
-    ax1.plot(last_100_timestamps, last_100_temperatures, color='k', marker='', linestyle='-', markersize=3, label=f"Temperature")
+    ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
-    ax1.set_ylabel('Temperature in °C', color='k', fontsize=16)
-    ax1.tick_params(axis='y', labelcolor='k', labelsize=14)
+    ax1.set_ylabel('Temperature in °C', color='r', fontsize=16)
+    ax1.tick_params(axis='y', labelcolor='r', labelsize=14)
         
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
@@ -170,10 +192,10 @@ def MakeMonitorPlotOutside(name,logfile):
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(1000/100,600/100), dpi=100)
-    ax1.plot(last_100_timestamps, last_100_temperatures, color='k', marker='', linestyle='-', markersize=3, label=f"Temperature")
+    ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
-    ax1.set_ylabel('Temperature in °C', color='k', fontsize=16)
-    ax1.tick_params(axis='y', labelcolor='k', labelsize=14)
+    ax1.set_ylabel('Temperature in °C', color='r', fontsize=16)
+    ax1.tick_params(axis='y', labelcolor='r', labelsize=14)
         
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
