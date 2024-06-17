@@ -1,5 +1,5 @@
 async function reloadImg(url) {
-    await fetch(url, { cache: 'reload', mode: 'no-cors' });
+    await fetch(url, {});
     document.body.querySelectorAll(`img[src='${url}']`)
       .forEach(img => img.src = url);
 }
