@@ -64,13 +64,13 @@ def MakeMonitorPlotCooler(name,logfile):
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(1000/100,600/100), dpi=100)
-    ax1.plot(last_100_timestamps, last_100_temperatures, marker='', linestyle='-', markersize=3, label=f"Temperature")
+    ax1.plot(last_100_timestamps, last_100_temperatures, color='k', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
     ax1.set_ylabel('Temperature in °C', color='k', fontsize=16)
     ax1.tick_params(axis='y', labelcolor='k', labelsize=14)
         
     ax2 = ax1.twinx()
-    ax2.plot(last_100_timestamps, last_100_humidities, marker='', linestyle='-', markersize=3, label=f"Humidity")
+    ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
     ax2.set_ylabel('Humidity in %', color='b', fontsize=16)
     ax2.tick_params(axis='y', labelcolor='b', labelsize=14)
 

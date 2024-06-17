@@ -49,6 +49,7 @@ async function update_outside(){
         success: function(response) {
             console.log("Success. Refreshing Image");
             const imageUrl = document.getElementById('Outside').src;
+            console.log(imageUrl)
             refreshImage('Outside', imageUrl);
         }
     });
