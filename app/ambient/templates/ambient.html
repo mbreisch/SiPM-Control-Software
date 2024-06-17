@@ -8,19 +8,7 @@
         <link rel="stylesheet" href="{{ url_for('ambient.static', filename='css/styles.css') }}">
         <script src="{{ url_for('ambient.static', filename='js/jquery.min.js') }}"></script>
         <script src="{{ url_for('ambient.static', filename='js/script.js') }}"></script>
-    </head>
 
-    <body>
-        <script>
-            setInterval(update_cooler, 3333);
-            setInterval(update_darkbox, 3333);
-            setInterval(update_outside, 3333);
-        </script>
-
-
-        <div id="IDimageCooler">
-            <img id="Cooler" src="{{ url_for('ambient.static', filename='Ambient_cooler.png') }}?" alt="Ambient_cooler" width="1000px" height="600px" />
-        </div>
         <script>
             function refreshCooler() {
                 const img = "{{ url_for('ambient.static', filename='Ambient_cooler.png') }}";
@@ -34,11 +22,6 @@
             }
             setInterval(refreshCooler,10000);
         </script>
-
-
-        <div id="IDimageOutside">
-            <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png') }}" alt="Ambient_outside" width="1000px" height="600px" />
-        </div>
         <script>
             function refreshOutside() {
                 const img = "{{ url_for('ambient.static', filename='Ambient_outside.png') }}";
@@ -52,12 +35,6 @@
             }
             setInterval(refreshOutside,10000);
         </script>
-
-
-
-        <div id="IDimageDarkbox">
-            <img id="Darkbox" src="{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}" alt="Ambient_darkbox" width="1000px" height="600px" />
-        </div>
         <script>
             function refreshDarkbox() {
                 const img = "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}";
@@ -70,6 +47,28 @@
                 }); 
             }
             setInterval(refreshDarkbox,10000);
-        </script>     
+        </script> 
+    </head>
+
+    <body>
+        <script>
+            setInterval(update_cooler, 3333);
+            setInterval(update_darkbox, 3333);
+            setInterval(update_outside, 3333);
+        </script>
+
+
+        <div id="IDimageCooler">
+            <img id="Cooler" src="{{ url_for('ambient.static', filename='Ambient_cooler.png') }}?" alt="Ambient_cooler" width="1000px" height="600px" />
+        </div>
+
+        <div id="IDimageOutside">
+            <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png') }}" alt="Ambient_outside" width="1000px" height="600px" />
+        </div>
+
+        <div id="IDimageDarkbox">
+            <img id="Darkbox" src="{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}" alt="Ambient_darkbox" width="1000px" height="600px" />
+        </div>
+
     </body>
 {% endblock %}

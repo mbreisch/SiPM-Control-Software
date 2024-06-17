@@ -1,8 +1,20 @@
 async function reloadImg(url) {
-    await fetch(url, { cache: 'reload', mode: 'no-cors' });
-    document.body.querySelectorAll(`img[src='${url}']`)
-      .forEach(img => img.src = url);
+    try {
+        // Fetch the image to ensure it's reloaded
+        await fetch(url, { cache: 'reload', mode: 'no-cors' });
+
+        // Update all images with matching src attribute
+        document.body.querySelectorAll(`img[src='${url}']`).forEach(img => {
+            img.src = url + `?timestamp=${new Date().getTime()}`;
+        });
+
+        console.log(`Image reloaded: ${url}`);
+    } catch (error) {
+        console.error(`Failed to reload image: ${url}`, error);
+        // Handle error as needed, e.g., retry, log, or display a message
+    }
 }
+
 
 async function update_cooler() {
     console.log("Updating Cooler Ambients");
