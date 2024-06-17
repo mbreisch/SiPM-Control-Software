@@ -1,74 +1,121 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambient HTML</title>
+    <link rel="stylesheet" href="{{ url_for('ambient.static', filename='css/styles.css') }}">
+    <script src="{{ url_for('ambient.static', filename='js/jquery.min.js') }}"></script>
+    <script>
+        async function reloadImg(url) {
+            try {
+                // Fetch the image to ensure it's reloaded
+                await fetch(url, { cache: 'reload', mode: 'no-cors' });
 
-{% block title %}Ambient HTML{% endblock %}
+                // Update all images with matching src attribute
+                document.body.querySelectorAll(`img[src='${url}']`).forEach(img => {
+                    img.src = url + `?timestamp=${new Date().getTime()}`;
+                });
 
-{% block content %}
-    <head>
-        <title>Ambient Overview</title>
-        <link rel="stylesheet" href="{{ url_for('ambient.static', filename='css/styles.css') }}">
-        <script src="{{ url_for('ambient.static', filename='js/jquery.min.js') }}"></script>
-        <script src="{{ url_for('ambient.static', filename='js/script.js') }}"></script>
-
-        <script>
-            function refreshCooler() {
-                const img = "{{ url_for('ambient.static', filename='Ambient_cooler.png') }}";
-                reloadImg(img)
-                .then(() => {
-                    console.log("Refreshing Cooler Image at: " + new Date().toLocaleTimeString());
-                })
-                .catch(error => {
-                    console.error("Failed to load Cooler Image. Retrying...");
-                }); 
+                console.log(`Image reloaded: ${url}`);
+            } catch (error) {
+                console.error(`Failed to reload image: ${url}`, error);
+                // Handle error as needed, e.g., retry, log, or display a message
             }
-            setInterval(refreshCooler,10000);
-        </script>
-        <script>
-            function refreshOutside() {
-                const img = "{{ url_for('ambient.static', filename='Ambient_outside.png') }}";
-                reloadImg(img)
-                .then(() => {
-                    console.log("Refreshing Outside Image at: " + new Date().toLocaleTimeString());
-                })
-                .catch(error => {
-                    console.error("Failed to load Outside Image. Retrying...");
-                }); 
+        }
+
+        async function refreshCooler() {
+            const imgUrl = "{{ url_for('ambient.static', filename='Ambient_cooler.png') }}";
+            await reloadImg(imgUrl);
+        }
+
+        async function refreshDarkbox() {
+            const imgUrl = "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}";
+            await reloadImg(imgUrl);
+        }
+
+        async function refreshOutside() {
+            const imgUrl = "{{ url_for('ambient.static', filename='Ambient_outside.png') }}";
+            await reloadImg(imgUrl);
+        }
+
+        async function update_cooler() {
+            console.log("Updating Cooler Ambients");
+            try {
+                // Assuming `update_cooler` is an asynchronous operation (like an AJAX call)
+                const response = await $.ajax({
+                    url: "update_cooler",
+                    type: "POST",
+                    contentType: "application/json"
+                });
+                console.log("Cooler Ambients updated:", response);
+                await refreshCooler(); // Refresh image after updating
+            } catch (error) {
+                console.error("Failed to update Cooler Ambients:", error);
+                // Handle error as needed
             }
-            setInterval(refreshOutside,10000);
-        </script>
-        <script>
-            function refreshDarkbox() {
-                const img = "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}";
-                reloadImg(img)
-                .then(() => {
-                    console.log("Refreshing Darkbox Image at: " + new Date().toLocaleTimeString());
-                })
-                .catch(error => {
-                    console.error("Failed to load Darkbox Image. Retrying...");
-                }); 
+        }
+
+        async function update_darkbox() {
+            console.log("Updating Darkbox Ambients");
+            try {
+                // Assuming `update_darkbox` is an asynchronous operation (like an AJAX call)
+                const response = await $.ajax({
+                    url: "update_darkbox",
+                    type: "POST",
+                    contentType: "application/json"
+                });
+                console.log("Darkbox Ambients updated:", response);
+                await refreshDarkbox(); // Refresh image after updating
+            } catch (error) {
+                console.error("Failed to update Darkbox Ambients:", error);
+                // Handle error as needed
             }
-            setInterval(refreshDarkbox,10000);
-        </script> 
-    </head>
+        }
 
-    <body>
-        <script>
-            setInterval(update_cooler, 3333);
-            setInterval(update_darkbox, 3333);
-            setInterval(update_outside, 3333);
-        </script>
+        async function update_outside() {
+            console.log("Updating Outside Ambients");
+            try {
+                // Assuming `update_outside` is an asynchronous operation (like an AJAX call)
+                const response = await $.ajax({
+                    url: "update_outside",
+                    type: "POST",
+                    contentType: "application/json"
+                });
+                console.log("Outside Ambients updated:", response);
+                await refreshOutside(); // Refresh image after updating
+            } catch (error) {
+                console.error("Failed to update Outside Ambients:", error);
+                // Handle error as needed
+            }
+        }
 
+        // Set intervals to periodically update and refresh images
 
-        <div id="IDimageCooler">
-            <img id="Cooler" src="{{ url_for('ambient.static', filename='Ambient_cooler.png') }}?" alt="Ambient_cooler" width="1000px" height="600px" />
-        </div>
+        setInterval(() => {
+            update_cooler();
+        }, 10000);
 
-        <div id="IDimageOutside">
-            <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png') }}" alt="Ambient_outside" width="1000px" height="600px" />
-        </div>
+        setInterval(() => {
+            update_darkbox();
+        }, 10000);
 
-        <div id="IDimageDarkbox">
-            <img id="Darkbox" src="{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}" alt="Ambient_darkbox" width="1000px" height="600px" />
-        </div>
+        setInterval(() => {
+            update_outside();
+        }, 10000);
+    </script>
+</head>
+<body>
+    <div id="IDimageCooler">
+        <img id="Cooler" src="{{ url_for('ambient.static', filename='Ambient_cooler.png') }}?" alt="Ambient_cooler" width="1000px" height="600px" />
+    </div>
 
-    </body>
-{% endblock %}
+    <div id="IDimageOutside">
+        <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png') }}" alt="Ambient_outside" width="1000px" height="600px" />
+    </div>
+
+    <div id="IDimageDarkbox">
+        <img id="Darkbox" src="{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}" alt="Ambient_darkbox" width="1000px" height="600px" />
+    </div>
+</body>
+</html>

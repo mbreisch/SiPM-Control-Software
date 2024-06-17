@@ -1,4 +1,4 @@
-async function reloadImg(url) {
+/*async function reloadImg(url) {
     try {
         // Fetch the image to ensure it's reloaded
         await fetch(url, { cache: 'reload', mode: 'no-cors' });
@@ -15,6 +15,20 @@ async function reloadImg(url) {
     }
 }
 
+function refreshCooler() {
+    const imgUrl = "{{ url_for('ambient.static', filename='Ambient_cooler.png') }}";
+    reloadImg(imgUrl);
+}
+
+function refreshDarkbox() {
+    const imgUrl = "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}";
+    reloadImg(imgUrl);
+}
+
+function refreshOutside() {
+    const imgUrl = "{{ url_for('ambient.static', filename='Ambient_outside.png') }}";
+    reloadImg(imgUrl);
+}
 
 async function update_cooler() {
     console.log("Updating Cooler Ambients");
@@ -41,4 +55,4 @@ async function update_outside(){
         type: "POST",
         success: function(response) {} 
     });
-}
+}*/
