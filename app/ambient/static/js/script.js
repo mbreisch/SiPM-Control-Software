@@ -1,3 +1,8 @@
+function timestamp() {
+    return Date.now(); // Return current timestamp
+}
+
+
 async function reloadImg(name, url) {
     console.log(`Reloading ${name} at ${url}`);
     try {
