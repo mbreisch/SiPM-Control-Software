@@ -1,6 +1,6 @@
 async function reloadImg(url) {
     try {
-        const response = await fetch(url, { cache: 'reload', mode: 'no-cors' });
+        const response = await fetch(url, { cache: 'reload' });
         if (response.ok) {
             document.body.querySelectorAll(`img[src='${url}']`)
                 .forEach(img => img.src = url);
@@ -13,9 +13,9 @@ async function reloadImg(url) {
     }
 }
 
-function refreshImage(imageId, imagePath) {
-    const img = imagePath;
-    reloadImg(img);
+async function refreshImage(imagePath) {
+    const img = new URL(imagePath, window.location.href).href;
+    await reloadImg(img);
 }
 
 async function update_cooler() {
@@ -23,10 +23,10 @@ async function update_cooler() {
     $.ajax("update_cooler", {
         contentType: "application/json",
         type: "POST",
-        success: function(response) {
+        success: async function(response) {
             console.log("Success. Refreshing Image");
             const imageUrl = document.getElementById('Cooler').src;
-            refreshImage('Cooler', imageUrl);
+            await refreshImage(imageUrl);
         }
     });
 }
@@ -36,10 +36,10 @@ async function update_darkbox(){
     $.ajax("update_darkbox", {
         contentType: "application/json",
         type: "POST",
-        success: function(response) {
+        success: async function(response) {
             console.log("Success. Refreshing Image");
             const imageUrl = document.getElementById('Darkbox').src;
-            refreshImage('Darkbox', imageUrl);
+            await refreshImage(imageUrl);
         }
     });
 }
@@ -49,11 +49,10 @@ async function update_outside(){
     $.ajax("update_outside", {
         contentType: "application/json",
         type: "POST",
-        success: function(response) {
+        success: async function(response) {
             console.log("Success. Refreshing Image");
             const imageUrl = document.getElementById('Outside').src;
-            console.log(imageUrl)
-            refreshImage('Outside', imageUrl);
+            await refreshImage(imageUrl);
         }
     });
 }
