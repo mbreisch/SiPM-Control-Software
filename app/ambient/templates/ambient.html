@@ -37,7 +37,7 @@
         <br>
 
         <div id="IDimageOutside">
-            <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png') }}" alt="Ambient_outside" width="1000px" height="600px" />
+            <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png') }}?t="+new Date().getTime() alt="Ambient_outside" width="1000px" height="600px" />
         </div>
         <script>
             function refreshOutside() {
