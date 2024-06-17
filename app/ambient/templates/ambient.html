@@ -11,13 +11,6 @@
     </head>
 
     <body>
-        <script>
-            setInterval(update_cooler,5000);
-            setInterval(update_darkbox,5000);
-            setInterval(update_outside,5000);
-        </script>
-
-
         <div class="imageWrapper1" id="imageWrapper1">
             <img id="Cooler" src="{{ url_for('ambient.static', filename='Ambient_cooler.png') }}" alt="Ambient_cooler" width="1000px" height="600px" />
         </div>
@@ -29,6 +22,15 @@
         <div class="imageWrapper3" id="imageWrapper3">
             <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png') }}" alt="Ambient_outside" width="1000px" height="600px" />
         </div>
+
+        <script>
+            setTimeout(function() {
+                setInterval(update_cooler, 5000);
+                setInterval(update_darkbox, 5000);
+                setInterval(update_outside, 5000);
+            }, 500);
+        </script>
+
 
     </body>
 {% endblock %}
