@@ -25,6 +25,90 @@
             }, 4000);
         </script>
 
+        <div id="IDimageCooler">
+            <img id="Cooler" src="{{ url_for('ambient.static', filename='Ambient_cooler.png') }}" alt="Ambient_cooler" width="1000px" height="600px" />
+        </div>
+        <br>
+
+        <div id="IDimageOutside">
+            <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png') }}" alt="Ambient_outside" width="1000px" height="600px" />
+        </div>
+        <br>
+
+        <div id="IDimageDarkbox">
+            <img id="Darkbox" src="{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}" alt="Ambient_darkbox" width="1000px" height="600px" />
+        </div>
+
+        <script>
+            function refreshCooler() {
+                const img = "{{ url_for('ambient.static', filename='Ambient_cooler.png') }}";
+                reloadImg(img);
+            }
+
+            function refreshOutside() {
+                const img = "{{ url_for('ambient.static', filename='Ambient_outside.png') }}";
+                reloadImg(img);
+            }
+
+            function refreshDarkbox() {
+                const img = "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}";
+                reloadImg(img);
+            }
+
+            async function reloadImg(url) {
+                try {
+                    await fetch(url, {});
+                    document.body.querySelectorAll(`img[src='${url}']`)
+                      .forEach(img => img.src = `${url}?t=${new Date().getTime()}`); // Ensure cache-busting
+                    console.log(`Image refreshed: ${url}`);
+                } catch (error) {
+                    console.error(`Failed to reload image: ${url}`, error);
+                }
+            }
+
+            // Start image refresh intervals after appropriate delays
+            setTimeout(() => {
+                setInterval(refreshCooler, 5000);  // Refresh Cooler every 5 seconds
+            }, 2000);
+
+            setTimeout(() => {
+                setInterval(refreshOutside, 5000);  // Refresh Outside every 5 seconds after 4 seconds delay
+            }, 4000);
+
+            setTimeout(() => {
+                setInterval(refreshDarkbox, 5000);  // Refresh Darkbox every 5 seconds after 6 seconds delay
+            }, 6000);
+        </script>
+    </body>
+{% endblock %}
+
+<!-- {% extends "layout.html" %}
+
+{% block title %}Ambient HTML{% endblock %}
+
+{% block content %}
+    <head>
+        <title>Ambient Overview</title>
+        <link rel="stylesheet" href="{{ url_for('ambient.static', filename='css/styles.css') }}">
+        <script src="{{ url_for('ambient.static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('ambient.static', filename='js/script.js') }}"></script>
+    </head>
+
+    <body>
+        <script>
+            setTimeout(() => {
+                setInterval(update_cooler, 5000);  // Update Cooler every 6.666 seconds
+            }, 0);
+
+            setTimeout(() => {
+                setInterval(update_darkbox, 5000);  // Start updating Darkbox after a delay of 2 seconds
+            }, 2000);
+
+            setTimeout(() => {
+                setInterval(update_outside, 5000);  // Start updating Outside after a delay of 4 seconds
+            }, 4000);
+        </script>
+
 
     <div id="IDimageCooler">
         <img id="Cooler" src="{{ url_for('ambient.static', filename='Ambient_cooler.png') }}?" alt="Ambient_cooler" width="1000px" height="600px" />
@@ -85,4 +169,4 @@
         }, 6000);
     </script>
     </body>
-{% endblock %}
+{% endblock %} -->
