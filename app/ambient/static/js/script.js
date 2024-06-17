@@ -1,4 +1,4 @@
-/*async function reloadImg(url) {
+async function reloadImg(url) {
     try {
         // Fetch the image to ensure it's reloaded
         await fetch(url, { cache: 'reload', mode: 'no-cors' });
@@ -55,4 +55,4 @@ async function update_outside(){
         type: "POST",
         success: function(response) {} 
     });
-}*/
+}
