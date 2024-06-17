@@ -18,58 +18,61 @@
         </script>
 
 
-        <div id="IDimageCooler">
-            <img id="Cooler" src="{{ url_for('ambient.static', filename='Ambient_cooler.png') }}?" alt="Ambient_cooler" width="1000px" height="600px" />
-        </div>
-        <script>
-            function refreshCooler() {
-                const img = "{{ url_for('ambient.static', filename='Ambient_cooler.png') }}?t="+new Date().getTime();
-                reloadImg(img)
-                .then(() => {
-                    console.log("Refreshing Cooler Image at: " + new Date().toLocaleTimeString());
-                })
-                .catch(error => {
-                    console.error("Failed to load Cooler Image. Retrying...");
-                }); 
-            }
-            setInterval(refreshCooler,11000);
-        </script>
-        <br>
+    <div id="IDimageCooler">
+        <img id="Cooler" src="{{ url_for('ambient.static', filename='Ambient_cooler.png') }}?" alt="Ambient_cooler" width="1000px" height="600px" />
+    </div>
+    <script>
+        function refreshCooler() {
+            const img = "{{ url_for('ambient.static', filename='Ambient_cooler.png') }}?t="+new Date().getTime();
+            reloadImg(img)
+            .then(() => {
+                console.log("Refreshing Cooler Image at: " + new Date().toLocaleTimeString());
+            })
+            .catch(error => {
+                console.error("Failed to load Cooler Image. Retrying...");
+            }); 
+        }
+        setInterval(refreshCooler, 11000);
+    </script>
+    <br>
 
-        <div id="IDimageOutside">
-            <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png') }}" alt="Ambient_outside" width="1000px" height="600px" />
-        </div>
-        <script>
-            function refreshOutside() {
-                const img = "{{ url_for('ambient.static', filename='Ambient_outside.png') }}?t="+new Date().getTime();
-                reloadImg(img)
-                .then(() => {
-                    console.log("Refreshing Outside Image at: " + new Date().toLocaleTimeString());
-                })
-                .catch(error => {
-                    console.error("Failed to load Outside Image. Retrying...");
-                }); 
-            }
-            setInterval(refreshOutside,11000);
-        </script>
-        <br>
+    <div id="IDimageOutside">
+        <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png') }}" alt="Ambient_outside" width="1000px" height="600px" />
+    </div>
+    <script>
+        function refreshOutside() {
+            const img = "{{ url_for('ambient.static', filename='Ambient_outside.png') }}?t="+new Date().getTime();
+            reloadImg(img)
+            .then(() => {
+                console.log("Refreshing Outside Image at: " + new Date().toLocaleTimeString());
+            })
+            .catch(error => {
+                console.error("Failed to load Outside Image. Retrying...");
+            }); 
+        }
+        setTimeout(() => {
+            setInterval(refreshOutside, 11000);  // Starts after 5 seconds
+        }, 2000);
+    </script>
+    <br>
 
-
-        <div id="IDimageDarkbox">
-            <img id="Darkbox" src="{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}" alt="Ambient_darkbox" width="1000px" height="600px" />
-        </div>
-        <script>
-            function refreshDarkbox() {
-                const img = "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}?t="+new Date().getTime();
-                reloadImg(img)
-                .then(() => {
-                    console.log("Refreshing Darkbox Image at: " + new Date().toLocaleTimeString());
-                })
-                .catch(error => {
-                    console.error("Failed to load Darkbox Image. Retrying...");
-                }); 
-            }
-            setInterval(refreshDarkbox,11000);
-        </script>     
+    <div id="IDimageDarkbox">
+        <img id="Darkbox" src="{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}" alt="Ambient_darkbox" width="1000px" height="600px" />
+    </div>
+    <script>
+        function refreshDarkbox() {
+            const img = "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}?t="+new Date().getTime();
+            reloadImg(img)
+            .then(() => {
+                console.log("Refreshing Darkbox Image at: " + new Date().toLocaleTimeString());
+            })
+            .catch(error => {
+                console.error("Failed to load Darkbox Image. Retrying...");
+            }); 
+        }
+        setTimeout(() => {
+            setInterval(refreshDarkbox, 11000);  // Starts after 10 seconds
+        }, 4000);
+    </script>
     </body>
 {% endblock %}
