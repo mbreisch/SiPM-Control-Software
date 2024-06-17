@@ -30,6 +30,17 @@ def update_cooler():
             pass 
     with open(f'{ambient_bp.static_folder}/cooler.txt', 'r') as logfile:
         MakeMonitorPlotCooler("cooler", logfile)
+        
+    while True:
+        try:
+            # Attempt to open and read the file to ensure it is fully written
+            with open(f'{ambient_bp.static_folder}/Ambient_cooler.png', 'rb') as f:
+                f.read()
+            break  # If successful, break out of the loop 
+        except Exception as e:
+            print(f"Error reading file: {e}")
+            time.sleep(0.1)
+    
     return jsonify(success=True)
 
 @ambient_bp.route("/update_darkbox", methods=["POST"])
