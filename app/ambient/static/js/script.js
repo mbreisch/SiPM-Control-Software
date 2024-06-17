@@ -1,8 +1,9 @@
 async function reloadImg(url) {
-    await fetch(url, {});
+    await fetch(url, { cache: 'reload', mode: 'no-cors' });
     document.body.querySelectorAll(`img[src='${url}']`)
       .forEach(img => img.src = url);
 }
+
 
 async function update_cooler() {
     console.log("Updating Cooler Ambients");
