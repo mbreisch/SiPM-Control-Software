@@ -105,7 +105,7 @@ def MakeMonitorPlotCooler(name,logfile):
     last_100_humidities = humidities[-100:]
     
     # Plot timestamp vs value for each entry
-    fig, ax1 = plt.subplots(figsize=(300/100,200/100), dpi=100)
+    fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
     ax1.set_ylim(0, 50)
@@ -115,8 +115,8 @@ def MakeMonitorPlotCooler(name,logfile):
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
     ax2.set_ylim(0, 100)
-    ax2.set_ylabel('Humidity in %', color='b', fontsize=16)
-    ax2.tick_params(axis='y', labelcolor='b', labelsize=14)
+    ax2.set_ylabel('Humidity in %', color='b', fontsize=12)
+    ax2.tick_params(axis='y', labelcolor='b', labelsize=10)
 
     # Combine all legends
     lines1, labels1 = ax1.get_legend_handles_labels()
@@ -151,18 +151,18 @@ def MakeMonitorPlotDarkbox(name,logfile):
     last_100_humidities = humidities[-100:]
     
     # Plot timestamp vs value for each entry
-    fig, ax1 = plt.subplots(figsize=(300/100,200/100), dpi=100)
+    fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
     ax1.set_ylim(0, 50)
-    ax1.set_ylabel('Temperature in °C', color='r', fontsize=16)
-    ax1.tick_params(axis='y', labelcolor='r', labelsize=14)
+    ax1.set_ylabel('Temperature in °C', color='r', fontsize=12)
+    ax1.tick_params(axis='y', labelcolor='r', labelsize=10)
         
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
     ax2.set_ylim(0, 100)
-    ax2.set_ylabel('Humidity in %', color='b', fontsize=16)
-    ax2.tick_params(axis='y', labelcolor='b', labelsize=14)
+    ax2.set_ylabel('Humidity in %', color='b', fontsize=12)
+    ax2.tick_params(axis='y', labelcolor='b', labelsize=10)
 
     # Combine all legends
     lines1, labels1 = ax1.get_legend_handles_labels()
@@ -197,18 +197,18 @@ def MakeMonitorPlotOutside(name,logfile):
     last_100_humidities = humidities[-100:]
     
     # Plot timestamp vs value for each entry
-    fig, ax1 = plt.subplots(figsize=(300/100,200/100), dpi=100)
+    fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
     ax1.set_ylim(0, 50)
-    ax1.set_ylabel('Temperature in °C', color='r', fontsize=16)
-    ax1.tick_params(axis='y', labelcolor='r', labelsize=14)
+    ax1.set_ylabel('Temperature in °C', color='r', fontsize=12)
+    ax1.tick_params(axis='y', labelcolor='r', labelsize=10)
         
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
     ax2.set_ylim(0, 100)
-    ax2.set_ylabel('Humidity in %', color='b', fontsize=16)
-    ax2.tick_params(axis='y', labelcolor='b', labelsize=14)
+    ax2.set_ylabel('Humidity in %', color='b', fontsize=12)
+    ax2.tick_params(axis='y', labelcolor='b', labelsize=10)
 
     # Combine all legends
     lines1, labels1 = ax1.get_legend_handles_labels()
