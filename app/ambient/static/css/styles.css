@@ -45,6 +45,14 @@ body {
     height: 100%;
 }
 
+#setCoolerLimit, #setDarkboxLimit, #setOutsideLimit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
 #setCoolerLimit_ax1_min, #setCoolerLimit_ax1_max, #setCoolerLimit_ax2_min, #setCoolerLimit_ax2_max {
     display: flex;
     justify-content: center;
