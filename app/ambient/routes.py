@@ -105,7 +105,7 @@ def MakeMonitorPlotCooler(name,logfile):
     last_100_humidities = humidities[-100:]
     
     # Plot timestamp vs value for each entry
-    fig, ax1 = plt.subplots(figsize=(1000/100,600/100), dpi=100)
+    fig, ax1 = plt.subplots(figsize=(300/100,200/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
     ax1.set_ylim(0, 50)
@@ -121,7 +121,7 @@ def MakeMonitorPlotCooler(name,logfile):
     # Combine all legends
     lines1, labels1 = ax1.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
-    ax1.legend(lines1 + lines2 , labels1 + labels2, loc='best', fontsize=16)
+    #ax1.legend(lines1 + lines2 , labels1 + labels2, loc='best', fontsize=16)
 
     ax1.grid()
     plt.title(f'Ambient {name}')
@@ -151,7 +151,7 @@ def MakeMonitorPlotDarkbox(name,logfile):
     last_100_humidities = humidities[-100:]
     
     # Plot timestamp vs value for each entry
-    fig, ax1 = plt.subplots(figsize=(1000/100,600/100), dpi=100)
+    fig, ax1 = plt.subplots(figsize=(300/100,200/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
     ax1.set_ylim(0, 50)
@@ -167,7 +167,7 @@ def MakeMonitorPlotDarkbox(name,logfile):
     # Combine all legends
     lines1, labels1 = ax1.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
-    ax1.legend(lines1 + lines2 , labels1 + labels2, loc='best', fontsize=16)
+    #ax1.legend(lines1 + lines2 , labels1 + labels2, loc='best', fontsize=16)
 
     ax1.grid()
     plt.title(f'Ambient {name}')
@@ -197,7 +197,7 @@ def MakeMonitorPlotOutside(name,logfile):
     last_100_humidities = humidities[-100:]
     
     # Plot timestamp vs value for each entry
-    fig, ax1 = plt.subplots(figsize=(1000/100,600/100), dpi=100)
+    fig, ax1 = plt.subplots(figsize=(300/100,200/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
     ax1.set_ylim(0, 50)
@@ -213,7 +213,7 @@ def MakeMonitorPlotOutside(name,logfile):
     # Combine all legends
     lines1, labels1 = ax1.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
-    ax1.legend(lines1 + lines2 , labels1 + labels2, loc='best', fontsize=16)
+    #ax1.legend(lines1 + lines2 , labels1 + labels2, loc='best', fontsize=16)
 
     ax1.grid()
     plt.title(f'Ambient {name}')
