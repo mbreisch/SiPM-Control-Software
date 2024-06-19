@@ -95,7 +95,7 @@ def update_outside():
 @ambient_bp.route("/set_plot_settings", methods=["POST"])
 def set_plot_settings():
     name=request.json["name"]
-    subname=float(request.json["subname"])
+    subname=request.json["subname"]
     value=float(request.json["value"])
 
     global plt_settings
