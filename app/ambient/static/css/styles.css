@@ -37,23 +37,18 @@ body {
     height: 100%;
 }
 
-#setLimitOV {
+.setLimitOV {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+    justify-content: space-around; 
 }
 
 #setCoolerLimit, #setDarkboxLimit, #setOutsideLimit {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+    flex-direction: column; 
+    margin: 10px;
 }
 
-#setCoolerLimit_ax1_min, #setCoolerLimit_ax1_max, #setCoolerLimit_ax2_min, #setCoolerLimit_ax2_max {
+/* #setCoolerLimit_ax1_min, #setCoolerLimit_ax1_max, #setCoolerLimit_ax2_min, #setCoolerLimit_ax2_max {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,4 +70,4 @@ body {
     align-items: center;
     width: 100%;
     height: 100%;
-}
+} */
