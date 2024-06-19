@@ -6,14 +6,14 @@ body {
     background-image: url('/control/static/images/background_hex.jpg');
 }
 
-/* #IDimageDarkbox, #IDimageOutside, #IDimageCooler {
+#IDimageDarkbox, #IDimageOutside, #IDimageCooler {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-} */
+}
 
-#IDAmbient {
+#IDambient {
     display: flex;
     justify-content: center;
     align-items: center;
