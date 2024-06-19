@@ -25,7 +25,12 @@ ambient_bp._title="Ambiemt Monitoring"
 
 
 
-plt_settings = {"cooler" : {"ylimit": [0, 50], "amount": 100},"outside" : {"ylimit": [0, 50], "amount": 100},"darkbox" : {"ylimit": [0, 50], "amount": 100}}
+plt_settings = {"cooler" : 
+                    {"ylimit_ax1_min": 0, "ylimit_ax1_max":50, "ylimit_ax2_min":0, "ylimit_ax2_max":100, "amount": 100},
+                "outside" : 
+                    {"ylimit_ax1_min": 0, "ylimit_ax1_max":50, "ylimit_ax2_min":0, "ylimit_ax2_max":100, "amount": 100},
+                "darkbox" : 
+                    {"ylimit_ax1_min": 0, "ylimit_ax1_max":50, "ylimit_ax2_min":0, "ylimit_ax2_max":100, "amount": 100}}
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
