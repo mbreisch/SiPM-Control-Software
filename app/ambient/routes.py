@@ -30,7 +30,8 @@ plt_settings = {"cooler" :
                 "outside" : 
                     {"ylimit_oax1_min": 0, "ylimit_oax1_max":50, "ylimit_oax2_min":0, "ylimit_oax2_max":100, "oamount": 100},
                 "darkbox" : 
-                    {"ylimit_dax1_min": 0, "ylimit_dax1_max":50, "ylimit_dax2_min":0, "ylimit_dax2_max":100, "damount": 100}}
+                    {"ylimit_dax1_min": 0, "ylimit_dax1_max":50, "ylimit_dax2_min":0, "ylimit_dax2_max":100, "damount": 100}
+                }
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
@@ -120,8 +121,8 @@ def MakeMonitorPlotCooler(name,logfile):
         temperatures.append(float(temperature))
         humidities.append(float(humidity))
         
-    if plt_settings["outside"]["camount"] > len(timestamps) or plt_settings["cooler"]["camount"] == -1:
-        plt_settings["outside"]["camount"] = len(timestamps)
+    if plt_settings["cooler"]["camount"] > len(timestamps) or plt_settings["cooler"]["camount"] == -1:
+        plt_settings["cooler"]["camount"] = len(timestamps)
                   
     last_100_timestamps = timestamps[-int(plt_settings["cooler"]["camount"]):]
     last_100_temperatures = temperatures[-int(plt_settings["cooler"]["camount"]):]
@@ -169,8 +170,8 @@ def MakeMonitorPlotDarkbox(name,logfile):
         temperatures.append(float(temperature))
         humidities.append(float(humidity))
         
-    if plt_settings["outside"]["damount"] > len(timestamps) or plt_settings["darkbox"]["damount"] == -1:
-        plt_settings["outside"]["damount"] = len(timestamps)
+    if plt_settings["darkbox"]["damount"] > len(timestamps) or plt_settings["darkbox"]["damount"] == -1:
+        plt_settings["darkbox"]["damount"] = len(timestamps)
                   
     last_100_timestamps = timestamps[-int(plt_settings["darkbox"]["damount"]):]
     last_100_temperatures = temperatures[-int(plt_settings["darkbox"]["damount"]):]
