@@ -64,3 +64,27 @@ body {
     align-items: center;
     height: 30%;
 }
+
+.setWindowOV button {
+    margin-left : 5px; /* Adds space between input and button */
+    color: black;
+    background-color: white;
+}
+
+.setCoolerLimit button {
+    margin-left : 5px; /* Adds space between input and button */
+    color: black;
+    background-color: white;
+}
+
+.setDarkboxLimit button {
+    margin-left : 5px; /* Adds space between input and button */
+    color: black;
+    background-color: white;
+}
+
+.setOutsideLimit button {
+    margin-left : 5px; /* Adds space between input and button */
+    color: black;
+    background-color: white;
+}
