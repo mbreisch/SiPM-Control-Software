@@ -36,3 +36,43 @@ body {
     width: 100%;
     height: 100%;
 }
+
+#setLimitOV {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+ 
+#setCoolerLimit, #setOutsideLimit, #setDarkboxLimit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#setCoolerLimit_ax1_min, #setCoolerLimit_ax1_max, #setCoolerLimit_ax2_min, #setCoolerLimit_ax2_max {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#setDarkboxLimit_ax1_min, #setDarkboxLimit_ax1_max, #setDarkboxLimit_ax2_min, #setDarkboxLimit_ax2_max {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#setOutsideLimit_ax1_min, #setOutsideLimit_ax1_max, #setOutsideLimit_ax2_min, #setOutsideLimit_ax2_max {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
