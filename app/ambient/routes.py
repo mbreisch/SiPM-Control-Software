@@ -233,11 +233,6 @@ def MakeMonitorPlotOutside(name,logfile):
     ax2.set_ylabel('Humidity in %', color='b', fontsize=12)
     ax2.tick_params(axis='y', labelcolor='b', labelsize=10)
 
-    # Combine all legends
-    lines1, labels1 = ax1.get_legend_handles_labels()
-    lines2, labels2 = ax2.get_legend_handles_labels()
-    #ax1.legend(lines1 + lines2 , labels1 + labels2, loc='best', fontsize=16)
-
     ax1.grid()
     plt.title(f'Ambient {name}')
     plt.savefig(f'{ambient_bp.static_folder}/Ambient_{name}.png')
