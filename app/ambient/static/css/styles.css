@@ -30,7 +30,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     height: 100%;
 }
 
@@ -45,26 +44,23 @@ body {
     margin: 10px;
 }
 
-/* #setCoolerLimit_ax1_min, #setCoolerLimit_ax1_max, #setCoolerLimit_ax2_min, #setCoolerLimit_ax2_max {
+#setCoolerLimit_ax1_min, #setCoolerLimit_ax1_max, #setCoolerLimit_ax2_min, #setCoolerLimit_ax2_max {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    height: 30%;
 }
 
 #setDarkboxLimit_ax1_min, #setDarkboxLimit_ax1_max, #setDarkboxLimit_ax2_min, #setDarkboxLimit_ax2_max {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    height: 30%;
 }
 
 #setOutsideLimit_ax1_min, #setOutsideLimit_ax1_max, #setOutsideLimit_ax2_min, #setOutsideLimit_ax2_max {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
-} */
+    height: 30%;
+}
