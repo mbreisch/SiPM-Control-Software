@@ -121,9 +121,9 @@ def MakeMonitorPlotCooler(name,logfile):
         humidities.append(float(humidity))
         
                   
-    last_100_timestamps = timestamps[-plt_settings["cooler"]["camount"]:]
-    last_100_temperatures = temperatures[-plt_settings["cooler"]["camount"]:]
-    last_100_humidities = humidities[-plt_settings["cooler"]["camount"]:]
+    last_100_timestamps = timestamps[-int(plt_settings["cooler"]["camount"]):]
+    last_100_temperatures = temperatures[-int(plt_settings["cooler"]["camount"]):]
+    last_100_humidities = humidities[-int(plt_settings["cooler"]["camount"]):]
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
@@ -168,9 +168,9 @@ def MakeMonitorPlotDarkbox(name,logfile):
         humidities.append(float(humidity))
         
                   
-    last_100_timestamps = timestamps[-plt_settings["darkbox"]["damount"]:]
-    last_100_temperatures = temperatures[-plt_settings["darkbox"]["damount"]:]
-    last_100_humidities = humidities[-plt_settings["darkbox"]["damount"]:]
+    last_100_timestamps = timestamps[-int(plt_settings["darkbox"]["damount"]):]
+    last_100_temperatures = temperatures[-int(plt_settings["darkbox"]["damount"]):]
+    last_100_humidities = humidities[-int(plt_settings["darkbox"]["damount"]):]
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
@@ -215,9 +215,9 @@ def MakeMonitorPlotOutside(name,logfile):
         humidities.append(float(humidity))
         
                   
-    last_100_timestamps = timestamps[-plt_settings["outside"]["oamount"]:]
-    last_100_temperatures = temperatures[-plt_settings["outside"]["oamount"]:]
-    last_100_humidities = humidities[-plt_settings["outside"]["oamount"]:]
+    last_100_timestamps = timestamps[-int(plt_settings["outside"]["oamount"]):]
+    last_100_temperatures = temperatures[-int(plt_settings["outside"]["oamount"]):]
+    last_100_humidities = humidities[-int(plt_settings["outside"]["oamount"]):]
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
