@@ -120,7 +120,7 @@ def MakeMonitorPlotCooler(name,logfile):
         temperatures.append(float(temperature))
         humidities.append(float(humidity))
         
-    if plt_settings["outside"]["camount"] > len(timestamps):
+    if plt_settings["outside"]["camount"] > len(timestamps) or plt_settings["cooler"]["camount"] == -1:
         plt_settings["outside"]["camount"] = len(timestamps)
                   
     last_100_timestamps = timestamps[-int(plt_settings["cooler"]["camount"]):]
@@ -169,7 +169,7 @@ def MakeMonitorPlotDarkbox(name,logfile):
         temperatures.append(float(temperature))
         humidities.append(float(humidity))
         
-    if plt_settings["outside"]["damount"] > len(timestamps):
+    if plt_settings["outside"]["damount"] > len(timestamps) or plt_settings["darkbox"]["damount"] == -1:
         plt_settings["outside"]["damount"] = len(timestamps)
                   
     last_100_timestamps = timestamps[-int(plt_settings["darkbox"]["damount"]):]
@@ -218,7 +218,7 @@ def MakeMonitorPlotOutside(name,logfile):
         temperatures.append(float(temperature))
         humidities.append(float(humidity))
         
-    if plt_settings["outside"]["oamount"] > len(timestamps):
+    if plt_settings["outside"]["oamount"] > len(timestamps) or plt_settings["outside"]["oamount"] == -1:
         plt_settings["outside"]["oamount"] = len(timestamps)
                   
     last_100_timestamps = timestamps[-int(plt_settings["outside"]["oamount"]):]
