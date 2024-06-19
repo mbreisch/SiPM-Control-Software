@@ -129,7 +129,7 @@ def MakeMonitorPlotCooler(name,logfile):
     fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
-    ax1.set_ylim(plt_settings["cooler"]["ylimit_ax2_min"], plt_settings["cooler"]["ylimit_ax2_max"])
+    ax1.set_ylim(plt_settings["cooler"]["ylimit_ax1_min"], plt_settings["cooler"]["ylimit_ax1_max"])
     ax1.set_ylabel('Temperature in °C', color='r', fontsize=12)
     ax1.tick_params(axis='y', labelcolor='r', labelsize=10)
         
