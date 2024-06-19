@@ -123,7 +123,7 @@ def MakeMonitorPlotCooler(name,logfile):
                   
     last_100_timestamps = timestamps[-plt_settings["cooler"]["camount"]:]
     last_100_temperatures = temperatures[-plt_settings["cooler"]["camount"]:]
-    last_100_humidities = humidities[-plt_settings["cooler"]["cmount"]:]
+    last_100_humidities = humidities[-plt_settings["cooler"]["camount"]:]
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
