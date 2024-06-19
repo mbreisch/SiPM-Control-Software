@@ -32,16 +32,12 @@ async function update_outside(){
     });
 }
 
-function set_plot_amount(){
-    var amount = document.getElementById("plot_amount").value;
-    var ylimit_ax1_min = document.getElementById("ylimit_ax1_min").value;
-    var ylimit_ax1_max = document.getElementById("ylimit_ax1_max").value;
-    var ylimit_ax2_min = document.getElementById("ylimit_ax2_min").value;
-    var ylimit_ax2_max = document.getElementById("ylimit_ax2_max").value;
+function set_plot_settings(name, subname){
+    var value = document.getElementById(subname).value;
 
-    $.ajax("set_plot_amount", {
+    $.ajax("set_plot_settings", {
         contentType: "application/json",
-        data: JSON.stringify({ ylimit_ax1_min: ylimit_ax1_min, ylimit_ax1_max: ylimit_ax1_max, ylimit_ax2_min: ylimit_ax2_min, ylimit_ax2_max: ylimit_ax2_max, amount: amount}),
+        data: JSON.stringify({ name: name, subname: subname, value: value }),
         type: "POST",
         success: function(response) {}
     });

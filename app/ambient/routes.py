@@ -87,21 +87,14 @@ def update_outside():
         
     return jsonify(success=True)
 
-@ambient_bp.route("/set_plot_amount", methods=["POST"])
-def set_plot_amount():
+@ambient_bp.route("/set_plot_settings", methods=["POST"])
+def set_plot_settings():
     name=request.json["name"]
-    amount=float(request.json["amount"])
-    ylimit_ax1_min=float(request.json["ylimit_ax1_min"])
-    ylimit_ax1_max=float(request.json["ylimit_ax1_max"])
-    ylimit_ax2_min=float(request.json["ylimit_ax2_min"])
-    ylimit_ax2_max=float(request.json["ylimit_ax2_max"])
-    
+    subname=float(request.json["subname"])
+    value=float(request.json["value"])
+
     global plt_settings
-    plt_settings[name]["ylimit_ax1_min"] = ylimit_ax1_min
-    plt_settings[name]["ylimit_ax1_max"] = ylimit_ax1_max
-    plt_settings[name]["ylimit_ax2_min"] = ylimit_ax2_min   
-    plt_settings[name]["ylimit_ax2_max"] = ylimit_ax2_max
-    plt_settings[name]["amount"] = amount
+    plt_settings[name][subname] = value
     
     return jsonify(success=True)
     
