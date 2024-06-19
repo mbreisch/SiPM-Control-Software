@@ -32,7 +32,7 @@ async function update_outside(){
     });
 }
 
-function set_plot_settings(name, subname){
+async function set_plot_settings(name, subname){
     var value = document.getElementById(subname).value;
 
     $.ajax("set_plot_settings", {
