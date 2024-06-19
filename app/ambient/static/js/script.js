@@ -34,12 +34,15 @@ async function update_outside(){
 
 function set_plot_amount(){
     var amount = document.getElementById("plot_amount").value;
+    var ylimit_ax1_min = document.getElementById("ylimit_ax1_min").value;
+    var ylimit_ax1_max = document.getElementById("ylimit_ax1_max").value;
+    var ylimit_ax2_min = document.getElementById("ylimit_ax2_min").value;
+    var ylimit_ax2_max = document.getElementById("ylimit_ax2_max").value;
+
     $.ajax("set_plot_amount", {
         contentType: "application/json",
+        data: JSON.stringify({ ylimit_ax1_min: ylimit_ax1_min, ylimit_ax1_max: ylimit_ax1_max, ylimit_ax2_min: ylimit_ax2_min, ylimit_ax2_max: ylimit_ax2_max, amount: amount}),
         type: "POST",
-        data: JSON.stringify({
-            amount: amount
-        }),
         success: function(response) {}
     });
 }

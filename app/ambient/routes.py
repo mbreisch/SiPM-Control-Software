@@ -23,7 +23,9 @@ def ambient_home():
 
 ambient_bp._title="Ambiemt Monitoring"
 
-plot_amount = 100
+
+
+plt_settings = {"cooler" : {"ylimit": [0, 50], "amount": 100},"outside" : {"ylimit": [0, 50], "amount": 100},"darkbox" : {"ylimit": [0, 50], "amount": 100}}
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
@@ -87,12 +89,24 @@ def update_outside():
 
 @ambient_bp.route("/set_plot_amount", methods=["POST"])
 def set_plot_amount():
-    global plot_amount
-    plot_amount = int(request.json["plot_amount"])
+    name=request.json["name"]
+    amount=float(request.json["amount"])
+    ylimit_ax1_min=float(request.json["ylimit_ax1_min"])
+    ylimit_ax1_max=float(request.json["ylimit_ax1_max"])
+    ylimit_ax2_min=float(request.json["ylimit_ax2_min"])
+    ylimit_ax2_max=float(request.json["ylimit_ax2_max"])
+    
+    global plt_settings
+    plt_settings[name]["ylimit_ax1_min"] = ylimit_ax1_min
+    plt_settings[name]["ylimit_ax1_max"] = ylimit_ax1_max
+    plt_settings[name]["ylimit_ax2_min"] = ylimit_ax2_min   
+    plt_settings[name]["ylimit_ax2_max"] = ylimit_ax2_max
+    plt_settings[name]["amount"] = amount
+    
     return jsonify(success=True)
     
 def MakeMonitorPlotCooler(name,logfile):
-    global plot_amount
+    global plt_settings
     # Read each line from the provided file object
     timestamps = []
     temperatures = []
@@ -109,21 +123,21 @@ def MakeMonitorPlotCooler(name,logfile):
         humidities.append(float(humidity))
         
                   
-    last_100_timestamps = timestamps[-plot_amount:]
-    last_100_temperatures = temperatures[-plot_amount:]
-    last_100_humidities = humidities[-plot_amount:]
+    last_100_timestamps = timestamps[-plt_settings["cooler"]["amount"]:]
+    last_100_temperatures = temperatures[-plt_settings["cooler"]["amount"]:]
+    last_100_humidities = humidities[-plt_settings["cooler"]["amount"]:]
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
-    ax1.set_ylim(0, 50)
+    ax2.set_ylim(plt_settings["cooler"]["ylimit_ax2_min"], plt_settings["cooler"]["ylimit_ax2_max"])
     ax1.set_ylabel('Temperature in °C', color='r', fontsize=12)
     ax1.tick_params(axis='y', labelcolor='r', labelsize=10)
         
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
-    ax2.set_ylim(0, 100)
+    ax2.set_ylim(plt_settings["cooler"]["ylimit_ax2_min"], plt_settings["cooler"]["ylimit_ax2_max"])
     ax2.set_ylabel('Humidity in %', color='b', fontsize=12)
     ax2.tick_params(axis='y', labelcolor='b', labelsize=10)
 
@@ -139,7 +153,7 @@ def MakeMonitorPlotCooler(name,logfile):
     plt.close()
     
 def MakeMonitorPlotDarkbox(name,logfile):
-    global plot_amount
+    global plt_settings
     # Read each line from the provided file object
     timestamps = []
     temperatures = []
@@ -156,21 +170,21 @@ def MakeMonitorPlotDarkbox(name,logfile):
         humidities.append(float(humidity))
         
                   
-    last_100_timestamps = timestamps[-plot_amount:]
-    last_100_temperatures = temperatures[-plot_amount:]
-    last_100_humidities = humidities[-plot_amount:]
+    last_100_timestamps = timestamps[-plt_settings["darkbox"]["amount"]:]
+    last_100_temperatures = temperatures[-plt_settings["darkbox"]["amount"]:]
+    last_100_humidities = humidities[-plt_settings["darkbox"]["amount"]:]
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
-    ax1.set_ylim(0, 50)
+    ax1.set_ylim(plt_settings["darkbox"]["ylimit_ax1_min"], plt_settings["darkbox"]["ylimit_ax1_max"])
     ax1.set_ylabel('Temperature in °C', color='r', fontsize=12)
     ax1.tick_params(axis='y', labelcolor='r', labelsize=10)
         
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
-    ax2.set_ylim(0, 100)
+    ax2.set_ylim(plt_settings["darkbox"]["ylimit_ax2_min"], plt_settings["darkbox"]["ylimit_ax2_max"])
     ax2.set_ylabel('Humidity in %', color='b', fontsize=12)
     ax2.tick_params(axis='y', labelcolor='b', labelsize=10)
 
@@ -186,7 +200,7 @@ def MakeMonitorPlotDarkbox(name,logfile):
     plt.close()
     
 def MakeMonitorPlotOutside(name,logfile):
-    global plot_amount
+    global plt_settings
     # Read each line from the provided file object
     timestamps = []
     temperatures = []
@@ -203,21 +217,21 @@ def MakeMonitorPlotOutside(name,logfile):
         humidities.append(float(humidity))
         
                   
-    last_100_timestamps = timestamps[-plot_amount:]
-    last_100_temperatures = temperatures[-plot_amount:]
-    last_100_humidities = humidities[-plot_amount:]
+    last_100_timestamps = timestamps[-plt_settings["outside"]["amount"]:]
+    last_100_temperatures = temperatures[-plt_settings["outside"]["amount"]:]
+    last_100_humidities = humidities[-plt_settings["outside"]["amount"]:]
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
-    ax1.set_ylim(0, 50)
+    ax1.set_ylim(plt_settings["outside"]["ylimit_ax1_min"], plt_settings["outside"]["ylimit_ax1_max"])
     ax1.set_ylabel('Temperature in °C', color='r', fontsize=12)
     ax1.tick_params(axis='y', labelcolor='r', labelsize=10)
         
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
-    ax2.set_ylim(0, 100)
+    ax2.set_ylim(plt_settings["outside"]["ylimit_ax2_min"], plt_settings["outside"]["ylimit_ax2_max"])
     ax2.set_ylabel('Humidity in %', color='b', fontsize=12)
     ax2.tick_params(axis='y', labelcolor='b', labelsize=10)
 

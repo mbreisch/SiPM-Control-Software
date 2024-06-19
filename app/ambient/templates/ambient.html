@@ -84,19 +84,21 @@
             </script>
         </div>
 
-        <div id="setWindow">
-            <input type="text" id="plotAmount1" placeholder="Enter plot amount">
-            <button onclick="set_plot_amount(1)">Set</button>
-        </div>
+        <div id="setWindowOV">
+            <div id="SetCoolerPlot">
+                <input type="number" id="plotAmount1" placeholder="Enter plot amount">
+                <button onclick="set_plot_amount(1)">Set</button>
+            </div>
 
-        <div id="setWindow">
-            <input type="text" id="plotAmount2" placeholder="Enter plot amount">
-            <button onclick="set_plot_amount(2)">Set</button>
-        </div>
+            <div id="SetOutsidePlot">
+                <input type="number" id="plotAmount2" placeholder="Enter plot amount">
+                <button onclick="set_plot_amount(2)">Set</button>
+            </div>
 
-        <div id="setWindow">
-            <input type="text" id="plotAmount3" placeholder="Enter plot amount">
-            <button onclick="set_plot_amount(3)">Set</button>
+            <div id="SetDarkboxPlot">
+                <input type="number" id="plotAmount3" placeholder="Enter plot amount">
+                <button onclick="set_plot_amount(3)">Set</button>
+            </div>
         </div>
     </body>
 {% endblock %}
