@@ -23,6 +23,8 @@ def ambient_home():
 
 ambient_bp._title="Ambiemt Monitoring"
 
+plot_amount = 100
+
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
     if not os.path.exists(f'{ambient_bp.static_folder}/cooler.txt'):
@@ -82,8 +84,15 @@ def update_outside():
             time.sleep(0.1)      
         
     return jsonify(success=True)
+
+@ambient_bp.route("/set_plot_amount", methods=["POST"])
+def set_plot_amount():
+    global plot_amount
+    plot_amount = int(request.json["plot_amount"])
+    return jsonify(success=True)
     
 def MakeMonitorPlotCooler(name,logfile):
+    global plot_amount
     # Read each line from the provided file object
     timestamps = []
     temperatures = []
@@ -100,9 +109,9 @@ def MakeMonitorPlotCooler(name,logfile):
         humidities.append(float(humidity))
         
                   
-    last_100_timestamps = timestamps[-100:]
-    last_100_temperatures = temperatures[-100:]
-    last_100_humidities = humidities[-100:]
+    last_100_timestamps = timestamps[-plot_amount:]
+    last_100_temperatures = temperatures[-plot_amount:]
+    last_100_humidities = humidities[-plot_amount:]
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
@@ -130,6 +139,7 @@ def MakeMonitorPlotCooler(name,logfile):
     plt.close()
     
 def MakeMonitorPlotDarkbox(name,logfile):
+    global plot_amount
     # Read each line from the provided file object
     timestamps = []
     temperatures = []
@@ -146,9 +156,9 @@ def MakeMonitorPlotDarkbox(name,logfile):
         humidities.append(float(humidity))
         
                   
-    last_100_timestamps = timestamps[-100:]
-    last_100_temperatures = temperatures[-100:]
-    last_100_humidities = humidities[-100:]
+    last_100_timestamps = timestamps[-plot_amount:]
+    last_100_temperatures = temperatures[-plot_amount:]
+    last_100_humidities = humidities[-plot_amount:]
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
@@ -176,6 +186,7 @@ def MakeMonitorPlotDarkbox(name,logfile):
     plt.close()
     
 def MakeMonitorPlotOutside(name,logfile):
+    global plot_amount
     # Read each line from the provided file object
     timestamps = []
     temperatures = []
@@ -192,9 +203,9 @@ def MakeMonitorPlotOutside(name,logfile):
         humidities.append(float(humidity))
         
                   
-    last_100_timestamps = timestamps[-100:]
-    last_100_temperatures = temperatures[-100:]
-    last_100_humidities = humidities[-100:]
+    last_100_timestamps = timestamps[-plot_amount:]
+    last_100_temperatures = temperatures[-plot_amount:]
+    last_100_humidities = humidities[-plot_amount:]
     
     # Plot timestamp vs value for each entry
     fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)

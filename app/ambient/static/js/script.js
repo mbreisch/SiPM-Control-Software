@@ -31,3 +31,15 @@ async function update_outside(){
         success: function(response) {} 
     });
 }
+
+function set_plot_amount(){
+    var amount = document.getElementById("plot_amount").value;
+    $.ajax("set_plot_amount", {
+        contentType: "application/json",
+        type: "POST",
+        data: JSON.stringify({
+            amount: amount
+        }),
+        success: function(response) {}
+    });
+}

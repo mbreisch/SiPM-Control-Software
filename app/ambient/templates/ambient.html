@@ -25,62 +25,78 @@
             }, 4000);
         </script>
 
-    <div id="IDambient" class="Ambient">
-        <div id="IDimageCooler">
+        <div id="IDambient" class="Ambient">
+            <div id="IDimageCooler">
             <img id="Cooler" src="{{ url_for('ambient.static', filename='Ambient_cooler.png') }}" alt="Ambient_cooler" width="600px" height="400px" />
-        </div>
-        <script>
+            </div>
+            <script>
             function refreshCooler() {
                 const img = "{{ url_for('ambient.static', filename='Ambient_cooler.png') }}";
                 reloadImg(img)
                 .then(() => {
-                    console.log("Refreshing Cooler Image at: " + new Date().toLocaleTimeString());
+                console.log("Refreshing Cooler Image at: " + new Date().toLocaleTimeString());
                 })
                 .catch(error => {
-                    console.error("Failed to load Cooler Image. Retrying...");
+                console.error("Failed to load Cooler Image. Retrying...");
                 }); 
             }
             setTimeout(() => {
                 setInterval(refreshCooler, 5000);  // Starts after 5 seconds
             }, 1000);
-        </script>
+            </script>
 
-        <div id="IDimageOutside">
+            <div id="IDimageOutside">
             <img id="Outside" src="{{ url_for('ambient.static', filename='Ambient_outside.png') }}" alt="Ambient_outside" width="600px" height="400px" />
-        </div>
-        <script>
+            </div>
+            <script>
             function refreshOutside() {
                 const img = "{{ url_for('ambient.static', filename='Ambient_outside.png') }}";
                 reloadImg(img)
                 .then(() => {
-                    console.log("Refreshing Outside Image at: " + new Date().toLocaleTimeString());
+                console.log("Refreshing Outside Image at: " + new Date().toLocaleTimeString());
                 })
                 .catch(error => {
-                    console.error("Failed to load Outside Image. Retrying...");
+                console.error("Failed to load Outside Image. Retrying...");
                 }); 
             }
             setTimeout(() => {
                 setInterval(refreshOutside, 5000);  // Starts after 5 seconds
             }, 3000);
-        </script>
+            </script>
 
-        <div id="IDimageDarkbox">
+            <div id="IDimageDarkbox">
             <img id="Darkbox" src="{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}" alt="Ambient_darkbox" width="600px" height="400px" />
-        </div>
-        <script>
+            </div>
+            <script>
             function refreshDarkbox() {
                 const img = "{{ url_for('ambient.static', filename='Ambient_darkbox.png') }}";
                 reloadImg(img)
                 .then(() => {
-                    console.log("Refreshing Darkbox Image at: " + new Date().toLocaleTimeString());
+                console.log("Refreshing Darkbox Image at: " + new Date().toLocaleTimeString());
                 })
                 .catch(error => {
-                    console.error("Failed to load Darkbox Image. Retrying...");
+                console.error("Failed to load Darkbox Image. Retrying...");
                 }); 
             }
             setTimeout(() => {
                 setInterval(refreshDarkbox, 5000);  // Starts after 10 seconds
             }, 5000);
-        </script>
+            </script>
+        </div>
+
+        <div id="setWindow">
+            <input type="text" id="plotAmount1" placeholder="Enter plot amount">
+            <button onclick="set_plot_amount(1)">Set</button>
+        </div>
+
+        <div id="setWindow">
+            <input type="text" id="plotAmount2" placeholder="Enter plot amount">
+            <button onclick="set_plot_amount(2)">Set</button>
+        </div>
+
+        <div id="setWindow">
+            <input type="text" id="plotAmount3" placeholder="Enter plot amount">
+            <button onclick="set_plot_amount(3)">Set</button>
+        </div>
     </body>
 {% endblock %}
