@@ -109,8 +109,8 @@ def MakeMonitorPlotCooler(name,logfile):
     ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
     ax1.set_ylim(0, 50)
-    ax1.set_ylabel('Temperature in °C', color='r', fontsize=16)
-    ax1.tick_params(axis='y', labelcolor='r', labelsize=14)
+    ax1.set_ylabel('Temperature in °C', color='r', fontsize=12)
+    ax1.tick_params(axis='y', labelcolor='r', labelsize=10)
         
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
