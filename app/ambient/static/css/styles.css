@@ -6,6 +6,7 @@ body {
     background-image: url('/control/static/images/background_hex.jpg');
 }
 
+/* Images */
 #IDimageDarkbox, #IDimageOutside, #IDimageCooler {
     display: flex;
     justify-content: center;
@@ -21,21 +22,50 @@ body {
     height: 100%;
 }
 
+/* Plot window settings */
 .setWindowOV {
     display: flex;
     justify-content: space-around; 
 }
 
-#SetCoolerPlot, #SetOutsidePlot, #SetDarkboxPlot {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+.setWindowOV input{
+    height: 30px;
+    width: 120px;
 }
 
+.setWindowOV button {
+    margin-left : 5px; /* Adds space between input and button */
+    color: black;
+    background-color: white;
+}
+
+/* Plot yaxis settings */
 .setLimitOV {
     display: flex;
     justify-content: space-around; 
+}
+
+.setLimitOV input{
+    height: 30px;
+    width: 175px;
+}
+
+.setCoolerLimit button {
+    margin-left : 15px; /* Adds space between input and button */
+    color: black;
+    background-color: white;
+}
+
+.setDarkboxLimit button {
+    margin-left : 15px; /* Adds space between input and button */
+    color: black;
+    background-color: white;
+}
+
+.setOutsideLimit button {
+    margin-left : 15px; /* Adds space between input and button */
+    color: black;
+    background-color: white;
 }
 
 #setCoolerLimit, #setDarkboxLimit, #setOutsideLimit {
@@ -65,33 +95,10 @@ body {
     height: 30%;
 }
 
-.setWindowOV button {
-    margin-left : 5px; /* Adds space between input and button */
-    color: black;
-    background-color: white;
-}
-
-.setCoolerLimit button {
-    margin-left : 5px; /* Adds space between input and button */
-    color: black;
-    background-color: white;
-}
-
-.setDarkboxLimit button {
-    margin-left : 5px; /* Adds space between input and button */
-    color: black;
-    background-color: white;
-}
-
-.setOutsideLimit button {
-    margin-left : 5px; /* Adds space between input and button */
-    color: black;
-    background-color: white;
-}
-
+/* LED settings */
 .led {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     display: inline-block;
     margin-left: 10px;
