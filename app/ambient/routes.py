@@ -10,6 +10,7 @@ import shutil
 from datetime import datetime
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
+from termcolor import colored as color
 
 from . import ambient_bp
 
@@ -101,10 +102,13 @@ def set_plot_settings():
     subname=request.json["subname"]
     id=request.json["id"]
     if id == -1:
-        plt_settings[name][subname] = None
+        value = None
+        plt_settings[name][subname] = value
     else:
         value=float(request.json["value"])
         plt_settings[name][subname] = value
+        
+    print(color("red",f"Setting {name} {subname} to {value}"))
 
     return jsonify(success=True)
     
