@@ -14,8 +14,8 @@
             inputs.forEach(function(input) {
                 var subname = input.id;
                 var type = id.charAt(0);
-                set_plot_settings(type, id, -1); // Set to auto mode
-                console.log("Setting " + id + " to auto mode " + type + " at: " + new Date().toLocaleTimeString());
+                set_plot_settings(type, subname, -1); // Set to auto mode
+                console.log("Setting " + subname + " to auto mode " + type + " at: " + new Date().toLocaleTimeString());
             });
         };
     </script>
