@@ -88,3 +88,16 @@ body {
     color: black;
     background-color: white;
 }
+
+.led {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+    background-color: grey; /* Default off state */
+}
+
+.led.on {
+    background-color: green; /* On state */
+}

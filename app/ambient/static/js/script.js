@@ -33,16 +33,29 @@ async function update_outside(){
 }
 
 async function set_plot_settings(name, subname, id){
+    let value;
     if (id == -1){
-        var value = -1;
+        value = -1;
     }else{
-        var value = document.getElementById(subname).value;
+        value = document.getElementById(subname).value;
     }
 
     $.ajax("set_plot_settings", {
         contentType: "application/json",
         data: JSON.stringify({ name: name, subname: subname, value: value, id: id}),
         type: "POST",
-        success: function(response) {}
+        success: function(response) {
+            // Update LED indicators based on the response
+            if (id === 0) { // Set mode
+                document.getElementById(`led-${subname}`).classList.add('on');
+                document.getElementById(`led-${subname}-auto`).classList.remove('on');
+            } else if (id === -1) { // Auto mode
+                document.getElementById(`led-${subname}`).classList.remove('on');
+                document.getElementById(`led-${subname}-auto`).classList.add('on');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error setting plot settings: ", status, error);
+        }
     });
 }
