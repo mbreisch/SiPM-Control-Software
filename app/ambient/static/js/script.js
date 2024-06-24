@@ -33,7 +33,11 @@ async function update_outside(){
 }
 
 async function set_plot_settings(name, subname){
-    var value = document.getElementById(subname).value;
+    if (subname == 'None'){
+        var value = -1;
+    }else{
+        var value = document.getElementById(subname).value;
+    }
 
     $.ajax("set_plot_settings", {
         contentType: "application/json",

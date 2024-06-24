@@ -95,13 +95,16 @@ def update_outside():
 
 @ambient_bp.route("/set_plot_settings", methods=["POST"])
 def set_plot_settings():
+    global plt_settings
+    
     name=request.json["name"]
     subname=request.json["subname"]
-    value=float(request.json["value"])
+    if subname == 'None':
+        plt_settings[name][subname] = None
+    else:
+        value=float(request.json["value"])
+        plt_settings[name][subname] = value
 
-    global plt_settings
-    plt_settings[name][subname] = value
-    
     return jsonify(success=True)
     
 def MakeMonitorPlotCooler(name,logfile):
