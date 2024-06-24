@@ -32,8 +32,8 @@ async function update_outside(){
     });
 }
 
-async function set_plot_settings(name, subname){
-    if (subname == 'None'){
+async function set_plot_settings(name, subname, id){
+    if (id == -1){
         var value = -1;
     }else{
         var value = document.getElementById(subname).value;
@@ -41,7 +41,7 @@ async function set_plot_settings(name, subname){
 
     $.ajax("set_plot_settings", {
         contentType: "application/json",
-        data: JSON.stringify({ name: name, subname: subname, value: value }),
+        data: JSON.stringify({ name: name, subname: subname, value: value, id: id}),
         type: "POST",
         success: function(response) {}
     });

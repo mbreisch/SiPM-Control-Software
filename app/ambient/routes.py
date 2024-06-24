@@ -99,7 +99,8 @@ def set_plot_settings():
     
     name=request.json["name"]
     subname=request.json["subname"]
-    if subname == 'None':
+    id=request.json["id"]
+    if id == -1:
         plt_settings[name][subname] = None
     else:
         value=float(request.json["value"])
