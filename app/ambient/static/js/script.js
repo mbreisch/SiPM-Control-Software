@@ -4,7 +4,6 @@ async function reloadImg(url) {
       .forEach(img => img.src = url);
 }
 
-
 async function update_cooler() {
     console.log("Updating Cooler Ambients");
     $.ajax("update_cooler", {
