@@ -133,7 +133,7 @@ def MakeMonitorPlotCooler(name,logfile):
     last_100_humidities = humidities[-int(plt_settings["cooler"]["camount"]):]
     
     # Plot timestamp vs value for each entry
-    fig, ax1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
+    fig, ax1 = plt.subplots(figsize=(800/100,600/100), dpi=100)
     ax1.plot(last_100_timestamps, last_100_temperatures, color='r', marker='', linestyle='-', markersize=3, label=f"Temperature")
     ax1.set_xlabel('UNIX Timestamp in ms')
     ax1.set_ylim(plt_settings["cooler"]["ylimit_cax1_min"], plt_settings["cooler"]["ylimit_cax1_max"])
