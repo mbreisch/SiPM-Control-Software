@@ -59,3 +59,12 @@ async function set_plot_settings(name, subname, id){
         }
     });
 }
+
+window.onload = function() {
+    var inputs = document.querySelectorAll('input[type="number"]');
+    inputs.forEach(function(input) {
+        var id = input.id;
+        var type = id.charAt(0);
+        set_plot_settings(type, id, -1); // Set to auto mode
+    });
+};
