@@ -139,12 +139,14 @@ def MakeMonitorPlotCooler(name,logfile):
     ax1.set_ylim(plt_settings["cooler"]["ylimit_cax1_min"], plt_settings["cooler"]["ylimit_cax1_max"])
     ax1.set_ylabel('Temperature in °C', color='r', fontsize=12)
     ax1.tick_params(axis='y', labelcolor='r', labelsize=10)
+    ax1.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.2f'))
         
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
     ax2.set_ylim(plt_settings["cooler"]["ylimit_cax2_min"], plt_settings["cooler"]["ylimit_cax2_max"])
     ax2.set_ylabel('Humidity in %', color='b', fontsize=12)
     ax2.tick_params(axis='y', labelcolor='b', labelsize=10)
+    ax2.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))
 
     # Combine all legends
     lines1, labels1 = ax1.get_legend_handles_labels()
@@ -188,12 +190,14 @@ def MakeMonitorPlotDarkbox(name,logfile):
     ax1.set_ylim(plt_settings["darkbox"]["ylimit_dax1_min"], plt_settings["darkbox"]["ylimit_dax1_max"])
     ax1.set_ylabel('Temperature in °C', color='r', fontsize=12)
     ax1.tick_params(axis='y', labelcolor='r', labelsize=10)
+    ax1.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.2f'))
         
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
     ax2.set_ylim(plt_settings["darkbox"]["ylimit_dax2_min"], plt_settings["darkbox"]["ylimit_dax2_max"])
     ax2.set_ylabel('Humidity in %', color='b', fontsize=12)
     ax2.tick_params(axis='y', labelcolor='b', labelsize=10)
+    ax2.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))
 
     # Combine all legends
     lines1, labels1 = ax1.get_legend_handles_labels()
@@ -237,12 +241,14 @@ def MakeMonitorPlotOutside(name,logfile):
     ax1.set_ylim(plt_settings["outside"]["ylimit_oax1_min"], plt_settings["outside"]["ylimit_oax1_max"])
     ax1.set_ylabel('Temperature in °C', color='r', fontsize=12)
     ax1.tick_params(axis='y', labelcolor='r', labelsize=10)
+    ax1.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.2f'))
         
     ax2 = ax1.twinx()
     ax2.plot(last_100_timestamps, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
     ax2.set_ylim(plt_settings["outside"]["ylimit_oax2_min"], plt_settings["outside"]["ylimit_oax2_max"])
     ax2.set_ylabel('Humidity in %', color='b', fontsize=12)
     ax2.tick_params(axis='y', labelcolor='b', labelsize=10)
+    ax2.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))
 
     ax1.grid()
     plt.title(f'Ambient {name}')
