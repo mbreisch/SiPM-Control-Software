@@ -9,15 +9,29 @@
     <script src="{{ url_for('ambient.static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('ambient.static', filename='js/script.js') }}"></script>
     <script>
-        window.onload = function() {
-            var inputs = document.querySelectorAll('input[type="number"]');
-            inputs.forEach(function(input) {
-                var subname = input.id;
-                var type = id.charAt(0);
-                set_plot_settings(type, subname, -1); // Set to auto mode
-                console.log("Setting " + subname + " to auto mode " + type + " at: " + new Date().toLocaleTimeString());
+        function setAllToAuto() {
+            const settings = [
+                { name: 'cooler', subname: 'ylimit_cax1_min' },
+                { name: 'cooler', subname: 'ylimit_cax1_max' },
+                { name: 'cooler', subname: 'ylimit_cax2_min' },
+                { name: 'cooler', subname: 'ylimit_cax2_max' },
+                { name: 'outside', subname: 'ylimit_oax1_min' },
+                { name: 'outside', subname: 'ylimit_oax1_max' },
+                { name: 'outside', subname: 'ylimit_oax2_min' },
+                { name: 'outside', subname: 'ylimit_oax2_max' },
+                { name: 'darkbox', subname: 'ylimit_dax1_min' },
+                { name: 'darkbox', subname: 'ylimit_dax1_max' },
+                { name: 'darkbox', subname: 'ylimit_dax2_min' },
+                { name: 'darkbox', subname: 'ylimit_dax2_max' }
+            ];
+
+            settings.forEach(setting => {
+                set_plot_settings(setting.name, setting.subname, -1);
             });
-        };
+        }
+
+        // Call setAllToAuto when the page loads
+        window.onload = setAllToAuto;
     </script>
 </head>
 
