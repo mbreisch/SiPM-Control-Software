@@ -108,7 +108,7 @@ def set_plot_settings():
         value=float(request.json["value"])
         plt_settings[name][subname] = value
         
-    print(colored("red",f"Setting {name} {subname} to {value}"))
+    print(colored(f"Setting {name} {subname} to {value}","red"))
 
     return jsonify(success=True)
     
