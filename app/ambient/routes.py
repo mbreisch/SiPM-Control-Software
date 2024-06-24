@@ -153,7 +153,7 @@ def MakeMonitorPlotCooler(name,logfile):
 
     ax1.grid()
     plt.title(f'Ambient {name}')
-    plt.savefig(f'{ambient_bp.static_folder}/Ambient_{name}.png')
+    plt.savefig(f'{ambient_bp.static_folder}/Ambient_{name}.png', dpi=100, border_inches='tight')
     time.sleep(2)   
     plt.close()
     
@@ -246,6 +246,6 @@ def MakeMonitorPlotOutside(name,logfile):
 
     ax1.grid()
     plt.title(f'Ambient {name}')
-    plt.savefig(f'{ambient_bp.static_folder}/Ambient_{name}.png')
+    plt.savefig(f'{ambient_bp.static_folder}/Ambient_{name}.png', dpi=100, border_inches='tight')
     time.sleep(2)  
     plt.close()
