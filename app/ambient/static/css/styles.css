@@ -96,10 +96,10 @@ body {
     display: inline-block;
     margin-left: 10px;
     background-color: grey; /* Default off state */
-    border-color: rgb(85, 85, 85);
+    box-shadow: 0 0 5px #404040;
 }
 
 .led.on {
     background-color: green; /* On state */
-    border-color: rgb(85, 85, 85);
+    box-shadow: 0 0 5px #014c01;
 }
