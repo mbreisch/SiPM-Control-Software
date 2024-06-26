@@ -123,7 +123,7 @@ def MakeMonitorPlotCooler(name,logfile):
         line = line.strip()
         
         # Split the line into entries by the semicolon
-        timestamp,name,temp_hum = line.split(":") #["ts1,v1","ts2,v2",...]
+        timestamp,name,temp_hum = line.split(":")
         temperature, humidity = temp_hum.strip("\n").split(";")
         timestamps.append(float(timestamp))
         temperatures.append(float(temperature))
@@ -169,7 +169,7 @@ def MakeMonitorPlotDarkbox(name,logfile):
         line = line.strip()
         
         # Split the line into entries by the semicolon
-        timestamp,name,temp_hum = line.split(":") #["ts1,v1","ts2,v2",...]
+        timestamp,name,temp_hum = line.split(":") 
         temperature, humidity = temp_hum.strip("\n").split(";")
         timestamps.append(float(timestamp))
         temperatures.append(float(temperature))
@@ -215,7 +215,7 @@ def MakeMonitorPlotOutside(name,logfile):
         line = line.strip()
         
         # Split the line into entries by the semicolon
-        timestamp,name,temp_hum = line.split(":") #["ts1,v1","ts2,v2",...]
+        timestamp,name,temp_hum = line.split(":") 
         temperature, humidity = temp_hum.strip("\n").split(";")
         timestamps.append(float(timestamp))
         temperatures.append(float(temperature))
