@@ -50,6 +50,13 @@ def init_temperature():
         original_filename = os.path.basename(source_path)
         new_filename = f"{original_filename[:-4]}_{timestamp}.log"
         destination_path = os.path.join(destination_directory, new_filename)
+        if not os.path.isfile(source_path):
+            raise FileNotFoundError(f"Source file does not exist: {source_path}")
+    
+        # Check if destination directory exists
+        if not os.path.isdir(destination_path):
+            raise NotADirectoryError(f"Destination directory does not exist: {destination_path}")
+      
         shutil.copy(source_path, destination_path)
         os.remove(source_path)
     
