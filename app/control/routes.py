@@ -15,7 +15,7 @@ from w1thermsensor import W1ThermSensor, Unit
 
 from . import control_bp
 
-#sys.path.append("./app/control/hw_scripts")
+sys.path.append("./app/control/hw_scripts")
 sys.path.append(control_bp.static_folder)
 
 @control_bp.route('/',methods=["GET","POST"])
