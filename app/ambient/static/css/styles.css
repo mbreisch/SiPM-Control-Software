@@ -110,3 +110,16 @@ body {
     background-color: green; /* On state */
     box-shadow: 0 0 5px #014c01;
 }
+
+.container {
+    text-align: center;
+}
+
+.status-box {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 0 auto; /* Center the box horizontally */
+}
