@@ -153,10 +153,10 @@ def MakeMonitorPlotCooler(name,logfile):
     ax_cool_2.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))
 
     ax_cool_1.grid()
-    plt.title(f'Ambient {name}')
+    fig_cool.suptitle(f'Ambient {name}')
     fig_cool.savefig(f'{ambient_bp.static_folder}/Ambient_{name}.png', dpi=100)
     time.sleep(2)  
-    plt.close()
+    plt.close(fig_cool)
     
 def MakeMonitorPlotDarkbox(name,logfile):
     global plt_settings
@@ -199,10 +199,10 @@ def MakeMonitorPlotDarkbox(name,logfile):
     ax_dark_2.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))
 
     ax_dark_1.grid()
-    plt.title(f'Ambient {name}')
+    fig_dark.suptitle(f'Ambient {name}')
     fig_dark.savefig(f'{ambient_bp.static_folder}/Ambient_{name}.png', dpi=100, border_inches='tight')
     time.sleep(2)  
-    plt.close()
+    plt.close(fig_dark)
     
 def MakeMonitorPlotOutside(name,logfile):
     global plt_settings
@@ -245,7 +245,7 @@ def MakeMonitorPlotOutside(name,logfile):
     ax_out_2.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))
 
     ax_out_1.grid()
-    plt.title(f'Ambient {name}')
+    fig_out.suptitle(f'Ambient {name}')
     fig_out.savefig(f'{ambient_bp.static_folder}/Ambient_{name}.png', dpi=100, border_inches='tight')
     time.sleep(2)  
-    plt.close()
+    plt.close(fig_out)
