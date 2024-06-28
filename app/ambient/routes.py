@@ -11,6 +11,7 @@ from datetime import datetime
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 from termcolor import colored
+import requests
 
 from . import ambient_bp
 
@@ -111,6 +112,23 @@ def set_plot_settings():
     print(colored(f"Setting {name} {subname} to {value}","red"))
 
     return jsonify(success=True)
+    
+def get_status():
+    SERVER_IP = "templogpi.am14.uni-tuebingen.de"
+    SERVER_PORT = 5000
+    
+    try:
+        response = requests.get(f'http://{SERVER_IP}:{SERVER_PORT}/status')
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching status: {e}")
+        return None    
+    
+@ambient_bp.route("/get_relay_status", methods=["POST"])
+def get_relay_status():
+    status = get_status()
+    print(status)
+    return jsonify(status)
     
 def MakeMonitorPlotCooler(name,logfile):
     global plt_settings
