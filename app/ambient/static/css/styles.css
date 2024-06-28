@@ -43,6 +43,7 @@ body {
 .setLimitOV {
     display: flex;
     justify-content: space-around; 
+    margin-bottom: 40px;
 }
 
 .setLimitOV input{
@@ -112,14 +113,11 @@ body {
 }
 
 .container {
-    text-align: center;
-}
-
-.status-box {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 400px;
-    margin: 0 auto; /* Center the box horizontally */
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
+    background-color: rgb(77, 77, 77);
+    border: 2px solid rgb(53, 53, 53);
+    width: fit-content;
+    margin: 0 auto;
 }
