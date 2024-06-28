@@ -46,13 +46,14 @@ def init_temperature():
     destination_directory = "./backup_logs/"
     
     if os.path.exists(source_path):
+        if os.path.exists(destination_directory) == False:
+            os.makedirs(destination_directory)
         timestamp = round(time.time() * 1000)
         original_filename = os.path.basename(source_path)
         new_filename = f"{original_filename[:-4]}_{timestamp}.log"
         destination_path = os.path.join(destination_directory, new_filename)
-        if os.path.exists(source_path):
-            shutil.copy(source_path, destination_path)
-            os.remove(source_path)
+        shutil.copy(source_path, destination_path)
+        os.remove(source_path)
     
     control_bp.sensors=[]
     sensors=[0]*control_bp.pixel
