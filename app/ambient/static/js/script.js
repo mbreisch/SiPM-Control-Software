@@ -33,7 +33,7 @@ async function update_outside(){
 
 async function fetchStatus() {
     try {
-        const response = await fetch('http://templogpi.am14.uni-tuebingen.de:5000/status', { mode: 'no-cors' });
+        const response = await fetch('http://templogpi.am14.uni-tuebingen.de:5000/status');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
