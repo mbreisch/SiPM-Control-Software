@@ -31,6 +31,18 @@ async function update_outside(){
     });
 }
 
+async function get_relay_status(){
+    $.ajax("get_relay_status", {
+        contentType: "application/json",
+        type: "POST",
+        success: function(response) {
+            document.getElementById("relay-status").innerHTML = response;
+            console.log(response);
+        }
+    });
+
+}
+
 async function set_plot_settings(name, subname, id){
     let value;
     if (id == -1){
