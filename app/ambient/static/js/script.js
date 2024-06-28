@@ -31,16 +31,20 @@ async function update_outside(){
     });
 }
 
-async function get_relay_status(){
-    $.ajax("get_relay_status", {
-        contentType: "application/json",
-        type: "POST",
-        success: function(response) {
-            document.getElementById("relay-status").innerHTML = response;
-            console.log(response);
+async function fetchStatus() {
+    try {
+        const response = await fetch('http://templogpi.am14.uni-tuebingen.de:5000/status');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-    });
-
+        const data = await response.json();
+        document.getElementById('countdown').textContent = data.countdown;
+        document.getElementById('relay').textContent = data.relay;
+    } catch (error) {
+        console.error('Fetch error:', error);
+        document.getElementById('countdown').textContent = 'Error';
+        document.getElementById('relay').textContent = 'Error';
+    }
 }
 
 async function set_plot_settings(name, subname, id){

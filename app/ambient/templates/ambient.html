@@ -226,12 +226,14 @@
             </div>
         </div>
     </div>
-    <div id="RelayStatus">
-        <h2>Relay Status</h2>
-        <div id="RelayStatus1">
-            <h3>Fan Relay Status</h3>
-            <output type="number" id="setInterval(get_relay_status,1)" name="FanRelayStatus"></output>
-        </div>
+    <div id="status">
+        <h1>Server Status</h1>
+        <p>Countdown: <span id="countdown">Loading...</span></p>
+        <p>Relay: <span id="relay">Loading...</span></p>
     </div>
+    <script>
+        setInterval(fetchStatus, 1000);
+        fetchStatus();
+    </script>
 </body>
 {% endblock %}
