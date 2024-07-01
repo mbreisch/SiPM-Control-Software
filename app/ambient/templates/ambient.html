@@ -94,17 +94,17 @@
     <div class="setWindowOV">
         <div id="SetCoolerPlot">
             <input type="number" id="camount" placeholder="Enter plot amount">
-            <button onclick="set_plot_settings('cooler','camount',-2)">Set</button>
+            <button onclick="set_plot_settings('cooler','camount',-2,-2)">Set</button>
         </div>
 
         <div id="SetOutsidePlot">
             <input type="number" id="oamount" placeholder="Enter plot amount">
-            <button onclick="set_plot_settings('outside','oamount',-2)">Set</button>
+            <button onclick="set_plot_settings('outside','oamount',-2,-2)">Set</button>
         </div>
 
         <div id="SetDarkboxPlot">
             <input type="number" id="damount" placeholder="Enter plot amount">
-            <button onclick="set_plot_settings('darkbox','damount',-2)">Set</button>
+            <button onclick="set_plot_settings('darkbox','damount',-2,-2)">Set</button>
         </div>
     </div>
 
@@ -115,30 +115,30 @@
         <div class="setCoolerLimit">
             <div id="setCoolerLimit_ax1_min">
                 <input type="number" id="ylimit_cax1_min" placeholder="Enter C y_min Temperature">
-                <button onclick="set_plot_settings('cooler', 'ylimit_cax1_min', 0)">Set</button>
+                <button onclick="set_plot_settings('cooler', 'ylimit_cax1_min', 0, document.getElementById('ylimit_cax1_min').value)">Set</button>
                 <div class="led" id="led-ylimit_cax1_min"></div>
-                <button onclick="set_plot_settings('cooler', 'ylimit_cax1_min', -1)">Auto</button>
+                <button onclick="set_plot_settings('cooler', 'ylimit_cax1_min', -1, -1)">Auto</button>
                 <div class="led" id="led-ylimit_cax1_min-auto"></div>
             </div>
             <div id="setCoolerLimit_ax1_max">
                 <input type="number" id="ylimit_cax1_max" placeholder="Enter C y_max Temperature">
-                <button onclick="set_plot_settings('cooler', 'ylimit_cax1_max', 0)">Set</button>
+                <button onclick="set_plot_settings('cooler', 'ylimit_cax1_max', 0, document.getElementById('ylimit_cax1_max').value)">Set</button>
                 <div class="led" id="led-ylimit_cax1_max"></div>
-                <button onclick="set_plot_settings('cooler', 'ylimit_cax1_max', -1)">Auto</button>
+                <button onclick="set_plot_settings('cooler', 'ylimit_cax1_max', -1, -1)">Auto</button>
                 <div class="led" id="led-ylimit_cax1_max-auto"></div>
             </div>
             <div id="setCoolerLimit_ax2_min">
                 <input type="number" id="ylimit_cax2_min" placeholder="Enter C y_min Humidity">
-                <button onclick="set_plot_settings('cooler', 'ylimit_cax2_min', 0)">Set</button>
+                <button onclick="set_plot_settings('cooler', 'ylimit_cax2_min', 0, document.getElementById('ylimit_cax2_min').value)">Set</button>
                 <div class="led" id="led-ylimit_cax2_min"></div>
-                <button onclick="set_plot_settings('cooler', 'ylimit_cax2_min', -1)">Auto</button>
+                <button onclick="set_plot_settings('cooler', 'ylimit_cax2_min', -1, -1)">Auto</button>
                 <div class="led" id="led-ylimit_cax2_min-auto"></div>
             </div>
             <div id="setCoolerLimit_ax2_max">
                 <input type="number" id="ylimit_cax2_max" placeholder="Enter C y_max Humidity">
-                <button onclick="set_plot_settings('cooler', 'ylimit_cax2_max', 0)">Set</button>
+                <button onclick="set_plot_settings('cooler', 'ylimit_cax2_max', 0, document.getElementById('ylimit_cax2_max').value)">Set</button>
                 <div class="led" id="led-ylimit_cax2_max"></div>
-                <button onclick="set_plot_settings('cooler', 'ylimit_cax2_max', -1)">Auto</button>
+                <button onclick="set_plot_settings('cooler', 'ylimit_cax2_max', -1, -1)">Auto</button>
                 <div class="led" id="led-ylimit_cax2_max-auto"></div>
             </div>
         </div>
@@ -146,30 +146,30 @@
         <div class="setOutsideLimit">
             <div id="setOutsideLimit_ax1_min">
                 <input type="number" id="ylimit_oax1_min" placeholder="Enter O y_min Temperature">
-                <button onclick="set_plot_settings('outside', 'ylimit_oax1_min', 0)">Set</button>
+                <button onclick="set_plot_settings('outside', 'ylimit_oax1_min', 0, document.getElementById('ylimit_oax1_min').value)">Set</button>
                 <div class="led" id="led-ylimit_oax1_min"></div>
-                <button onclick="set_plot_settings('outside', 'ylimit_oax1_min', -1)">Auto</button>
+                <button onclick="set_plot_settings('outside', 'ylimit_oax1_min', -1, -1)">Auto</button>
                 <div class="led" id="led-ylimit_oax1_min-auto"></div>
             </div>
             <div id="setOutsideLimit_ax1_max">
                 <input type="number" id="ylimit_oax1_max" placeholder="Enter O y_max Temperature">
-                <button onclick="set_plot_settings('outside', 'ylimit_oax1_max', 0)">Set</button>
+                <button onclick="set_plot_settings('outside', 'ylimit_oax1_max', 0, document.getElementById('ylimit_oax1_max').value)">Set</button>
                 <div class="led" id="led-ylimit_oax1_max"></div>
-                <button onclick="set_plot_settings('outside', 'ylimit_oax1_max', -1)">Auto</button>
+                <button onclick="set_plot_settings('outside', 'ylimit_oax1_max', -1, -1)">Auto</button>
                 <div class="led" id="led-ylimit_oax1_max-auto"></div>
             </div>
             <div id="setOutsideLimit_ax2_min">
                 <input type="number" id="ylimit_oax2_min" placeholder="Enter O y_min Humidity">
-                <button onclick="set_plot_settings('outside', 'ylimit_oax2_min', 0)">Set</button>
+                <button onclick="set_plot_settings('outside', 'ylimit_oax2_min', 0, document.getElementById('ylimit_oax2_min').value)">Set</button>
                 <div class="led" id="led-ylimit_oax2_min"></div>
-                <button onclick="set_plot_settings('outside', 'ylimit_oax2_min', -1)">Auto</button>
+                <button onclick="set_plot_settings('outside', 'ylimit_oax2_min', -1, -1)">Auto</button>
                 <div class="led" id="led-ylimit_oax2_min-auto"></div>
             </div>
             <div id="setOutsideLimit_ax2_max">
                 <input type="number" id="ylimit_oax2_max" placeholder="Enter O y_max Humidity">
-                <button onclick="set_plot_settings('outside', 'ylimit_oax2_max', 0)">Set</button>
+                <button onclick="set_plot_settings('outside', 'ylimit_oax2_max', 0, document.getElementById('ylimit_oax2_max').value)">Set</button>
                 <div class="led" id="led-ylimit_oax2_max"></div>
-                <button onclick="set_plot_settings('outside', 'ylimit_oax2_max', -1)">Auto</button>
+                <button onclick="set_plot_settings('outside', 'ylimit_oax2_max', -1, -1)">Auto</button>
                 <div class="led" id="led-ylimit_oax2_max-auto"></div>
             </div>
         </div>
@@ -177,30 +177,30 @@
         <div class="setDarkboxLimit">
             <div id="setDarkboxLimit_ax1_min">
                 <input type="number" id="ylimit_dax1_min" placeholder="Enter D y_min Temperature">
-                <button onclick="set_plot_settings('darkbox', 'ylimit_dax1_min', 0)">Set</button>
+                <button onclick="set_plot_settings('darkbox', 'ylimit_dax1_min', 0, document.getElementById('ylimit_dax1_min').value)">Set</button>
                 <div class="led" id="led-ylimit_dax1_min"></div>
-                <button onclick="set_plot_settings('darkbox', 'ylimit_dax1_min', -1)">Auto</button>
+                <button onclick="set_plot_settings('darkbox', 'ylimit_dax1_min', -1, -1)">Auto</button>
                 <div class="led" id="led-ylimit_dax1_min-auto"></div>
             </div>
             <div id="setDarkboxLimit_ax1_max">
                 <input type="number" id="ylimit_dax1_max" placeholder="Enter D y_max Temperature">
-                <button onclick="set_plot_settings('darkbox', 'ylimit_dax1_max', 0)">Set</button>
+                <button onclick="set_plot_settings('darkbox', 'ylimit_dax1_max', 0, document.getElementById('ylimit_dax1_max').value)">Set</button>
                 <div class="led" id="led-ylimit_dax1_max"></div>
-                <button onclick="set_plot_settings('darkbox', 'ylimit_dax1_max', -1)">Auto</button>
+                <button onclick="set_plot_settings('darkbox', 'ylimit_dax1_max', -1, -1)">Auto</button>
                 <div class="led" id="led-ylimit_dax1_max-auto"></div>
             </div>
             <div id="setDarkboxLimit_ax2_min">
                 <input type="number" id="ylimit_dax2_min" placeholder="Enter D y_min Humidity">
-                <button onclick="set_plot_settings('darkbox', 'ylimit_dax2_min', 0)">Set</button>
+                <button onclick="set_plot_settings('darkbox', 'ylimit_dax2_min', 0, document.getElementById('ylimit_dax2_min').value)">Set</button>
                 <div class="led" id="led-ylimit_dax2_min"></div>
-                <button onclick="set_plot_settings('darkbox', 'ylimit_dax2_min', -1)">Auto</button>
+                <button onclick="set_plot_settings('darkbox', 'ylimit_dax2_min', -1, -1)">Auto</button>
                 <div class="led" id="led-ylimit_dax2_min-auto"></div>
             </div>
             <div id="setDarkboxLimit_ax2_max">
                 <input type="number" id="ylimit_dax2_max" placeholder="Enter D y_max Humidity">
-                <button onclick="set_plot_settings('darkbox', 'ylimit_dax2_max', 0)">Set</button>
+                <button onclick="set_plot_settings('darkbox', 'ylimit_dax2_max', 0, document.getElementById('ylimit_dax2_max').value)">Set</button>
                 <div class="led" id="led-ylimit_dax2_max"></div>
-                <button onclick="set_plot_settings('darkbox', 'ylimit_dax2_max', -1)">Auto</button>
+                <button onclick="set_plot_settings('darkbox', 'ylimit_dax2_max', -1, -1)">Auto</button>
                 <div class="led" id="led-ylimit_dax2_max-auto"></div>
             </div>
         </div>

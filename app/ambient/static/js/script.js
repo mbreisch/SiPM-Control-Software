@@ -47,14 +47,7 @@ async function fetchStatus() {
     }
 }
 
-async function set_plot_settings(name, subname, id){
-    let value;
-    if (id == -1){
-        value = -1;
-    }else{
-        value = document.getElementById(subname).value;
-    }
-
+async function set_plot_settings(name, subname, id, value){
     $.ajax("set_plot_settings", {
         contentType: "application/json",
         data: JSON.stringify({ name: name, subname: subname, value: value, id: id}),
@@ -68,7 +61,7 @@ async function set_plot_settings(name, subname, id){
                 document.getElementById(`led-${subname}`).classList.remove('on');
                 document.getElementById(`led-${subname}-auto`).classList.add('on');
             }
-            saveSettingToLocalStorage(name, subname, value, id);
+            saveSettingToLocalStorage(name, subname, id, value);
         },
         error: function(xhr, status, error) {
             console.error("Error setting plot settings: ", status, error);
@@ -77,14 +70,14 @@ async function set_plot_settings(name, subname, id){
 }
 
 
-function saveSettingToLocalStorage(name, subname, value, id) {
+function saveSettingToLocalStorage(name, subname, id, value) {
     const settings = JSON.parse(localStorage.getItem('settings')) || [];
     const settingIndex = settings.findIndex(setting => setting.subname === subname);
 
     if (settingIndex >= 0) {
-        settings[settingIndex] = { name, subname, value, id };
+        settings[settingIndex] = { name, subname, id, value };
     } else {
-        settings.push({ name, subname, value, id });
+        settings.push({ name, subname, id, value });
     }
 
     localStorage.setItem('settings', JSON.stringify(settings));
@@ -94,6 +87,6 @@ function applySavedSettings() {
     const settings = JSON.parse(localStorage.getItem('settings')) || [];
 
     settings.forEach(setting => {
-        set_plot_settings(setting.name, setting.subname, setting.value);
+        set_plot_settings(setting.name, setting.subname, setting.id, settings.value);
     });
 }
