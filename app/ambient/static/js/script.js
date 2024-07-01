@@ -53,6 +53,7 @@ async function set_plot_settings(name, subname, id, value){
         data: JSON.stringify({ name: name, subname: subname, id: id, value: value}),
         type: "POST",
         success: function(response) {
+            console.log("Got json data:", name, subname, id, value, response);
             // Update LED indicators based on the response
             if (id === 0) { // Set mode
                 document.getElementById(`led-${subname}`).classList.add('on');
