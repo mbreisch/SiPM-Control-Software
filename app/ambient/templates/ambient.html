@@ -94,17 +94,17 @@
     <div class="setWindowOV">
         <div id="SetCoolerPlot">
             <input type="number" id="camount" placeholder="Enter plot amount">
-            <button onclick="set_plot_settings('cooler','camount',-2,-2)">Set</button>
+            <button onclick="set_plot_settings('cooler','camount',-2,document.getElementById('camount').value)">Set</button>
         </div>
 
         <div id="SetOutsidePlot">
             <input type="number" id="oamount" placeholder="Enter plot amount">
-            <button onclick="set_plot_settings('outside','oamount',-2,-2)">Set</button>
+            <button onclick="set_plot_settings('outside','oamount',-2,document.getElementById('oamount').value)">Set</button>
         </div>
 
         <div id="SetDarkboxPlot">
             <input type="number" id="damount" placeholder="Enter plot amount">
-            <button onclick="set_plot_settings('darkbox','damount',-2,-2)">Set</button>
+            <button onclick="set_plot_settings('darkbox','damount',-2,document.getElementById('damount').value)">Set</button>
         </div>
     </div>
 
