@@ -68,9 +68,32 @@ async function set_plot_settings(name, subname, id){
                 document.getElementById(`led-${subname}`).classList.remove('on');
                 document.getElementById(`led-${subname}-auto`).classList.add('on');
             }
+            saveSettingToLocalStorage(name, subname, value, id);
         },
         error: function(xhr, status, error) {
             console.error("Error setting plot settings: ", status, error);
         }
+    });
+}
+
+
+function saveSettingToLocalStorage(name, subname, value, id) {
+    const settings = JSON.parse(localStorage.getItem('settings')) || [];
+    const settingIndex = settings.findIndex(setting => setting.subname === subname);
+
+    if (settingIndex >= 0) {
+        settings[settingIndex] = { name, subname, value, id };
+    } else {
+        settings.push({ name, subname, value, id });
+    }
+
+    localStorage.setItem('settings', JSON.stringify(settings));
+}
+
+function applySavedSettings() {
+    const settings = JSON.parse(localStorage.getItem('settings')) || [];
+
+    settings.forEach(setting => {
+        set_plot_settings(setting.name, setting.subname, setting.id);
     });
 }
