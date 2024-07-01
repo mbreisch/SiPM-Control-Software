@@ -50,7 +50,7 @@ async function fetchStatus() {
 async function set_plot_settings(name, subname, id, value){
     $.ajax("set_plot_settings", {
         contentType: "application/json",
-        data: JSON.stringify({ name: name, subname: subname, value: value, id: id}),
+        data: JSON.stringify({ name: name, subname: subname, id: id, value: value}),
         type: "POST",
         success: function(response) {
             // Update LED indicators based on the response
