@@ -87,6 +87,6 @@ function applySavedSettings() {
     const settings = JSON.parse(localStorage.getItem('settings')) || [];
 
     settings.forEach(setting => {
-        set_plot_settings(setting.name, setting.subname, setting.id, settings.value);
+        set_plot_settings(setting.name, setting.subname, setting.id, setting.value);
     });
 }
