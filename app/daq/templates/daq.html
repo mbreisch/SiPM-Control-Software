@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}DAQ{% endblock %}
+
+{% block content %}
+<head>
+    <title>DAQ Control</title>
+    <link rel="stylesheet" href="{{ url_for('daq.static', filename='css/styles.css') }}">
+    <script src="{{ url_for('daq.static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('daq.static', filename='js/script.js') }}"></script>
+    <script>
+        // Call setAllToAuto when the page loads
+        //window.onload = DO STUFF;
+    </script>
+</head>
+
+<body>
+    <h1>DAQ Control</h1>
+    <h2>Your DAQ could be here</h2>
+    <div id="IdImage" class="ClassImage">
+        <img id="Image404" src="{{ url_for('daq.static', filename='Ad.gif') }}" alt="Here could be your DAQ" width="600px" height="400px" />
+    </div>
+
+</body>
+{% endblock %}

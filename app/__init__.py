@@ -40,6 +40,7 @@ def create_app():
         from .auth import auth_bp
         from .control import control_bp
         from .ambient import ambient_bp
+        from .daq import daq_bp
         
         print("Registering blueprints")
         app.register_blueprint(auth_bp)
@@ -50,6 +51,9 @@ def create_app():
         
         app.register_blueprint(ambient_bp, url_prefix='/ambient')
         print("Ambient blueprint registered with URL prefix '/ambient'")
+        
+        app.register_blueprint(daq_bp, url_prefix='/daq')
+        print("DAQ blueprint registered with URL prefix '/daq'")
         
         db.create_all()  # Create database tables for our data models
         print("Database tables created")
