@@ -124,17 +124,17 @@ def save_rht():
         
     if last_timestamp.get("cooler") != cooler["timestamp"]:
         with open(f'{ambient_bp.static_folder}/cooler.txt', 'a') as file:
-            file.write(f"{cooler["timestamp"]}:{"cooler"}:{cooler["temperature"]};{cooler["humidity"]}\n")
+            file.write(f"{cooler['timestamp']}:{'cooler'}:{cooler['temperature']};{cooler['humidity']}\n")
     last_timestamps["cooler"] = cooler["timestamp"]
     
     if last_timestamp.get("darkbox") != darkbox["timestamp"]:
         with open(f'{ambient_bp.static_folder}/darkbox.txt', 'a') as file:
-            file.write(f"{darkbox["timestamp"]}:{"darkbox"}:{darkbox["temperature"]};{darkbox["humidity"]}\n")
+            file.write(f"{darkbox['timestamp']}:{'darkbox'}:{darkbox['temperature']};{darkbox['humidity']}\n")
     last_timestamps["darkbox"] = darkbox["timestamp"]
     
     if last_timestamp.get("outside") != outside["timestamp"]:
         with open(f'{ambient_bp.static_folder}/outside.txt', 'a') as file:
-            file.write(f"{outside["timestamp"]}:{"outside"}:{outside["temperature"]};{outside["humidity"]}\n")
+            file.write(f"{outside['timestamp']}:{'outside'}:{outside['temperature']};{outside['humidity']}\n")
     last_timestamps["outside"] = outside["timestamp"]
     
     return jsonify(success=True)
