@@ -175,9 +175,13 @@ def MakeMonitorPlotCooler(name,logfile):
     ax_cool_1.tick_params(axis='y', labelcolor='r', labelsize=10)
     ax_cool_1.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))
     
-    num_ticks = 5  # Number of ticks to display
-    ax_cool_1.set_xticks(range(0, len(last_100_timestamps_date), len(last_100_timestamps_date) // (num_ticks - 1)))
-    ax_cool_1.set_xticklabels([last_100_timestamps_date[i] for i in range(0, len(last_100_timestamps_date), len(last_100_timestamps_date) // (num_ticks - 1))], rotation=45)
+    # Calculate the interval between ticks
+    num_ticks = 5  # Desired number of ticks
+    interval = max(1, len(last_100_timestamps_date) // num_ticks)
+    tick_indices = range(0, len(last_100_timestamps_date), interval)
+    
+    ax_cool_1.set_xticks(tick_indices)
+    ax_cool_1.set_xticklabels([last_100_timestamps_date[i] for i in tick_indices], rotation=45)
         
     ax_cool_2 = ax_cool_1.twinx()
     ax_cool_2.plot(last_100_timestamps_date, last_100_humidities, color='b', marker='', linestyle='-', markersize=3, label=f"Humidity")
