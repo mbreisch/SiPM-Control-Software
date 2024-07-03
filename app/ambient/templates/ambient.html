@@ -27,6 +27,9 @@
         setTimeout(() => {
             setInterval(update_outside, 5000);  // Start updating Outside after a delay of 4 seconds
         }, 4000);
+
+        fetchRHTStatus();
+        setInterval(fetchRHTStatus, 10000);
     </script>
 
     <div id="IDambient" class="Ambient">
