@@ -164,7 +164,7 @@ def MakeMonitorPlotCooler(name,logfile):
     last_100_temperatures = temperatures[-int(plt_settings["cooler"]["camount"]):]
     last_100_humidities = humidities[-int(plt_settings["cooler"]["camount"]):]
     
-    last_100_timestamps_date = [datetime.utcfromtimestamp(ts/1000).strftime('%Y-%m-%d %H:%M:%S') for ts in last_100_timestamps]
+    last_100_timestamps_date = last_100_timestamps#[datetime.utcfromtimestamp(ts/1000).strftime('%Y-%m-%d %H:%M:%S') for ts in last_100_timestamps]
     
     # Plot timestamp vs value for each entry
     fig_cool, ax_cool_1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
@@ -212,7 +212,7 @@ def MakeMonitorPlotDarkbox(name,logfile):
     last_100_temperatures = temperatures[-int(plt_settings["darkbox"]["damount"]):]
     last_100_humidities = humidities[-int(plt_settings["darkbox"]["damount"]):]
     
-    last_100_timestamps_date = [datetime.utcfromtimestamp(ts/1000).strftime('%Y-%m-%d %H:%M:%S') for ts in last_100_timestamps]
+    last_100_timestamps_date = last_100_timestamps#[datetime.utcfromtimestamp(ts/1000).strftime('%Y-%m-%d %H:%M:%S') for ts in last_100_timestamps]
     
     # Plot timestamp vs value for each entry
     fig_dark, ax_dark_1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
@@ -260,7 +260,7 @@ def MakeMonitorPlotOutside(name,logfile):
     last_100_temperatures = temperatures[-int(plt_settings["outside"]["oamount"]):]
     last_100_humidities = humidities[-int(plt_settings["outside"]["oamount"]):]
     
-    last_100_timestamps_date = [datetime.utcfromtimestamp(ts/1000).strftime('%Y-%m-%d %H:%M:%S') for ts in last_100_timestamps]
+    last_100_timestamps_date = last_100_timestamps#[datetime.utcfromtimestamp(ts/1000).strftime('%Y-%m-%d %H:%M:%S') for ts in last_100_timestamps]
     
     # Plot timestamp vs value for each entry
     fig_out, ax_out_1 = plt.subplots(figsize=(600/100,400/100), dpi=100)
