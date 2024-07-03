@@ -63,7 +63,7 @@ async function fetchRHTStatus() {
 
         $.ajax("save_rht", {
             contentType: "application/json",
-            data: JSON.stringify({ device: data.device, timestamp: data.timestamp, temperature: data.temperature, humidity: data.humidity }),
+            data: JSON.stringify({ cooler: data.cooler, darkbox: data.darkbox, outside: data.outside}),
             type: "POST",
             success: function(response) {}
         });

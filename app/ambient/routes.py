@@ -118,10 +118,12 @@ def set_plot_settings():
 def save_rht():
     global last_timestamp
     
-    device=request.json["device"]
-    temperature=request.json["temperature"]
-    humidity=request.json["humidity"]
-    timestamp=request.json["timestamp"]
+    cooler = request.json["cooler"]
+    darkbox = request.json["darkbox"]
+    outside = request.json["outside"]
+    
+    print(type(cooler))
+    print(cooler)
     
     if last_timestamp != timestamp:
         with open(f'{ambient_bp.static_folder}/{device}.txt', 'a') as file:
