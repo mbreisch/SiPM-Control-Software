@@ -54,11 +54,6 @@ async function fetchRHTStatus() {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        document.getElementById('device').textContent = data.device;
-        document.getElementById('timestamp').textContent = data.timestamp;
-        document.getElementById('temperature').textContent = data.temperature;
-        document.getElementById('humidity').textContent = data.humidity;
-
         console.log("Got json data:", data);
 
         $.ajax("save_rht", {
