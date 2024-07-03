@@ -125,11 +125,11 @@ def save_rht():
     print(type(cooler))
     print(cooler)
     
-    if last_timestamp != timestamp:
-        with open(f'{ambient_bp.static_folder}/{device}.txt', 'a') as file:
-            file.write(f"{timestamp}:{device}:{temperature};{humidity}\n")
+    # if last_timestamp != timestamp:
+    #     with open(f'{ambient_bp.static_folder}/{device}.txt', 'a') as file:
+    #         file.write(f"{timestamp}:{device}:{temperature};{humidity}\n")
             
-    last_timestamp = timestamp
+    # last_timestamp = timestamp
     
     return jsonify(success=True)
     
