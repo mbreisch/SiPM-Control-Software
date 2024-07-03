@@ -34,7 +34,7 @@ plt_settings = {"cooler" :
                 "darkbox" : 
                     {"ylimit_dax1_min": 0, "ylimit_dax1_max":50, "ylimit_dax2_min":0, "ylimit_dax2_max":100, "damount": 100}
                 }
-last_timestamp = 0
+last_timestamp = {"cooler":0, "darkbox":0, "outside":0}
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
@@ -116,20 +116,26 @@ def set_plot_settings():
 
 @ambient_bp.route("/save_rht", methods=["POST"])
 def save_rht():
-    global last_timestamp
+    global last_timestamps
     
     cooler = request.json["cooler"]
     darkbox = request.json["darkbox"]
     outside = request.json["outside"]
+        
+    if last_timestamp.get("cooler") != cooler["timestamp"]:
+        with open(f'{ambient_bp.static_folder}/cooler.txt', 'a') as file:
+            file.write(f"{cooler["timestamp"]}:{"cooler"}:{cooler["temperature"]};{cooler["humidity"]}\n")
+    last_timestamps["cooler"] = cooler["timestamp"]
     
-    print(type(cooler))
-    print(cooler)
+    if last_timestamp.get("darkbox") != darkbox["timestamp"]:
+        with open(f'{ambient_bp.static_folder}/darkbox.txt', 'a') as file:
+            file.write(f"{darkbox["timestamp"]}:{"darkbox"}:{darkbox["temperature"]};{darkbox["humidity"]}\n")
+    last_timestamps["darkbox"] = darkbox["timestamp"]
     
-    # if last_timestamp != timestamp:
-    #     with open(f'{ambient_bp.static_folder}/{device}.txt', 'a') as file:
-    #         file.write(f"{timestamp}:{device}:{temperature};{humidity}\n")
-            
-    # last_timestamp = timestamp
+    if last_timestamp.get("outside") != outside["timestamp"]:
+        with open(f'{ambient_bp.static_folder}/outside.txt', 'a') as file:
+            file.write(f"{outside["timestamp"]}:{"outside"}:{outside["temperature"]};{outside["humidity"]}\n")
+    last_timestamps["outside"] = outside["timestamp"]
     
     return jsonify(success=True)
     
