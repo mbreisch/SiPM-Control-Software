@@ -31,7 +31,7 @@ async function update_outside(){
     });
 }
 
-async function fetchStatus() {
+async function fetchFanStatus() {
     try {
         const response = await fetch('http://templogpi.am14.uni-tuebingen.de:5000/fan_status');
         if (!response.ok) {
@@ -44,6 +44,32 @@ async function fetchStatus() {
         console.error('Fetch error:', error);
         document.getElementById('countdown').textContent = 'Error';
         document.getElementById('relay').textContent = 'Error';
+    }
+}
+
+async function fetchRHTStatus() {
+    try {
+        const response = await fetch('http://templogpi.am14.uni-tuebingen.de:5000/rht_status');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        document.getElementById('device').textContent = data.device;
+        document.getElementById('timestamp').textContent = data.timestamp;
+        document.getElementById('temperature').textContent = data.temperature;
+        document.getElementById('humidity').textContent = data.humidity;
+
+        console.log("Got json data:", data);
+
+        $.ajax("save_rht", {
+            contentType: "application/json",
+            data: JSON.stringify({ device: data.device, timestamp: data.timestamp, temperature: data.temperature, humidity: data.humidity }),
+            type: "POST",
+            success: function(response) {}
+        });
+        
+    } catch (error) {
+        console.error('Fetch error:', error);
     }
 }
 

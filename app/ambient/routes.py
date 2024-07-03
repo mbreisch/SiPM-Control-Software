@@ -34,6 +34,7 @@ plt_settings = {"cooler" :
                 "darkbox" : 
                     {"ylimit_dax1_min": 0, "ylimit_dax1_max":50, "ylimit_dax2_min":0, "ylimit_dax2_max":100, "damount": 100}
                 }
+last_timestamp = 0
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
@@ -112,7 +113,25 @@ def set_plot_settings():
     print(colored(f"Setting {name} {subname} to {value}","red"))
 
     return jsonify(success=True)
+
+@ambient_bp.route("/save_rht", methods=["POST"])
+def save_rht():
+    global last_timestamp
     
+    device=request.json["device"]
+    temperature=request.json["temperature"]
+    humidity=request.json["humidity"]
+    timestamp=request.json["timestamp"]
+    
+    if last_timestamp != timestamp:
+        with open(f'{ambient_bp.static_folder}/{device}.txt', 'a') as file:
+            file.write(f"{timestamp}:{device}:{temperature};{humidity}\n")
+            
+    last_timestamp = timestamp
+    
+    return jsonify(success=True)
+    
+
 def MakeMonitorPlotCooler(name,logfile):
     global plt_settings
     # Read each line from the provided file object
