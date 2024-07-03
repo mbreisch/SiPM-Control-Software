@@ -34,7 +34,7 @@ plt_settings = {"cooler" :
                 "darkbox" : 
                     {"ylimit_dax1_min": 0, "ylimit_dax1_max":50, "ylimit_dax2_min":0, "ylimit_dax2_max":100, "damount": 100}
                 }
-last_timestamp = {"cooler":0, "darkbox":0, "outside":0}
+last_timestamps = {"cooler":0, "darkbox":0, "outside":0}
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
