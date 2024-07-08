@@ -68,10 +68,15 @@ async function sendFanControl() {
     let mode = -1;
     let offTime = -1;
     let onTime = -1;
-    let stateToggle = -1;
+    let stateToggle = document.getElementById('stateToggle').checked;
+    let state = -1
 
     if(modeToggle.checked) { //Manual mode
-        stateToggle = document.getElementById('stateToggle').checked;
+        if(stateToggle) {
+            state = 1;
+        }else{
+            state = 0;
+        }
         mode = "manual";
     }else if(!modeToggle.checked){ //Auto mode
         offTime = document.getElementById('offTime').value || 10;
@@ -81,11 +86,11 @@ async function sendFanControl() {
 
     $.ajax("fan_control",{
         contentType: "application/json",
-        data: JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, stateToggle: stateToggle}),
+        data: JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, state: state}),
         type: "POST",
         success: function(response) {
-            console.log("Sending JSON data:", JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, stateToggle: stateToggle }));
-            saveFanSettings(mode, offTime, onTime, stateToggle);
+            console.log("Sending JSON data:", JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, state: state }));
+            saveFanSettings(mode, offTime, onTime, state);
         },
         error: function(xhr, status, error) {
             console.error("Error:", status, error);
@@ -161,7 +166,11 @@ function applySavedSettings() {
 
     if (fanSettings.mode == 'manual') {
         document.getElementById('modeToggle').checked = true;
-        document.getElementById('stateToggle').checked = fanSettings.stateToggle;
+        if (fanSettings.state) {
+            document.getElementById('stateToggle').checked = true;
+        }else{
+            document.getElementById('stateToggle').checked = false;
+        }
     } else if (fanSettings.mode == 'auto') {   
         document.getElementById('modeToggle').checked = false;
         document.getElementById('offTime').value = fanSettings.offTime;
@@ -171,9 +180,9 @@ function applySavedSettings() {
     toggleMode();
 }
 
-function saveFanSettings(mode, offTime, onTime, stateToggle) {
+function saveFanSettings(mode, offTime, onTime, state) {
     //const fanSettings = JSON.parse(localStorage.getItem('fanSettings')) || [];
-    const newFanSettings = { mode, offTime, onTime, stateToggle };
+    const newFanSettings = { mode, offTime, onTime, state };
 
     localStorage.setItem('fanSettings', JSON.stringify(newFanSettings));
 }
