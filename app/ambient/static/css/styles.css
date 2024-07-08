@@ -121,3 +121,13 @@ body {
     width: fit-content;
     margin: 0 auto;
 }
+
+
+/* Test for Switch */
+/* The switch - the box around the slider */
+.hidden {
+    display: none;
+}
+.toggle-container {
+    margin-top: 10px;
+}
