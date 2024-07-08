@@ -48,11 +48,13 @@ async function fetchFanStatus() {
 }
 
 async function sendFanControl() {
+
     let modeToggle = document.getElementById('modeToggle');
     let mode = -1;
     let offTime = -1;
     let onTime = -1;
     let autoToggle = -1;
+
     if(modeToggle.checked) { //Manual mode
         offTime = document.getElementById('offTime').value;
         onTime = document.getElementById('onTime').value;
@@ -61,13 +63,14 @@ async function sendFanControl() {
         autoToggle = document.getElementById('autoToggle').checked;
         mode = "auto";
     }
+
     try {
         const response = await fetch('http://raspberrypisipm.am14.uni-tuebingen.de:5000/ambient/fan_control', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, autoToggle: autoToggle}),
+            data: JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, autoToggle: autoToggle}),
         });
         // Check if response is okay
         if (!response.ok) {
@@ -76,9 +79,9 @@ async function sendFanControl() {
 
         const data = await response.json();
         console.log('Success:', data);
-        } catch (error) {
-            console.error('Fetch Error:', error);
-        }
+    } catch (error) {
+        console.error('Fetch Error:', error);
+    }
 }
 
 async function fetchRHTStatus() {
