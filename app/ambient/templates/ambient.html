@@ -213,28 +213,32 @@
     <div class="fan-container" id="fan-id">
         <div id="fan-control-id" class="fan-control">
             <h1>Fan Control</h1>
-            <div>
-                <label for="modeToggle">Mode:</label>
+            <div class="switch-label">
+                <label for="modeToggle">Auto</label>
                 <label class="switch">
                     <input type="checkbox" id="modeToggle" onchange="toggleMode()">
                     <span class="slider"></span>
                 </label>
+                <label for="modeToggle">Manual</label>
             </div>
             
             <div id="manualControls" class="toggle-container hidden">
                 <label for="offTime">Off Time (ms):</label>
-                <input type="number" id="offTime" min="0" step="1">
+                <input type="number" id="offTime" class="input-small" min="0" step="1">
                 
                 <label for="onTime">On Time (ms):</label>
-                <input type="number" id="onTime" min="0" step="1">
+                <input type="number" id="onTime" class="input-small" min="0" step="1">
             </div>
             
             <div id="autoControls" class="toggle-container hidden">
-                <label for="autoToggle">Auto Mode:</label>
-                <label class="switch">
-                    <input type="checkbox" id="autoToggle">
-                    <span class="slider"></span>
-                </label>
+                <div class="switch-label">
+                    <label for="autoToggle">Off</label>
+                    <label class="switch">
+                        <input type="checkbox" id="autoToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <label for="autoToggle">On</label>
+                </div>
             </div>
         </div>
         <script>

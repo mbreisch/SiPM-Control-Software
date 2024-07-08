@@ -134,8 +134,8 @@ body {
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 30px;
+    height: 17px;
 }
 .switch input {
     display: none;
@@ -167,4 +167,12 @@ input:checked + .slider {
 }
 input:checked + .slider:before {
     transform: translateX(26px);
+}
+.switch-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.input-small {
+    width: 80px;
 }
