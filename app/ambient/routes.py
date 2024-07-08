@@ -15,6 +15,8 @@ import requests
 
 from . import ambient_bp
 
+fan_settings = {"mode": "auto", "offTime": 10, "onTime": 10, "stateToggle": -1}
+
 sys.path.append(ambient_bp.static_folder)
 
 @ambient_bp.route('/',methods=["GET","POST"])
@@ -38,8 +40,9 @@ last_timestamps = {"cooler":0, "darkbox":0, "outside":0}
 
 @ambient_bp.route("/fan_control", methods=["GET","POST"])
 def fan_control():
-    print(f"Fan Control: {request.json['mode']} {request.json['offTime']} {request.json['onTime']} {request.json['stateToggle']}")
-    return jsonify({"mode": request.json["mode"], "offTime": request.json["offTime"], "onTime": request.json["onTime"], "stateToggle": request.json["stateToggle"]})
+    global fan_settings
+    fan_settings = {"mode": request.json["mode"], "offTime": float(request.json["offTime"]), "onTime": float(request.json["onTime"]), "stateToggle": request.json["stateToggle"]}
+    return jsonify(fan_settings)
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
