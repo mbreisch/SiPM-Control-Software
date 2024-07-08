@@ -240,7 +240,17 @@
                     <label for="autoToggle">On</label>
                 </div>
             </div>
+            <br>
+            <h1>Fan Status</h1>
+            <div id="status" class="status"></div>
+                <p>Countdown: <span id="countdown">Loading...</span></p>
+                <p>Relay: <span id="relay">Loading...</span></p>
+            </div>
         </div>
+        <script>
+            setInterval(fetchFanStatus, 1000);
+            fetchFanStatus();
+        </script>
         <script>
             function toggleMode() {
                 const modeToggle = document.getElementById('modeToggle');
@@ -255,18 +265,6 @@
                     autoControls.classList.remove('hidden');
                 }
             }
-        </script>
-
-        <div id="fan-status-id" class="fan-status">
-            <h1>Fan Status</h1>
-            <div id="status" class="status"></div>
-                <p>Countdown: <span id="countdown">Loading...</span></p>
-                <p>Relay: <span id="relay">Loading...</span></p>
-            </div>
-        </div>
-        <script>
-            setInterval(fetchFanStatus, 1000);
-            fetchFanStatus();
         </script>
     </div>
 
