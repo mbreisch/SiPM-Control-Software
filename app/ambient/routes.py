@@ -36,18 +36,21 @@ plt_settings = {"cooler" :
                 }
 last_timestamps = {"cooler":0, "darkbox":0, "outside":0}
 
-@ambient_bp.route("/fan_control", methods=["GET","POST"])
+@ambient_bp.route("/fan_control", methods=["POST"])
 def fan_control():
     global fan_settings
-    data = request.get_json()  # Use get_json to parse JSON data
-    fan_settings = {
-        "mode": data["mode"],
-        "offTime": float(data["offTime"]),
-        "onTime": float(data["onTime"]),
-        "stateToggle": data["stateToggle"]
-    }
-    print(fan_settings)
-    return jsonify(fan_settings), 200
+    try:
+        data = request.get_json()
+        fan_settings = {
+            "mode": data.get("mode"),
+            "offTime": float(data.get("offTime")),
+            "onTime": float(data.get("onTime")),
+            "stateToggle": data.get("stateToggle")
+        }
+        return jsonify(fan_settings)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
