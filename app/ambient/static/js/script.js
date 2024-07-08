@@ -92,6 +92,9 @@ async function sendFanControl() {
         success: function(response) {
             console.log("Got json data:", response);
             saveFanSettings(mode, offTime, onTime, stateToggle);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error:", status, error);
         }
     });
 }
