@@ -38,20 +38,7 @@ last_timestamps = {"cooler":0, "darkbox":0, "outside":0}
 
 @ambient_bp.route("/fan_control", methods=["POST","GET"])
 def fan_control():
-    global fan_settings
-    try:
-        data = request.get_json()
-        print(f"Received JSON data: {data}")
-        fan_settings = {
-            # "mode": data.get("mode"),
-            # "offTime": float(data.get("offTime")),
-            # "onTime": float(data.get("onTime")),
-            # "stateToggle": data.get("stateToggle")
-        }
-        return jsonify({"success": True})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
-
+    return jsonify({"success": True})
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
