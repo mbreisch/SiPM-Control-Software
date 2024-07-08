@@ -159,16 +159,7 @@ function applySavedSettings() {
     settings.forEach(setting => {
         set_plot_settings(setting.name, setting.subname, setting.id, setting.value);
     });
-}
 
-function saveFanSettings(mode, offTime, onTime, stateToggle) {
-    //const fanSettings = JSON.parse(localStorage.getItem('fanSettings')) || [];
-    const newFanSettings = { mode, offTime, onTime, stateToggle };
-
-    localStorage.setItem('fanSettings', JSON.stringify(newFanSettings));
-}
-
-function applySavedFanSettings() {
     const fanSettings = JSON.parse(localStorage.getItem('fanSettings')) || {};
 
     if (fanSettings.mode == 'manual') {
@@ -181,4 +172,11 @@ function applySavedFanSettings() {
     }
 
     toggleMode();
+}
+
+function saveFanSettings(mode, offTime, onTime, stateToggle) {
+    //const fanSettings = JSON.parse(localStorage.getItem('fanSettings')) || [];
+    const newFanSettings = { mode, offTime, onTime, stateToggle };
+
+    localStorage.setItem('fanSettings', JSON.stringify(newFanSettings));
 }
