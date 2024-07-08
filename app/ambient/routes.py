@@ -41,7 +41,7 @@ def fan_control():
     global fan_settings
     print(fan_settings)
     fan_settings = {"mode": request.json["mode"], "offTime": float(request.json["offTime"]), "onTime": float(request.json["onTime"]), "stateToggle": request.json["stateToggle"]}
-    print(fan_settings)
+    print(jsonify(fan_settings))
     return jsonify(fan_settings)
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
