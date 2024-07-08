@@ -180,4 +180,5 @@ function applySavedFanSettings() {
         document.getElementById('onTime').value = fanSettings.onTime;
     }
 
+    toggleMode();
 }
