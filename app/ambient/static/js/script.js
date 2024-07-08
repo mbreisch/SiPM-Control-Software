@@ -151,10 +151,14 @@ function applySavedFanSettings() {
     const fanSettings = JSON.parse(localStorage.getItem('fanSettings')) || {};
 
     if (fanSettings.mode) {
-        document.getElementById('modeToggle').checked = fanSettings.mode;
-        document.getElementById('autoToggle').checked = fanSettings.autoToggle;
-        document.getElementById('offTime').value = fanSettings.offTime;
-        document.getElementById('onTime').value = fanSettings.onTime;
+        if (fanSettings.mode === 'manual') {
+            document.getElementById('modeToggle').checked = true;
+            document.getElementById('autoToggle').checked = fanSettings.autoToggle;
+        } else if (fanSettings.mode === 'auto') {   
+            document.getElementById('modeToggle').checked = false;
+            document.getElementById('offTime').value = fanSettings.offTime;
+            document.getElementById('onTime').value = fanSettings.onTime;
+        }
     }
 }
 
