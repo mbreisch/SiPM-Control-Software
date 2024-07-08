@@ -48,10 +48,10 @@ async function fetchFanStatus() {
 }
 
 async function sendFanControl() {
-    const modeToggle = document.getElementById('modeToggle');
-    const offTime = -1;
-    const onTime = -1;
-    const autoToggle = -1;
+    let modeToggle = document.getElementById('modeToggle');
+    let offTime = -1;
+    let onTime = -1;
+    let autoToggle = -1;
     if(modeToggle.checked) { //Manual mode
         offTime = document.getElementById('offTime').value;
         onTime = document.getElementById('onTime').value;
