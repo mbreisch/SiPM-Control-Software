@@ -70,6 +70,7 @@ async function sendFanControl() {
         type: "POST",
         success: function(response) {
             console.log("Got json data:", response);
+            saveFanSettings(mode, offTime, onTime, autoToggle);
         }
     });
 }
