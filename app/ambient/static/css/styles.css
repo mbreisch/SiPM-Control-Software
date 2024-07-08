@@ -120,23 +120,8 @@ body {
     text-align: left;
     background-color: rgb(77, 77, 77);
     border: 2px solid rgb(53, 53, 53);
-    width: 200px;
+    width: fit-content;
     margin: 0 auto;
-}
-
-.fan-control, .fan-status {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.fan-status {
-    flex: 1;
-}
-
-.status {
-    margin-top: 10px;
 }
 
 /* Test for Switch */
