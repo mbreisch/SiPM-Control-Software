@@ -36,7 +36,7 @@ plt_settings = {"cooler" :
                 }
 last_timestamps = {"cooler":0, "darkbox":0, "outside":0}
 
-@ambient_bp.route("/fan_control", methode=["POST"])
+@ambient_bp.route("/fan_control", methods=["POST"])
 def fan_control():
     return jsonify({"mode": request.json["mode"], "offTime": request.json["offTime"], "onTime": request.json["onTime"], "stateToggle": request.json["stateToggle"]})
 
