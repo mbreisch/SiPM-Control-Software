@@ -36,7 +36,7 @@ plt_settings = {"cooler" :
                 }
 last_timestamps = {"cooler":0, "darkbox":0, "outside":0}
 
-@ambient_bp.route("/fan_control", subdomain="ambient" ,methods=["POST","GET"])
+@ambient_bp.route("/fan_control",subdomain="ambient" ,methods=["POST","GET"])
 def fan_control():
     global fan_settings
     try:
