@@ -53,10 +53,10 @@ async function sendFanControl() {
     let mode = -1;
     let offTime = -1;
     let onTime = -1;
-    let autoToggle = -1;
+    let stateToggle = -1;
 
     if(modeToggle.checked) { //Manual mode
-        autoToggle = document.getElementById('autoToggle').checked;
+        stateToggle = document.getElementById('stateToggle').checked;
         mode = "manual";
     }else if(!modeToggle.checked){ //Auto mode
         offTime = document.getElementById('offTime').value;
@@ -66,11 +66,11 @@ async function sendFanControl() {
 
     $.ajax("fan_control", {
         contentType: "application/json",
-        data: JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, autoToggle: autoToggle}),
+        data: JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, stateToggle: stateToggle}),
         type: "POST",
         success: function(response) {
             console.log("Got json data:", response);
-            saveFanSettings(mode, offTime, onTime, autoToggle);
+            saveFanSettings(mode, offTime, onTime, stateToggle);
         }
     });
 }
@@ -140,9 +140,8 @@ function applySavedSettings() {
     });
 }
 
-function saveFanSettings(mode, offTime, onTime, autoToggle) {
-    const fanSettings = JSON.parse(localStorage.getItem('fanSettings')) || {};
-    const newFanSettings = { mode, offTime, onTime, autoToggle };
+function saveFanSettings(mode, offTime, onTime, stateToggle) {
+    const newFanSettings = { mode, offTime, onTime, stateToggle };
 
     localStorage.setItem('fanSettings', JSON.stringify(newFanSettings));
 }
@@ -151,10 +150,10 @@ function applySavedFanSettings() {
     const fanSettings = JSON.parse(localStorage.getItem('fanSettings')) || {};
 
     if (fanSettings.mode) {
-        if (fanSettings.mode === 'manual') {
+        if (fanSettings.mode == 'manual') {
             document.getElementById('modeToggle').checked = true;
-            document.getElementById('autoToggle').checked = fanSettings.autoToggle;
-        } else if (fanSettings.mode === 'auto') {   
+            document.getElementById('stateToggle').checked = fanSettings.stateToggle;
+        } else if (fanSettings.mode == 'auto') {   
             document.getElementById('modeToggle').checked = false;
             document.getElementById('offTime').value = fanSettings.offTime;
             document.getElementById('onTime').value = fanSettings.onTime;
