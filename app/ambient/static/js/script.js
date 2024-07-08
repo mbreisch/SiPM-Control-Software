@@ -157,3 +157,18 @@ function applySavedFanSettings() {
         document.getElementById('onTime').value = fanSettings.onTime;
     }
 }
+
+function toggleMode() {
+    const modeToggle = document.getElementById('modeToggle');
+    const manualControls = document.getElementById('manualControls');
+    const autoControls = document.getElementById('autoControls');
+    
+    if (modeToggle.checked) {
+        manualControls.classList.remove('hidden');
+        autoControls.classList.add('hidden');
+    } else {
+        manualControls.classList.add('hidden');
+        autoControls.classList.remove('hidden');
+    }
+    sendFanControl();
+}
