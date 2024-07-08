@@ -47,6 +47,34 @@ async function fetchFanStatus() {
     }
 }
 
+async function sendFanControl() {
+    const modeToggle = document.getElementById('modeToggle');
+    const offTime = -1;
+    const onTime = -1;
+    const autoToggle = -1;
+    if(modeToggle.checked) { //Manual mode
+        offTime = document.getElementById('offTime').value;
+        onTime = document.getElementById('onTime').value;
+    }else if(!modeToggle.checked){ //Auto mode
+        autoToggle = document.getElementById('autoToggle').checked;
+    }
+
+    fetch('http://raspberrypisipm.am14.uni-tuebingen.de:5000/fan_control', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "mode": modeToggle.checked, "offTime": offTime, "onTime": onTime, "autoToggle": autoToggle}),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
 async function fetchRHTStatus() {
     try {
         const response = await fetch('http://templogpi.am14.uni-tuebingen.de:5000/rht_status');

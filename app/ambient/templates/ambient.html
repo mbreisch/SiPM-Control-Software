@@ -263,6 +263,7 @@
                 manualControls.classList.add('hidden');
                 autoControls.classList.remove('hidden');
             }
+            sendFanControl();
         }
 
         setInterval(fetchFanStatus, 1000);
