@@ -64,7 +64,7 @@ async function sendFanControl() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ "mode": modeToggle.checked, "offTime": offTime, "onTime": onTime, "autoToggle": autoToggle}),
+        body: JSON.stringify({ mode: modeToggle.checked, offTime: offTime, onTime: onTime, autoToggle: autoToggle}),
     })
     .then(response => response.json())
     .then(data => {
