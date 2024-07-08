@@ -38,7 +38,7 @@ last_timestamps = {"cooler":0, "darkbox":0, "outside":0}
 
 @ambient_bp.route("/fan_control", methods=["POST","GET"])
 def fan_control():
-    return jsonify({"success": True})
+    return jsonify({"success": True, "fan_settings": fan_settings})
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
