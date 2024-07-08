@@ -27,8 +27,6 @@ def ambient_home():
 
 ambient_bp._title="Ambiemt Monitoring"
 
-
-
 plt_settings = {"cooler" : 
                     {"ylimit_cax1_min": 0, "ylimit_cax1_max":50, "ylimit_cax2_min":0, "ylimit_cax2_max":100, "camount": 100},
                 "outside" : 
@@ -41,7 +39,9 @@ last_timestamps = {"cooler":0, "darkbox":0, "outside":0}
 @ambient_bp.route("/fan_control", methods=["GET","POST"])
 def fan_control():
     global fan_settings
+    print(fan_settings)
     fan_settings = {"mode": request.json["mode"], "offTime": float(request.json["offTime"]), "onTime": float(request.json["onTime"]), "stateToggle": request.json["stateToggle"]}
+    print(fan_settings)
     return jsonify(fan_settings)
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
