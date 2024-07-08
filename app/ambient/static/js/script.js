@@ -118,7 +118,6 @@ async function set_plot_settings(name, subname, id, value){
     });
 }
 
-
 function saveSettingToLocalStorage(name, subname, id, value) {
     const settings = JSON.parse(localStorage.getItem('settings')) || [];
     const settingIndex = settings.findIndex(setting => setting.subname === subname);
@@ -138,4 +137,21 @@ function applySavedSettings() {
     settings.forEach(setting => {
         set_plot_settings(setting.name, setting.subname, setting.id, setting.value);
     });
+}
+
+function saveFanSettings(mode, offTime, onTime, autoToggle) {
+    const fanSettings = JSON.parse(localStorage.getItem('fanSettings')) || {};
+
+    localStorage.setItem('fanSettings', JSON.stringify(fanSettings));
+}
+
+function applySavedFanSettings() {
+    const fanSettings = JSON.parse(localStorage.getItem('fanSettings')) || {};
+
+    if (fanSettings.mode) {
+        document.getElementById('modeToggle').checked = fanSettings.mode;
+        document.getElementById('autoToggle').checked = fanSettings.autoToggle;
+        document.getElementById('offTime').value = fanSettings.offTime;
+        document.getElementById('onTime').value = fanSettings.onTime;
+    }
 }
