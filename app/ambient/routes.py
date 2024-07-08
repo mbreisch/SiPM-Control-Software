@@ -19,6 +19,7 @@ sys.path.append(ambient_bp.static_folder)
 
 @ambient_bp.route('/',methods=["GET","POST"])
 @ambient_bp.route("/home",methods=["GET","POST"])
+@ambient_bp.route("/ambient/fan_control",methods=["GET","POST"])
 @login_required
 def ambient_home():
     return render_template("ambient.html",title="Ambient Monitor")
