@@ -226,7 +226,7 @@
                 <div class="switch-label">
                     <label for="autoToggle">Off</label>
                     <label class="switch">
-                        <input type="checkbox" id="autoToggle">
+                        <input type="checkbox" id="autoToggle" onchange="toggleState()">
                         <span class="slider"></span>
                     </label>
                     <label for="autoToggle">On</label>
@@ -263,6 +263,10 @@
                 manualControls.classList.add('hidden');
                 autoControls.classList.remove('hidden');
             }
+            sendFanControl();
+        }
+
+        function toggleState() {
             sendFanControl();
         }
 
