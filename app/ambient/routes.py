@@ -41,8 +41,6 @@ def fan_control():
     global fan_settings
     try:
         data = request.get_json()
-        if not data:
-            return jsonify({"error": "No JSON data provided"}), 400
         fan_settings = {
             "mode": data.get("mode"),
             "offTime": float(data.get("offTime")),
