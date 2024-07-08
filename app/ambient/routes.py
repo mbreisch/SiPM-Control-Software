@@ -48,7 +48,7 @@ def fan_control():
             "onTime": float(data.get("onTime")),
             "stateToggle": data.get("stateToggle")
         }
-        return jsonify(fan_settings)
+        return jsonify(fan_settings), 200, {"Content-Type": "application/json"}
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
