@@ -113,6 +113,8 @@ body {
 }
 
 .fan-container {
+    display: flex;
+    gap: 20px;
     padding-left: 20px;
     padding-right: 20px;
     text-align: left;
@@ -122,6 +124,20 @@ body {
     margin: 0 auto;
 }
 
+.fan-control, .fan-status {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fan-status {
+    flex: 1;
+}
+
+.status {
+    margin-top: 10px;
+}
 
 /* Test for Switch */
 /* The switch - the box around the slider */
