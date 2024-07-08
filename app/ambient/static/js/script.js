@@ -79,27 +79,13 @@ async function sendFanControl() {
         mode = "auto";
     }
 
-    $.ajax("fan_control",{
+    $.ajax("/fan_control",{
         contentType: "application/json",
         data: JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, stateToggle: stateToggle}),
         type: "POST",
         success: function(response) {
             console.log("Sending JSON data:", JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, stateToggle: stateToggle }));
             saveFanSettings(mode, offTime, onTime, stateToggle);
-        },
-        error: function(xhr, status, error) {
-            console.error("Error:", status, error);
-        }
-    });
-}
-
-async function getFanControl() {
-    $.ajax({
-        url: "fan_control",
-        type: "GET",
-        success: function(response) {
-            console.log("Fan settings data:", response);
-            // You can update your UI here with the retrieved data
         },
         error: function(xhr, status, error) {
             console.error("Error:", status, error);
