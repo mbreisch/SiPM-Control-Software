@@ -47,6 +47,7 @@ def fan_control():
             "onTime": float(data.get("onTime")),
             "stateToggle": int(data.get("stateToggle") == True)
         }
+        print(type(jsonify(fan_settings)))
         return jsonify(fan_settings)
     except Exception as e:
         return jsonify({"error": str(e)}), 400
