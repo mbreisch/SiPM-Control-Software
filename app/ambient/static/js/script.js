@@ -142,8 +142,9 @@ function applySavedSettings() {
 
 function saveFanSettings(mode, offTime, onTime, autoToggle) {
     const fanSettings = JSON.parse(localStorage.getItem('fanSettings')) || {};
+    const newFanSettings = { mode, offTime, onTime, autoToggle };
 
-    localStorage.setItem('fanSettings', JSON.stringify(fanSettings));
+    localStorage.setItem('fanSettings', JSON.stringify(newFanSettings));
 }
 
 function applySavedFanSettings() {
