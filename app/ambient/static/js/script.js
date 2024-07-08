@@ -56,11 +56,11 @@ async function sendFanControl() {
     let autoToggle = -1;
 
     if(modeToggle.checked) { //Manual mode
-        offTime = document.getElementById('offTime').value;
-        onTime = document.getElementById('onTime').value;
+        autoToggle = document.getElementById('autoToggle').checked;
         mode = "manual";
     }else if(!modeToggle.checked){ //Auto mode
-        autoToggle = document.getElementById('autoToggle').checked;
+        offTime = document.getElementById('offTime').value;
+        onTime = document.getElementById('onTime').value;
         mode = "auto";
     }
 
