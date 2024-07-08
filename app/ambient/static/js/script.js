@@ -59,7 +59,7 @@ async function sendFanControl() {
         autoToggle = document.getElementById('autoToggle').checked;
     }
     try {
-        const response = await fetch('http://raspberrypisipm.am14.uni-tuebingen.de:5000/ambient/fan_control', {
+        const response = await fetch('http://raspberrypisipm.am14.uni-tuebingen.de:5000/fan_control', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
