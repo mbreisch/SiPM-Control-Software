@@ -79,8 +79,7 @@ async function sendFanControl() {
         mode = "auto";
     }
 
-    $.ajax({
-        url: "/fan_control",
+    $.ajax("fan_control",{
         contentType: "application/json",
         data: JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, stateToggle: stateToggle}),
         type: "POST",
