@@ -90,7 +90,7 @@ async function sendFanControl() {
         data: JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, stateToggle: stateToggle}),
         type: "POST",
         success: function(response) {
-            console.log("Got json data:", response);
+            console.log("Fan got json data:", response);
             saveFanSettings(mode, offTime, onTime, stateToggle);
         },
         error: function(xhr, status, error) {
