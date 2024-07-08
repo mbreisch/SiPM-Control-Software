@@ -58,21 +58,24 @@ async function sendFanControl() {
     }else if(!modeToggle.checked){ //Auto mode
         autoToggle = document.getElementById('autoToggle').checked;
     }
+    try {
+        const response = await fetch('http://raspberrypisipm.am14.uni-tuebingen.de:5000/fan_control', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ mode: modeToggle.checked, offTime: offTime, onTime: onTime, autoToggle: autoToggle}),
+        });
+        // Check if response is okay
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
 
-    fetch('http://raspberrypisipm.am14.uni-tuebingen.de:5000/fan_control', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ mode: modeToggle.checked, offTime: offTime, onTime: onTime, autoToggle: autoToggle}),
-    })
-    .then(response => response.json())
-    .then(data => {
+        const data = await response.json();
         console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+        } catch (error) {
+            console.error('Fetch Error:', error);
+        }
 }
 
 async function fetchRHTStatus() {
