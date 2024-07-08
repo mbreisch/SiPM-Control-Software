@@ -74,14 +74,8 @@ async function sendFanControl() {
         stateToggle = document.getElementById('stateToggle').checked;
         mode = "manual";
     }else if(!modeToggle.checked){ //Auto mode
-        offTime = document.getElementById('offTime').value;
-        if(offTime ==""){
-            offTime = 10;
-        }
-        onTime = document.getElementById('onTime').value;
-        if(onTime ==""){
-            onTime = 10;
-        }
+        offTime = document.getElementById('offTime').value || 10;
+        onTime = document.getElementById('onTime').value || 10;
         mode = "auto";
     }
 
