@@ -64,24 +64,14 @@ async function sendFanControl() {
         mode = "auto";
     }
 
-    try {
-        const response = await fetch('http://raspberrypisipm.am14.uni-tuebingen.de:5000/ambient/fan_control', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            data: JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, autoToggle: autoToggle}),
-        });
-        // Check if response is okay
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+    $.ajax("fan_control", {
+        contentType: "application/json",
+        data: JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, autoToggle: autoToggle}),
+        type: "POST",
+        success: function(response) {
+            console.log("Got json data:", response);
         }
-
-        const data = await response.json();
-        console.log('Success:', data);
-    } catch (error) {
-        console.error('Fetch Error:', error);
-    }
+    });
 }
 
 async function fetchRHTStatus() {
