@@ -123,18 +123,27 @@ def save_rht():
     outside = request.json["outside"]
         
     if last_timestamps.get("cooler") != cooler["timestamp"]:
-        with open(f'{ambient_bp.static_folder}/cooler.txt', 'a') as file:
-            file.write(f"{cooler['timestamp']}:{'cooler'}:{cooler['temperature']};{cooler['humidity']}\n")
+        if cooler['timestamp']==0 and cooler['temperature']==0 and cooler['humidity']==0:
+            pass
+        else:
+            with open(f'{ambient_bp.static_folder}/cooler.txt', 'a') as file:
+                file.write(f"{cooler['timestamp']}:{'cooler'}:{cooler['temperature']};{cooler['humidity']}\n")
     last_timestamps["cooler"] = cooler["timestamp"]
     
     if last_timestamps.get("darkbox") != darkbox["timestamp"]:
-        with open(f'{ambient_bp.static_folder}/darkbox.txt', 'a') as file:
-            file.write(f"{darkbox['timestamp']}:{'darkbox'}:{darkbox['temperature']};{darkbox['humidity']}\n")
+        if darkbox['timestamp']==0 and darkbox['temperature']==0 and darkbox['humidity']==0:
+            pass
+        else:
+            with open(f'{ambient_bp.static_folder}/darkbox.txt', 'a') as file:
+                file.write(f"{darkbox['timestamp']}:{'darkbox'}:{darkbox['temperature']};{darkbox['humidity']}\n")
     last_timestamps["darkbox"] = darkbox["timestamp"]
     
     if last_timestamps.get("outside") != outside["timestamp"]:
-        with open(f'{ambient_bp.static_folder}/outside.txt', 'a') as file:
-            file.write(f"{outside['timestamp']}:{'outside'}:{outside['temperature']};{outside['humidity']}\n")
+        if outside['timestamp']==0 and outside['temperature']==0 and outside['humidity']==0:
+            pass
+        else:
+            with open(f'{ambient_bp.static_folder}/outside.txt', 'a') as file:
+                file.write(f"{outside['timestamp']}:{'outside'}:{outside['temperature']};{outside['humidity']}\n")
     last_timestamps["outside"] = outside["timestamp"]
     
     return jsonify(success=True)
