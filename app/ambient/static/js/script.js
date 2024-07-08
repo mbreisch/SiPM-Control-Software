@@ -171,14 +171,13 @@ function saveFanSettings(mode, offTime, onTime, stateToggle) {
 function applySavedFanSettings() {
     const fanSettings = JSON.parse(localStorage.getItem('fanSettings')) || {};
 
-    if (fanSettings.mode) {
-        if (fanSettings.mode == 'manual') {
-            document.getElementById('modeToggle').checked = true;
-            document.getElementById('stateToggle').checked = fanSettings.stateToggle;
-        } else if (fanSettings.mode == 'auto') {   
-            document.getElementById('modeToggle').checked = false;
-            document.getElementById('offTime').value = fanSettings.offTime;
-            document.getElementById('onTime').value = fanSettings.onTime;
-        }
+    if (fanSettings.mode == 'manual') {
+        document.getElementById('modeToggle').checked = true;
+        document.getElementById('stateToggle').checked = fanSettings.stateToggle;
+    } else if (fanSettings.mode == 'auto') {   
+        document.getElementById('modeToggle').checked = false;
+        document.getElementById('offTime').value = fanSettings.offTime;
+        document.getElementById('onTime').value = fanSettings.onTime;
     }
+
 }
