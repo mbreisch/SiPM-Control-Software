@@ -19,7 +19,6 @@ sys.path.append(ambient_bp.static_folder)
 
 @ambient_bp.route('/',methods=["GET","POST"])
 @ambient_bp.route("/home",methods=["GET","POST"])
-@ambient_bp.route("/fan_control",methods=["GET","POST"])
 @login_required
 def ambient_home():
     return render_template("ambient.html",title="Ambient Monitor")
@@ -36,6 +35,10 @@ plt_settings = {"cooler" :
                     {"ylimit_dax1_min": 0, "ylimit_dax1_max":50, "ylimit_dax2_min":0, "ylimit_dax2_max":100, "damount": 100}
                 }
 last_timestamps = {"cooler":0, "darkbox":0, "outside":0}
+
+@ambient_bp.route("/fan_control",methods=["GET","POST"])
+def fan_control():
+    return jsonify(success=True)
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
