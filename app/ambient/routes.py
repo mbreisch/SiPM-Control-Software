@@ -41,6 +41,7 @@ def fan_control():
     global fan_settings
     try:
         data = request.get_json()
+        print(f"Received JSON data: {data}")
         fan_settings = {
             "mode": data.get("mode"),
             "offTime": float(data.get("offTime")),
