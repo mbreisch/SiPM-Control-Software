@@ -43,13 +43,13 @@ def fan_control():
         data = request.get_json()
         print(f"Received JSON data: {data}")
         fan_settings = {
-            "test": "test"
+            "test": 2
             # "mode": data.get("mode"),
             # "offTime": float(data.get("offTime")),
             # "onTime": float(data.get("onTime")),
             # "stateToggle": data.get("stateToggle")
         }
-        return jsonify(fan_settings), 200, {"Content-Type": "application/json"}
+        return jsonify(data=fan_settings)
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
