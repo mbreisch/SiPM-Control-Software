@@ -57,7 +57,7 @@ def set_fanSettings():
         print("Request was not JSON")  # Debug information
         return jsonify({"success": False, "error": "Request must be JSON"}), 400
     
-@ambient_bp.route('/fan_control', methods=["POST"])   
+@ambient_bp.route('/fan_control', methods=["POST","GET"])   
 def fan_control():
     global fan_settings
     print(colored(f"Fan control: {fan_settings}","red"))
