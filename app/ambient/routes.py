@@ -54,6 +54,7 @@ def fan_control():
             print("Error processing request:", e)  # Debug information
             return jsonify({"success": False, "error": str(e)}), 400
     else:
+        print("Request was not JSON")  # Debug information
         return jsonify({"success": False, "error": "Request must be JSON"}), 400
 
 @ambient_bp.route("/update_cooler", methods=["POST"])

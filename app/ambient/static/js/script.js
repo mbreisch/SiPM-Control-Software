@@ -72,16 +72,13 @@ async function sendFanControl() {
     let state = -1
 
     if(modeToggle.checked) { //Manual mode
-        if(stateToggle) {
-            state = 1;
-        }else{
-            state = 0;
-        }
+        state = stateToggle ? 1 : 0;
         mode = "manual";
     }else if(!modeToggle.checked){ //Auto mode
         offTime = document.getElementById('offTime').value || 10;
         onTime = document.getElementById('onTime').value || 10;
         mode = "auto";
+        state= -1;
     }
 
     let data = {
@@ -91,7 +88,8 @@ async function sendFanControl() {
         stateToggle: state
     };
 
-    $.ajax("fan_control",{
+    $.ajax({
+        url: "/ambient/fan_control",
         contentType: "application/json",
         data: JSON.stringify(data),
         type: "POST",
