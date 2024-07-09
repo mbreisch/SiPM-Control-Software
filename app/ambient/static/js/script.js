@@ -86,7 +86,7 @@ async function sendFanControl() {
 
     $.ajax("fan_control",{
         contentType: "application/json",
-        data: JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, state: state}),
+        data: JSON.stringify({ mode: mode}),
         type: "POST",
         success: function(response) {
             console.log("Sending JSON data:", JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, state: state }));
