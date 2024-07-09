@@ -150,7 +150,7 @@ def save_rht():
     outside = request.json["outside"]
         
     if last_timestamps.get("cooler") != cooler["timestamp"]:
-        if cooler['timestamp']==0 and cooler['temperature']==0 and cooler['humidity']==0:
+        if cooler['timestamp']=="0" and cooler['temperature']=="0" and cooler['humidity']=="0":
             pass
         else:
             with open(f'{ambient_bp.static_folder}/cooler.txt', 'a') as file:
