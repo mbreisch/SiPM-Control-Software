@@ -38,6 +38,10 @@ last_timestamps = {"cooler":0, "darkbox":0, "outside":0}
 
 @ambient_bp.route('/fan_control', methods=["POST", "GET"])
 def fan_control():
+    print("Request Method:", request.method)
+    print("Request Headers:", request.headers)
+    print("Request Data:", request.data)
+    
     global fan_settings
     if request.is_json:
         try:
