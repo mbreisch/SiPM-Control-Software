@@ -81,7 +81,10 @@ async function sendFanControl() {
     }
 
     let data = {
-        test: "test"
+        mode: mode,
+        offTime: offTime,
+        onTime: onTime,
+        state: state
     };
 
     console.log("Sending JSON data:", data);
