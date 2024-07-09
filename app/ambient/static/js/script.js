@@ -84,12 +84,19 @@ async function sendFanControl() {
         mode = "auto";
     }
 
+    let data = {
+        mode: mode,
+        offTime: offTime,
+        onTime: onTime,
+        stateToggle: state
+    };
+
     $.ajax("fan_control",{
         contentType: "application/json",
-        data: JSON.stringify({ mode: "mode"}),
+        data: JSON.stringify(data),
         type: "POST",
         success: function(response) {
-            console.log("Sending JSON data:", JSON.stringify({ mode: mode, offTime: offTime, onTime: onTime, state: state }));
+            console.log("Sending JSON data:", JSON.stringify(data));
             saveFanSettings(mode, offTime, onTime, state);
         },
         error: function(xhr, status, error) {

@@ -41,9 +41,9 @@ def fan_control():
     global fan_settings
     fan_settings = {
         "mode": request.json["mode"],
-        # "offTime": float(data.get("offTime")),
-        # "onTime": float(data.get("onTime")),
-        # "stateToggle": data.get("stateToggle")
+        "offTime": request.json["offTime"],
+        "onTime": request.json["onTime"],
+        "stateToggle": request.json["stateToggle"]
     }
     return jsonify({"success": True, "fan_settings": fan_settings})
 
