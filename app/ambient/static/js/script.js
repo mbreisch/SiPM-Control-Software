@@ -71,7 +71,7 @@ async function sendFanControl() {
     let state;
 
     if (modeToggle.checked) { // Manual mode
-        state = stateToggle ? 1 : 0;
+        state = stateToggle;
         mode = "manual";
     } else { // Auto mode
         offTime = document.getElementById('offTime').value || 10;
