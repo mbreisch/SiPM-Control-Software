@@ -90,7 +90,7 @@ async function sendFanControl() {
     console.log("Sending JSON data:", data);
 
     $.ajax({
-        url: "/ambient/fan_control",
+        url: "/ambient/set_fanSettings",
         contentType: "application/json",
         data: JSON.stringify(data),
         type: "POST",

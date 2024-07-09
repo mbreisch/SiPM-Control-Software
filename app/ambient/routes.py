@@ -36,12 +36,8 @@ plt_settings = {"cooler" :
                 }
 last_timestamps = {"cooler":0, "darkbox":0, "outside":0}
 
-@ambient_bp.route('/fan_control', methods=["POST", "GET"])
-def fan_control():
-    print("Request Method:", request.method)
-    print("Request Headers:", request.headers)
-    print("Request Data:", request.data)
-    
+@ambient_bp.route('/set_fanSettings', methods=["POST"])
+def set_fanSettings():  
     global fan_settings
     if request.is_json:
         try:
@@ -53,13 +49,19 @@ def fan_control():
                 "onTime": data.get("onTime"),
                 "stateToggle": data.get("stateToggle")
             }
-            return jsonify({"success": True, "fan_settings": fan_settings})
+            return jsonify({"success": True})
         except Exception as e:
             print("Error processing request:", e)  # Debug information
             return jsonify({"success": False, "error": str(e)}), 400
     else:
         print("Request was not JSON")  # Debug information
         return jsonify({"success": False, "error": "Request must be JSON"}), 400
+    
+@ambient_bp.route('/fan_control', methods=["POST"])   
+def fan_control():
+    global fan_settings
+    print(colored(f"Fan control: {fan_settings}","red"))
+    return jsonify(fan_settings)
 
 @ambient_bp.route("/update_cooler", methods=["POST"])
 def update_cooler():
