@@ -63,30 +63,28 @@ function toggleMode() {
 }
 
 async function sendFanControl() {
-
     let modeToggle = document.getElementById('modeToggle');
-    let mode = -1;
+    let mode;
     let offTime = -1;
     let onTime = -1;
     let stateToggle = document.getElementById('stateToggle').checked;
-    let state = -1
+    let state;
 
-    if(modeToggle.checked) { //Manual mode
+    if (modeToggle.checked) { // Manual mode
         state = stateToggle ? 1 : 0;
         mode = "manual";
-    }else if(!modeToggle.checked){ //Auto mode
+    } else { // Auto mode
         offTime = document.getElementById('offTime').value || 10;
         onTime = document.getElementById('onTime').value || 10;
         mode = "auto";
-        state= -1;
+        state = -1; // Assuming state is not needed in auto mode
     }
 
     let data = {
-        mode: mode,
-        offTime: offTime,
-        onTime: onTime,
-        stateToggle: state
+        test: "test"
     };
+
+    console.log("Sending JSON data:", data);
 
     $.ajax({
         url: "/ambient/fan_control",
@@ -94,7 +92,7 @@ async function sendFanControl() {
         data: JSON.stringify(data),
         type: "POST",
         success: function(response) {
-            console.log("Sending JSON data:", JSON.stringify(data));
+            console.log("Response received:", response);
             saveFanSettings(mode, offTime, onTime, state);
         },
         error: function(xhr, status, error) {
