@@ -47,7 +47,7 @@ def set_fanSettings():
                 "mode": data.get("mode"),
                 "offTime": data.get("offTime"),
                 "onTime": data.get("onTime"),
-                "stateToggle": data.get("stateToggle")
+                "state": data.get("state")
             }
             return jsonify({"success": True})
         except Exception as e:
