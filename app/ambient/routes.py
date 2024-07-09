@@ -148,6 +148,14 @@ def save_rht():
     cooler = request.json["cooler"]
     darkbox = request.json["darkbox"]
     outside = request.json["outside"]
+    print("-------------------")
+    print(cooler)
+    print(type(cooler.get("timestamp")),type(cooler.get("temperature")),type(cooler.get("humidity")))
+    print(darkbox)
+    print(type(darkbox.get("timestamp")),type(darkbox.get("temperature")),type(darkbox.get("humidity")))
+    print(outside)
+    print(type(outside.get("timestamp")),type(outside.get("temperature")),type(outside.get("humidity")))
+    print("-------------------")
         
     if last_timestamps.get("cooler") != cooler["timestamp"]:
         if cooler['timestamp']==0 and cooler['temperature']==0 and cooler['humidity']==0:
