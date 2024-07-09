@@ -158,7 +158,7 @@ def save_rht():
     print("-------------------")
         
     if last_timestamps.get("cooler") != cooler["timestamp"]:
-        if cooler['timestamp']==0 and cooler['temperature']==0 and cooler['humidity']==0:
+        if int(cooler['timestamp'])==0 and int(cooler['temperature'])==0 and int(cooler['humidity'])==0:
             pass
         else:
             with open(f'{ambient_bp.static_folder}/cooler.txt', 'a') as file:
@@ -166,7 +166,7 @@ def save_rht():
     last_timestamps["cooler"] = cooler["timestamp"]
     
     if last_timestamps.get("darkbox") != darkbox["timestamp"]:
-        if darkbox['timestamp']==0 and darkbox['temperature']==0 and darkbox['humidity']==0:
+        if int(darkbox['timestamp'])==0 and int(darkbox['temperature'])==0 and int(darkbox['humidity'])==0:
             pass
         else:
             with open(f'{ambient_bp.static_folder}/darkbox.txt', 'a') as file:
@@ -174,7 +174,7 @@ def save_rht():
     last_timestamps["darkbox"] = darkbox["timestamp"]
     
     if last_timestamps.get("outside") != outside["timestamp"]:
-        if outside['timestamp']==0 and outside['temperature']==0 and outside['humidity']==0:
+        if int(outside['timestamp'])==0 and int(outside['temperature'])==0 and int(outside['humidity'])==0:
             pass
         else:
             with open(f'{ambient_bp.static_folder}/outside.txt', 'a') as file:
